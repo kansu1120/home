@@ -42,8 +42,10 @@ public:
         return ans;
     }
 };
-
+```
 </details>
+
+
 
 <details>
 <summary>MIN</summary>
@@ -82,5 +84,5 @@ public:
         return ans;
     }
 };
-
+```
 </details>
