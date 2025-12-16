@@ -3,6 +3,7 @@
 使い放題
 
 
-- [RMQ](RMQ.md)
+- [RMaxQ](RMaxQ.md)
+- [RMinQ](RMinQ.md)
 - [RSQ](RSQ.md)
 
