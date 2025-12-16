@@ -12,4 +12,6 @@
 <br>
 <br>
 著作権フリー
+<br>
+<br>
 <small>made by kansu</small>
