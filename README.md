@@ -2,7 +2,6 @@
 
 
 
-
 - [RMaxQ](RMaxQ.md)
 - [RMinQ](RMinQ.md)
 - [RSQ](RSQ.md)
