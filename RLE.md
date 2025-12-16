@@ -1,5 +1,7 @@
-#ラングレス圧縮
+# ラングレス圧縮
+
 string を入力
+
 int char の　pair の vector でリターン
 
 aaab ->  4 a , 1 b
