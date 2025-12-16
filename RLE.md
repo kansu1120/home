@@ -6,18 +6,13 @@ aaab ->  4 a , 1 b
 ```cpp
 vector<pair<int,char>> r(string s){
     vector<pair<int,char>> ans;
-    vector<bool> visited(s.size(),false);
     for(int i = 0;i < s.size();i++){
-        if(visited[i])continue;
-        int cnt = 0;
-        for(int j = i;j < s.size();j++){
-            if(s[j]==s[i]){
-                i = j;
-                cnt++;
-            }
-            else break;
+        if(ans.size()==0 || ans[ans.size()-1].second != s[i]){
+            ans.push_back({1,s[i]});
         }
-        ans.push_back({cnt,s[i]});
+        else{
+            ans[ans.size()-1].first++;
+        }
     } 
     return ans;
 }
