@@ -7,7 +7,7 @@ segmenttree 名前(サイズ)　で定義
 名前.query( l , r ) で l から r の範囲内の最大値を取得
 
 
-```md
+```cpp
 class segmenttree{
 public:
     int siz = 1;
