@@ -8,7 +8,6 @@
 ##
 
 class segmenttree{
-
 public:
     int siz = 1;
     vector<int> v;
