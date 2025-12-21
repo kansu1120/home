@@ -1,4 +1,4 @@
-#　素因数分解　pair<itn,int> 
+#　素因数分解　pair int,int
 
 
 ```cpp
