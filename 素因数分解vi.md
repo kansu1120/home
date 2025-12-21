@@ -1,4 +1,4 @@
-# 素因数分解 vector<int>
+# 素因数分解 vector <int＞
 
 ```cpp
 vector<int> p(int n){
