@@ -11,6 +11,7 @@
 - [countが高速のmultiset](countmultiset.md)
 - [二分探索用vector](二分探索用vector.md)
 - [累積和](累積和.md)
+- [二次元累積和](二次元累積和.md)
 <br>
 <br>
 <br>
