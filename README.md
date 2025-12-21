@@ -9,7 +9,7 @@
 - [エラトステネスの篩](エラトステネスの篩.md)
 - [N進数変換](N進数変換.md)
 - [countが高速のmultiset](countmultiset.md)
-- [二分探索用vector](二分探索用vector)
+- [二分探索用vector](二分探索用vector.md)
 <br>
 <br>
 <br>
