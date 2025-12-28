@@ -1,3 +1,5 @@
+[home](README.md)
+
 # RMinQ
 
 segmenttree 名前(サイズ)　で定義
