@@ -1,5 +1,5 @@
 # kansu cpp-library
-
+  バグがあっても知りません
 
 - [template](template.md)
 - [RMaxQ](RMaxQ.md)
@@ -20,6 +20,7 @@
 - [二部マッチング](二部マッチング.md)
 - [ナップザック](ナップザック.md)
 - [木直径](木直径.md)
+- 
 <br>
 <br>
 <br>
