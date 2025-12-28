@@ -2,7 +2,7 @@
 layout: default
 ---
 
-[home](
+[home](README.md)
 
 # テンプレート--
 
