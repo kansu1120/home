@@ -1,6 +1,8 @@
 # 素因数分解 vector int
 
+
 ```cpp
+
 vector<int> p(int n){
     vector<int> ans;
     int x = n;
@@ -20,4 +22,5 @@ vector<int> p(int n){
     if(x!=1)ans.push_back(x);
     return ans;
 };
+
 ```
