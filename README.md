@@ -26,7 +26,7 @@
 <br>
 <br>
 <br>
-[編集用ページ](https://github.com/kansu1120/library)
+ - [編集用ページ](https://github.com/kansu1120/library)
 <br>
 <br>
 <br>
