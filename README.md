@@ -5,8 +5,6 @@
 - [template](template.md)
 - [RLE ラングレス圧縮](RLE.md)
 - [N進数変換](N進数変換.md)
-- [countが高速のmultiset](countmultiset.md)
-- [二分探索用vector](二分探索用vector.md)
 - [ナップザック](ナップザック.md)
 - [セグ木](セグ木まとめ.md)
 - [累積和](累積和まとめ.md)
