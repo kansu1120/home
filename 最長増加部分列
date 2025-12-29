@@ -1,0 +1,38 @@
+[home](README.md)
+
+# 最長増加部分列
+
+lis_sizeで最長部分増加列の長さ
+
+los_posでそれぞれの位置までの最長増加部分列の長さ
+
+```cpp
+    int lis_size(vector<int> v){
+        vector<int> dp;
+        int n = v.size();
+        for(int i : v){                
+            auto it = lower_bound(dp.begin(),dp.end(),i);
+            if(it == dp.end())dp.push_back(i);
+            else *it = i;
+        }
+        return dp.size();
+    }
+    vector<int> lis_pos(vector<int> v){
+        vector<int> dp;
+        int n = v.size();
+        vector<int> ans(n);
+        for(int j = 0;j < n;j++){
+            int i = v[j];
+            auto it = lower_bound(dp.begin(),dp.end(),i);
+            if(it == dp.end()){
+                dp.push_back(i);
+                ans[j] = dp.size();
+            }
+            else{
+                *it = i;
+                ans[j] = (it - dp.begin())+1;
+            }
+        }
+        return ans;
+    }
+    ```
