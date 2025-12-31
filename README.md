@@ -3,8 +3,6 @@
 
 
 - [template](template.md)
-
-- [セグ木](セグ木まとめ.md)
   
 - [累積和](累積和まとめ.md)
   
