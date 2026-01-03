@@ -61,7 +61,7 @@ int div_mod(vector<int>& a, int x, int y){
 }
 
 // x進数(string) → y進数(string)
-string convert_base(string s, int x, int y){
+string f(string s, int x, int y){
     vector<int> a;
     for(char c : s) a.push_back(c - '0');
     trim(a);
