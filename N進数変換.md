@@ -1,5 +1,3 @@
-[home](README.md)
-
 # N進数変換
 
 
