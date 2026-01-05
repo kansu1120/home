@@ -1,5 +1,3 @@
-[home](README.md)
-
 # countが高速に行えるmaltiset
 
 使い方はmulsisetと同じ
