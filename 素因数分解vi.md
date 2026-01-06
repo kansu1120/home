@@ -1,5 +1,3 @@
-[home](README.md)
-
 # 素因数分解 vector int
 
 
