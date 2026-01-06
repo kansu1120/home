@@ -1,5 +1,3 @@
-[home](README.md)
-
 # 二分探索用vector
 
 使い方は普通のvectorと同じ
