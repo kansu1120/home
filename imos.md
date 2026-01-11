@@ -10,25 +10,25 @@ solve() をしたら完成
 
 class imos{
     public : 
-    vector<int> v;
-    int n;
-    imos(int x){
+    vector<long long> v;
+    long long n;
+    imos(long long x){
         v.assign(x,0);
         n = v.size();
     }
-    void plus(int l,int r,int x){
+    void plus(long long l,long long r,long long x){
         v[l] += x;
         if(r != n-1)v[r+1]-=x;
     }
     void solve(){
-        for(int i = 1;i < n;i++){
+        for(long long i = 1;i < n;i++){
             v[i] += v[i-1];
         }
     }
-    int at(int pos){
+    long long at(long long pos){
         return v[pos];
     }
-    long long operator[](int pos) const {
+    long long operator[](long long pos) const {
         return v[pos];
     }
 };
