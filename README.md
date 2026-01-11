@@ -20,7 +20,7 @@
 
 - [数列](数列.md)
 
-- [一覧](library/index.md)
+- [一覧](index.md)
 <br>
 <br>
 <br>
