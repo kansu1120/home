@@ -20,11 +20,11 @@
   {"title":"imos 法","url":"imos.html","content":"区間加算 cumulative sum"},
   {"title":"二次元 imos","url":"imos2D.html","content":"2D 区間加算 cumulative sum"},
 
-  {"title":"二分探索","url":"二分探索.html","content":"binary search lower_bound upper_bound"},
+  {"title":"二分探索まとめ","url":"二分探索.html","content":"binary search lower_bound upper_bound"},
   {"title":"二分探索用 vector","url":"二分探索用vector.html","content":"binary search vector"},
   {"title":"答えで二分探索","url":"答えで二分探索.html","content":"binary search answer method"},
-  {"title":"答えで二分探索2","url":"答えで二分探索2.html","content":"binary search answer method increasing"},
-  {"title":"答えで二分探索3","url":"答えで二分探索3.html","content":"binary search answer method non decreasing"},
+  {"title":"答えが広義短調ぞうかになる二分探索","url":"答えで二分探索2.html","content":"binary search answer method increasing"},
+  {"title":"答えが短調非減少になる二分探索","url":"答えで二分探索3.html","content":"binary search answer method non decreasing"},
   {"title":"答えで lower_bound","url":"答えでlower_bound.html","content":"lower_bound binary search"},
   {"title":"答えで upper_bound","url":"答えでupper_bound.html","content":"upper_bound binary search"},
 
@@ -32,7 +32,7 @@
   {"title":"string 部分一致","url":"string部分一致.html","content":"string substring 部分一致 KMP"},
 
   {"title":"数学まとめ","url":"数学まとめ.html","content":"mod 素数 約数 GCD LCM"},
-  {"title":"数列","url":"数列.html","content":"sequence 数列操作"},
+  {"title":"数列まとめ","url":"数列.html","content":"sequence 数列操作"},
   {"title":"N進数変換","url":"N進数変換.html","content":"base conversion n進数"},
   {"title":"数字桁数","url":"数字桁数.html","content":"digit length 桁数"},
   {"title":"座標圧縮","url":"座標圧縮.html","content":"coordinate compression"},
