@@ -28,12 +28,12 @@
   {"title":"答えで lower_bound","url":"答えでlower_bound.html","content":"lower_bound binary search 配列 探索 位置"},
   {"title":"答えで upper_bound","url":"答えでupper_bound.html","content":"upper_bound binary search 配列 探索 位置"},
 
-  {"title":"RLE（ランレングス圧縮）","url":"RLE.html","content":"run length encoding 文字列圧縮 文字数 圧縮 長さ 連続文字"},
+  {"title":"RLE（ランレングス圧縮）","url":"RLE.html","content":"run length encoding 文字列圧縮 文字数 圧縮 長さ 連続文字  ラングレス　ラングレス圧縮"},
   {"title":"string 部分一致","url":"string部分一致.html","content":"string substring 部分一致 KMP rolling hash 文字列探索"},
 
   {"title":"数学まとめ","url":"数学まとめ.html","content":"mod 素数 約数 GCD LCM factorial combination permutation pow modulo"},
-  {"title":"数列まとめ","url":"数列.html","content":"sequence 数列操作 順列 逆順 cumulative sum"},
-  {"title":"N進数変換","url":"N進数変換.html","content":"base conversion n進数 binary octal hexadecimal"},
+  {"title":"数列まとめ","url":"数列.html","content":"sequence 数列操作 順列 逆順 cumulative sum　数列"},
+  {"title":"N進数変換","url":"N進数変換.html","content":"base conversion n進数 binary octal hexadecimal　進数"},
   {"title":"数字桁数","url":"数字桁数.html","content":"digit length 桁数 桁数計算 log10"},
   {"title":"座標圧縮","url":"座標圧縮.html","content":"coordinate compression 座標 最小値 mapping relabel"},
   {"title":"素数まとめ","url":"素数まとめ.html","content":"prime sieve 素数 エラトステネス 篩"},
@@ -43,14 +43,14 @@
 
   {"title":"グラフまとめ","url":"グラフまとめ.html","content":"graph adjacency list adjacency matrix BFS DFS Dijkstra Bellman-Ford Floyd-Warshall topological sort"},
   {"title":"強連結成分分解","url":"強連結成分分解.html","content":"SCC Kosaraju Tarjan 強連結成分分解"},
-  {"title":"木直径","url":"木直径.html","content":"tree diameter BFS DFS 木の直径 最長経路"},
+  {"title":"木直径","url":"木直径.html","content":"tree diameter BFS DFS 木の直径 最長経路　直径"},
   {"title":"ワーシャルフロイド","url":"ワーシャルフロイド.html","content":"floyd warshall APSP all pairs shortest path graph"},
 
   {"title":"最大フロー","url":"最大フロー.html","content":"max flow dinic push relabel フロー 最大流"},
-  {"title":"フローまとめ","url":"フローまとめ.html","content":"flow max bipartite matching matching 二部グラフ"},
-  {"title":"二部マッチング","url":"二部マッチング.html","content":"bipartite matching maximum matching 二部グラフ 最大マッチング"},
+  {"title":"フローまとめ","url":"フローまとめ.html","content":"flow max bipartite matching matching 二部グラフ フロー"},
+  {"title":"二部マッチング","url":"二部マッチング.html","content":"bipartite matching maximum matching 二部グラフ 最大マッチング　フロー"},
 
-  {"title":"ナップザック","url":"ナップザック.html","content":"dp knapsack 0-1 knapsack 部分和 最適化"},
-  {"title":"最長増加部分列","url":"最長増加部分列.html","content":"LIS longest increasing subsequence dp dynamic programming 部分列 増加列"},
+  {"title":"ナップザック","url":"ナップザック.html","content":"dp knapsack 0-1 knapsack 部分和 最適化　ナップザック"},
+  {"title":"最長増加部分列","url":"最長増加部分列.html","content":"LIS longest increasing subsequence dp dynamic programming 部分列 増加列　最長増加部分列"},
   {"title":"その他典型","url":"その他典型.html","content":"typical dp standard problems 競プロ 頻出 問題 例題"}
 ]
