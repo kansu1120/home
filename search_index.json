@@ -1,0 +1,17 @@
+[
+  {
+    "title": "template",
+    "url": "template.md",
+    "content": "C++ 競技プログラミング テンプレート"
+  },
+  {
+    "title": "二分探索",
+    "url": "二分探索.md",
+    "content": "lower_bound upper_bound 二分探索"
+  },
+  {
+    "title": "セグ木まとめ",
+    "url": "セグ木まとめ.md",
+    "content": "segment tree RMQ RSQ 遅延セグ木"
+  }
+]
