@@ -16,33 +16,32 @@ end() に相当するリターンは-1
 
 ```cpp
 
-template<typename T>
 class bs{
     public : 
-    vector<T> v;
-    bs(int n,T x){
+    vector<long long> v;
+    bs(long long n,long long x){
         v.assign(n,x);
         return;
     }
     void sort(){
         std::sort(v.begin(),v.end());
     }
-    T& at(int pos){
+    long long& at(long long pos){
         return v[pos];
     }
-    T& operator[](int pos){
+    long long& operator[](long long pos){
         return v[pos];
     }
-    const T& operator[](int pos) const{
+    const long long& operator[](long long pos) const{
         return v[pos];
     }
-    void push_back(T x){
+    void push_back(long long x){
         v.push_back(x);
     }
     void pop_back(){
         v.pop_back();
     }
-    int lb(T x){
+    long long lb(long long x){
         auto it = lower_bound(v.begin(),v.end(),x);
         if(it == v.end()){
             return -1;
@@ -51,7 +50,7 @@ class bs{
             return it - v.begin();
         }
     }
-    int ub(T x){
+    long long ub(long long x){
         auto it = upper_bound(v.begin(),v.end(),x);
         if(it == v.end()){
             return -1;
@@ -60,7 +59,7 @@ class bs{
             return it - v.begin();
         }
     }
-    int mim(T x){
+    long long mim(long long x){
         auto it = lower_bound(v.begin(),v.end(),x);
         if(it == v.begin()){
             return -1;
@@ -70,7 +69,7 @@ class bs{
             return it - v.begin();
         }
     }
-    int ika(T x){
+    long long ika(long long x){
         auto it = upper_bound(v.begin(),v.end(),x);
         if(it == v.begin()){
             return -1;
@@ -80,23 +79,24 @@ class bs{
             return it - v.begin();
         }       
     }
-    int cnt_ika(T x){
+    long long cnt_ika(long long x){
         return ika(x)+1;
     }
-    int cnt_mim(T x){
+    long long cnt_mim(long long x){
         return mim(x)+1;
     }
-    int cnt_lb(T x){
+    long long cnt_lb(long long x){
         if(lb(x) == -1){
             return 0;
         }
         return v.size() - lb(x);
     }
-    int cnt_ub(T x){
+    long long cnt_ub(long long x){
         if(ub(x)==-1){
             return 0;
         }
         return v.size() - ub(x);
     }
 };
+
 ```
