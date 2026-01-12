@@ -13,6 +13,7 @@
   {"title":"order statistic tree","url":"order_statistic_tree.html","content":"order statistics set C++ policy based tree find_by_order order_of_key kth element rank tree romaji: order statistic tree junii"},
   {"title":"count が高速な multiset","url":"countmultiset.html","content":"multiset C++ 高速 個数管理 count erase insert lower_bound upper_bound romaji: count kosuu kanri multiset"},
   {"title":"中央値","url":"中央値.html","content":"median multiset order statistics 中央値 求め方 2分探索集合 romaji: chuou chi median"},
+  {"title":"uinonfind","url":"unionfind.html","content":"unionfind ユニオン　ファインド"},
   
   {"title":"累積和","url":"累積和.html","content":"prefix sum cumulative sum 累積和 一次元 1D range sum query romaji: ruiseki wa"},
   {"title":"累積和まとめ","url":"累積和まとめ.html","content":"2D 累積和 二次元 2D prefix sum range sum query romaji: ruisekiwa matome"},
