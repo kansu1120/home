@@ -215,6 +215,11 @@
     "content": "# 木の直径を求める  vvi　のグラフを入れる   ```cpp int cho(vector<vector<int>>& v){     int n = v.size();     vector<int> go(n,-1);     queue<int> q;     q.push(0);     go[0] = 0;     while(q.size()!=0){         int pos = q.front();         q.pop();         for(int i : v[pos]){             if(go[i] == -1){                 go[i] = go[pos]+1;                 q.push(i);             }         }     }     int st = max_element(go.begin(),go.end())-go.begin();     q.push(st);     go.assign(n,-1);     go[st] = 0;     while(q.size()!=0){         int pos = q.front();         q.pop();         for(int i : v[pos]){             if(go[i] == -1){                 go[i] = go[pos]+1;                 q.push(i);             }         }     }     return *max_element(go.begin(),go.end()); } ``` "
   },
   {
+    "title": "答えが広義短調増加になる問題の二分探索",
+    "url": "答えが広義短調増加になる問題の二分探索.html",
+    "content": "# 答えが広義短調増加となる問題での特定の値の範囲を求める二分探索   int test(mid)  でmid の時の値を返す関数を作っておく必要がある  ```cpp  pair<int,int> bs(int k){     int big,small;     int l = 0;     int r = INF;     while(l+1 < r){    // find big         int mid = (l+r)/2;         int res = test(mid);         if(res > k) r = mid;         else l = mid;     }     big = l;     l = 0;     r = INF;     while(l+1 < r){    // find small         int mid = (l+r)/2;         int res = test(mid);         if(res >= k)r = mid;         else l = mid;     }         small = r;     if(small > big) return {-1, -1};     return {small,big}; }  ``` "
+  },
+  {
     "title": "答えでlower_bound",
     "url": "答えでlower_bound.html",
     "content": "# 答えでlower_bound   intを返すtest()を作っておく必要がある  ```cpp  int bs(int x){     // xについてlower_bound     int l = -1;     int r = INF;     while(l+1 < r){         int mid = (l+r)/2;         if(test(mid) >= x)r = mid;         else l = mid;     }     return r; }  ``` "
@@ -228,11 +233,6 @@
     "title": "答えで二分探索",
     "url": "答えで二分探索.html",
     "content": "# 答えで二分探索  boolを返すtestという関数にmidを入れれば使える状態にしておく必要がある    # 答えの最小化  true true **true** false false   このtrueを返す  ```cpp  int bs_min(){     long long l = 0;     long long r = 1e18;     while (r - l > 1) {         long long mid = (l + r) / 2;         if (test(mid)) {             r = mid;              } else {             l = mid;              }     }     return r; }  ```   "
-  },
-  {
-    "title": "答えで二分探索2",
-    "url": "答えで二分探索2.html",
-    "content": "# 答えが広義短調増加となる問題での特定の値の範囲を求める二分探索   int test(mid)  でmid の時の値を返す関数を作っておく必要がある  ```cpp  pair<int,int> bs(int k){     int big,small;     int l = 0;     int r = INF;     while(l+1 < r){    // find big         int mid = (l+r)/2;         int res = test(mid);         if(res > k) r = mid;         else l = mid;     }     big = l;     l = 0;     r = INF;     while(l+1 < r){    // find small         int mid = (l+r)/2;         int res = test(mid);         if(res >= k)r = mid;         else l = mid;     }         small = r;     if(small > big) return {-1, -1};     return {small,big}; }  ``` "
   },
   {
     "title": "答えで二分探索3",
