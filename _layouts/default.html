@@ -20,12 +20,10 @@
     }
 
     .sidebar {
-      width: 260px;
+      flex: 0 0 260px;
       padding: 20px;
       border-right: 1px solid #ddd;
       box-sizing: border-box;
-      overflow: hidden;
-      transition: width 0.2s;
     }
 
     .container {
@@ -39,10 +37,10 @@
       font-size: 16px;
     }
 
-    /* スマホ：サイドバーの幅だけ0にする */
+    /* スマホ：幅だけ0にする */
     @media (max-width: 900px) {
       .sidebar {
-        width: 0;
+        flex: 0 0 0;
         padding: 0;
         border: none;
       }
@@ -51,14 +49,14 @@
 
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+
 </head>
 <body>
 
 <div class="wrapper">
 
   <div class="sidebar">
-    <h3>Index</h3>
-    {% include index.md %}
+    <div id="sidebar-content">Loading…</div>
   </div>
 
   <div class="container">
@@ -70,28 +68,39 @@
     </div>
 
     {{ content }}
+
+    <footer style="
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 0.9em;
+      color: #666;
+    ">
+      <div>© 2026 kansu</div>
+      <div>
+        <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
+           target="_blank" rel="noopener">
+          Source on GitHub
+        </a>
+      </div>
+    </footer>
+
   </div>
 
 </div>
 
-<footer style="
-  text-align: center;
-  margin: 40px 0 20px 0;
-  font-size: 0.9em;
-  color: #666;
-">
-  <div>© 2026 kansu</div>
-  <div>
-    <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
-       target="_blank" rel="noopener">
-      Source on GitHub
-    </a>
-  </div>
-</footer>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 <script src="{{ '/library/copy.js' | relative_url }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+fetch("/library/index.md")
+  .then(r => r.text())
+  .then(md => {
+    document.getElementById("sidebar-content")
+            .innerHTML = marked.parse(md);
+  });
+</script>
 
 </body>
 </html>
