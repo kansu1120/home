@@ -4,16 +4,31 @@
   <meta charset="utf-8">
   <title>{{ page.title }}</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <style>
   body {
     font-size: 18px;
     line-height: 1.3;
+    margin: 0;
   }
 
-  .container {
-    max-width: 900px;   /* ← 横幅の上限 */
-    margin: 0 auto;     /* ← 左右を自動で中央寄せ */
-    padding: 40px;      /* ← 端がくっつかないように */
+  #sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 1px solid #ccc;
+    background: #fafafa;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  #main {
+    margin-left: 260px;
+    padding: 40px;
+    max-width: 900px;
   }
 
   pre, code {
@@ -21,28 +36,27 @@
   }
 </style>
 
-  <!-- ★ これを追加（コードに色を付ける） -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 </head>
+
 <body>
 
-  <div class="container">
+<div id="sidebar">
+  <div id="sidebar-content">Loading...</div>
+</div>
 
-    <div style="margin-bottom:24px; font-size:0.95em;">
-      <a href="{{ '/' | relative_url }}" style="text-decoration:none; color:#555;">
-        ← Home
-      </a>
-    </div>
+<div id="main">
 
-
-
-
-    
-    {{ content }}
+  <div style="margin-bottom:24px; font-size:0.95em;">
+    <a href="{{ '/' | relative_url }}" style="text-decoration:none; color:#555;">
+      ← Home
+    </a>
   </div>
 
-    <footer style="
+  {{ content }}
+
+  <footer style="
     text-align: center;
     margin: 40px 0 20px 0;
     font-size: 0.9em;
@@ -55,12 +69,23 @@
         Source on GitHub
       </a>
     </div>
-      
   </footer>
 
+</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>
-  <script src="{{ '/library/copy.js' | relative_url }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<script src="{{ '/library/copy.js' | relative_url }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+fetch("{{ '/' | relative_url }}index.md")
+  .then(res => res.text())
+  .then(md => {
+    const html = marked.parse(md);
+    document.getElementById("sidebar-content").innerHTML = html;
+  });
+</script>
+
 </body>
 </html>
