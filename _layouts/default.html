@@ -24,6 +24,8 @@
       padding: 20px;
       border-right: 1px solid #ddd;
       box-sizing: border-box;
+      overflow: hidden;
+      transition: width 0.2s;
     }
 
     .container {
@@ -37,13 +39,12 @@
       font-size: 16px;
     }
 
-    /* スマホではサイドバーだけ消す（文字サイズ等は一切触らない） */
+    /* スマホ：サイドバーの幅だけ0にする */
     @media (max-width: 900px) {
       .sidebar {
-        display: none;
-      }
-      .wrapper {
-        display: block;
+        width: 0;
+        padding: 0;
+        border: none;
       }
     }
   </style>
