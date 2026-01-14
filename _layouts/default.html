@@ -5,97 +5,92 @@
   <title>{{ page.title }}</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<style>
-  body {
-    font-size: 18px;
-    line-height: 1.3;
-    margin: 0;
-  }
-
-  #sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 200px;
-    height: 100vh;
-    overflow-y: auto;
-    border-right: 1px solid #ccc;
-    background: #fafafa;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-
-  #main {
-    margin-left: 260px;
-    padding: 40px;
-    max-width: 900px;
-  }
-
-  pre, code {
-    font-size: 16px;
-  }
-
-  /* スマホではサイドバーを消す */
-  @media (max-width: 800px) {
-    #sidebar {
-      display: none;
+  <style>
+    body {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.3;
+      font-family: sans-serif;
     }
-    #main {
-      margin-left: 0;
-    }
-  }
-</style>
 
-<link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    .wrapper {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sidebar {
+      width: 260px;
+      padding: 20px;
+      border-right: 1px solid #ddd;
+      box-sizing: border-box;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 900px;
+      padding: 40px;
+      box-sizing: border-box;
+    }
+
+    pre, code {
+      font-size: 16px;
+    }
+
+    /* スマホではサイドバーだけ消す（文字サイズ等は一切触らない） */
+    @media (max-width: 900px) {
+      .sidebar {
+        display: none;
+      }
+      .wrapper {
+        display: block;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 </head>
-
 <body>
 
-<div id="sidebar">
-  <div id="sidebar-content">Loading...</div>
-</div>
+<div class="wrapper">
 
-<div id="main">
-
-  <div style="margin-bottom:24px; font-size:0.95em;">
-    <a href="{{ '/' | relative_url }}" style="text-decoration:none; color:#555;">
-      ← Home
-    </a>
+  <div class="sidebar">
+    <h3>Index</h3>
+    {% include index.md %}
   </div>
 
-  {{ content }}
+  <div class="container">
 
-  <footer style="
-    text-align: center;
-    margin: 40px 0 20px 0;
-    font-size: 0.9em;
-    color: #666;
-  ">
-    <div>© 2026 kansu</div>
-    <div>
-      <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
-         target="_blank" rel="noopener">
-        Source on GitHub
+    <div style="margin-bottom:24px; font-size:0.95em;">
+      <a href="{{ '/' | relative_url }}" style="text-decoration:none; color:#555;">
+        ← Home
       </a>
     </div>
-  </footer>
+
+    {{ content }}
+  </div>
 
 </div>
+
+<footer style="
+  text-align: center;
+  margin: 40px 0 20px 0;
+  font-size: 0.9em;
+  color: #666;
+">
+  <div>© 2026 kansu</div>
+  <div>
+    <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
+       target="_blank" rel="noopener">
+      Source on GitHub
+    </a>
+  </div>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 <script src="{{ '/library/copy.js' | relative_url }}"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script>
-fetch("{{ '/' | relative_url }}index.md")
-  .then(res => res.text())
-  .then(md => {
-    const html = marked.parse(md);
-    document.getElementById("sidebar-content").innerHTML = html;
-  });
-</script>
 
 </body>
 </html>
