@@ -137,7 +137,7 @@
   {
     "title": "二分探索",
     "url": "二分探索.html",
-    "content": "# 二分探索  - [boolの答えで二分探索](答えで二分探索.md) - [答えでlower_bound](答えでlower_bound.md) - [答えでupper_bound](答えでupper_bound.md) - [広義短調増加となる答えで特定の値の範囲を求める](答えで二分探索2.md) - [短調非増加となる答えで特定の値の範囲を求める](答えで二分探索3.md) - [二分探索用vector](二分探索用vector.md) "
+    "content": "# 二分探索  - [boolの答えで二分探索](答えで二分探索.md) - [答えでlower_bound](答えでlower_bound.md) - [答えでupper_bound](答えでupper_bound.md) - [広義短調増加となる答えで特定の値の範囲を求める](答えが広義短調増加になる問題の二分探索.md) - [短調非増加となる答えで特定の値の範囲を求める](答えが短調非減少になる問題の二分探索.md) - [二分探索用vector](二分探索用vector.md) "
   },
   {
     "title": "二分探索用vector",
