@@ -4,7 +4,7 @@ layout: defult
 
 
 
-# kansu cpp　　libraryyyy
+# kansu_cpp_library
 
 <!-- 検索ボックス -->
 <input type="text" id="searchBox" placeholder="検索ゥゥゥ!!!!!" style="width: 100%; padding: 8px; margin-bottom: 16px;">
