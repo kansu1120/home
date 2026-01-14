@@ -1,3 +1,9 @@
+---
+layout: none
+---
+
+
+
 # kansu cpp　　libraryyyy
 
 <!-- 検索ボックス -->
