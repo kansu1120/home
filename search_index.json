@@ -262,6 +262,6 @@
   {
     "title": "累積和まとめ",
     "url": "累積和まとめ.html",
-    "content": "# 累積和  - [累積和](累積和.md) - [二次元累積和](二次元累積和.md) - [imos](imos.md) - [imos2D](imos2D.md) "
+    "content": "--- layout: defult ---  # 累積和  - [累積和](累積和.md) - [二次元累積和](二次元累積和.md) - [imos](imos.md) - [imos2D](imos2D.md) "
   }
 ]
