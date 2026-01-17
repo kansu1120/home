@@ -242,7 +242,7 @@
   {
     "title": "答えで二分探索",
     "url": "答えで二分探索.html",
-    "content": "# 答えで二分探索  boolを返すtestという関数にmidを入れれば使える状態にしておく必要がある    # 答えの最小化  true true **true** false false   このtrueを返す  ```cpp  int bs_min(){     long long l = 0;     long long r = 1e18;     while (r - l > 1) {         long long mid = (l + r) / 2;         if (test(mid)) {             r = mid;              } else {             l = mid;              }     }     return r; }  ```   "
+    "content": "# 答えで二分探索  boolを返すtestという関数にmidを入れれば使える状態にしておく必要がある    # 答えの最小化  true true **true** false false   このtrueとなる時の値を返す  ```cpp  int bs_min(){     long long l = 0;     long long r = 1e18;     while (r - l > 1) {         long long mid = (l + r) / 2;         if (test(mid)) {             r = mid;              } else {             l = mid;              }     }     return r; }  ```   "
   },
   {
     "title": "素因数分解pi",
