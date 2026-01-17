@@ -192,7 +192,7 @@
   {
     "title": "数字桁数",
     "url": "数字桁数.html",
-    "content": "# 数字桁数  ```cpp  int ket(int n){     int ans = 0;     while(n != 0){         ans++;         n /= 10;     }     return ans; }  ``` "
+    "content": "# 数字桁数  ket(x)でxの桁数が返ってくる  ```cpp  int ket(int n){     int ans = 0;     while(n != 0){         ans++;         n /= 10;     }     return ans; }  ``` "
   },
   {
     "title": "数学まとめ",
