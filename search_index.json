@@ -227,7 +227,7 @@
   {
     "title": "答えが短調非減少になる問題の二分探索",
     "url": "答えが短調非減少になる問題の二分探索.html",
-    "content": "# 短調非増加の答えでの値Kの範囲   int test(mid) の関数をあらかじめ作っておく必要がある  ```cpp  pair<int,int> bs(int k){      int big,small;     int l = 0;     int r = INF;     while(l+1 < r){    // find big         int mid = (l+r)/2;         int res = test(mid);         if(res >= k){             l = mid;         }         else{             r = mid;         }     }     big = l;     l = 0;     r = INF;     while(l+1 < r){    // find small         int mid = (l+r)/2;         int res = test(mid);         if(res > k){             l = mid;         }         else{             r = mid;         }     }         small = r;     return {small,big}; }  ``` "
+    "content": "# 短調非増加の答えでの値Kの範囲   int test(mid) の関数をあらかじめ作っておく必要がある  bs(k) = 答えがkになる範囲の{L,R}をpairで返す  ```cpp  pair<int,int> bs(int k){      int big,small;     int l = 0;     int r = INF;     while(l+1 < r){    // find big         int mid = (l+r)/2;         int res = test(mid);         if(res >= k){             l = mid;         }         else{             r = mid;         }     }     big = l;     l = 0;     r = INF;     while(l+1 < r){    // find small         int mid = (l+r)/2;         int res = test(mid);         if(res > k){             l = mid;         }         else{             r = mid;         }     }         small = r;     return {small,big}; }  ``` "
   },
   {
     "title": "答えでlower_bound",
