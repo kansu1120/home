@@ -4,7 +4,7 @@ string を入力
 
 int char の　pair の vector でリターン
 
-aaab ->  4 a , 1 b
+aaab ->  { 3 , a } , { 1 , b }
 
 ```cpp
 vector<pair<int,char>> r(string s){
