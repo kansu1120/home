@@ -222,7 +222,7 @@
   {
     "title": "答えが広義短調増加になる問題の二分探索",
     "url": "答えが広義短調増加になる問題の二分探索.html",
-    "content": "# 答えが広義短調増加となる問題での特定の値の範囲を求める二分探索   int test(mid)  でmid の時の値を返す関数を作っておく必要がある  ```cpp  pair<int,int> bs(int k){     int big,small;     int l = 0;     int r = INF;     while(l+1 < r){    // find big         int mid = (l+r)/2;         int res = test(mid);         if(res > k) r = mid;         else l = mid;     }     big = l;     l = 0;     r = INF;     while(l+1 < r){    // find small         int mid = (l+r)/2;         int res = test(mid);         if(res >= k)r = mid;         else l = mid;     }         small = r;     if(small > big) return {-1, -1};     return {small,big}; }  ``` "
+    "content": "# 答えが広義短調増加となる問題での特定の値の範囲を求める二分探索   int test(mid)  でmid の時の値を返す関数を作っておく必要がある  bs(k) = 答えがkとなる範囲を{L,R}のpairで返す  ```cpp  pair<int,int> bs(int k){     int big,small;     int l = 0;     int r = INF;     while(l+1 < r){    // find big         int mid = (l+r)/2;         int res = test(mid);         if(res > k) r = mid;         else l = mid;     }     big = l;     l = 0;     r = INF;     while(l+1 < r){    // find small         int mid = (l+r)/2;         int res = test(mid);         if(res >= k)r = mid;         else l = mid;     }         small = r;     if(small > big) return {-1, -1};     return {small,big}; }  ``` "
   },
   {
     "title": "答えが短調非減少になる問題の二分探索",
