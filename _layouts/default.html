@@ -30,6 +30,16 @@
       white-space: nowrap;
     }
 
+    /* 左端のロゴ文字 */
+    .logo {
+      font-weight: bold;
+      font-size: 16px;
+      color: white;
+      text-decoration: none;
+      margin-right: 24px;
+      flex-shrink: 0;
+    }
+
     .menu-bar a {
       color: white;
       text-decoration: none;
@@ -46,7 +56,7 @@
     .container {
       max-width: 900px;
       margin: 0 auto;
-      padding: 72px 40px 40px 40px;
+      padding: 72px 40px 40px 40px; /* 上はメニュー分 */
     }
 
     pre, code {
@@ -63,6 +73,10 @@
 
   <!-- ===== メニューバー ===== -->
   <div class="menu-bar">
+    <!-- ロゴ + Homeリンク -->
+    <a href="{{ '/' | relative_url }}" class="logo">kansucpplibrary</a>
+
+    <!-- ナビゲーション -->
     <a href="{{ '/一覧.html' | relative_url }}">一覧</a>
     <a href="{{ '/累積和まとめ.html' | relative_url }}">累積和</a>
     <a href="{{ '/数学まとめ.html' | relative_url }}">数学</a>
@@ -71,7 +85,7 @@
     <a href="{{ '/二分探索.html' | relative_url }}">二分探索</a>
   </div>
 
-  <!-- ===== ページ本文（mdがここに入る） ===== -->
+  <!-- ===== ページ本文 ===== -->
   <div class="container">
     {{ content }}
   </div>
@@ -92,6 +106,7 @@
     </div>
   </footer>
 
+  <!-- highlight.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
   <script src="{{ '/library/copy.js' | relative_url }}"></script>
