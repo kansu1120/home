@@ -95,24 +95,25 @@
   <!-- ===== メニューバー ===== -->
   <header class="topbar pinned">
     <div class="topbar-inner">
-      <a href="{{ '/' | relative_url }}" class="logo">
+      <a href="{{ '/一覧/' | relative_url }}" class="logo">
         kansu cpp library
       </a>
 
       <nav class="menu">
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/template' | relative_url }}">Template</a>
-        <a href="{{ '/累積和' | relative_url }}">累積和</a>
-        <a href="{{ '/数学' | relative_url }}">数学</a>
-        <a href="{{ '/グラフ' | relative_url }}">グラフ</a>
-        <a href="{{ '/データ構造' | relative_url }}">データ構造</a>
+        <a href="{{ '/一覧/' | relative_url }}">一覧</a>
+        <a href="{{ '/template/' | relative_url }}">template</a>
+        <a href="{{ '/累積和まとめ/' | relative_url }}">累積和</a>
+        <a href="{{ '/数学まとめ/' | relative_url }}">数学</a>
+        <a href="{{ '/グラフまとめ/' | relative_url }}">グラフ</a>
+        <a href="{{ '/データ構造/' | relative_url }}">データ構造</a>
+        <a href="{{ '/二分探索/' | relative_url }}">二分探索</a>
       </nav>
 
       <button id="pinBtn" title="Pin / Unpin">📌</button>
     </div>
   </header>
 
-  <!-- ===== 本文（Home戻るリンクなし） ===== -->
+  <!-- ===== 本文 ===== -->
   <div class="container">
     {{ content }}
   </div>
@@ -144,7 +145,6 @@
         bar.classList.contains('pinned') ? '70px' : '0';
     }
 
-    // 初期状態
     updateMargin();
 
     btn.addEventListener('click', () => {
