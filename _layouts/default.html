@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Layout</title>
+  <meta charset="utf-8">
+  <title>{{ page.title }}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
   <style>
     body {
       margin: 0;
+      font-size: 18px;
+      line-height: 1.4;
       font-family: sans-serif;
     }
 
@@ -20,112 +24,78 @@
       color: white;
       display: flex;
       align-items: center;
-      padding: 0 12px;
+      padding: 0 16px;
       z-index: 1000;
+      overflow-x: auto;
+      white-space: nowrap;
     }
 
     .menu-bar a {
       color: white;
       text-decoration: none;
-      margin-right: 14px;
+      margin-right: 16px;
       font-size: 14px;
+      flex-shrink: 0;
     }
 
     .menu-bar a:hover {
       text-decoration: underline;
     }
 
-    .pin {
-      margin-left: auto;
-      cursor: pointer;
-      user-select: none;
-      font-size: 18px;
-    }
-
-    /* ===== サイドバー ===== */
-    .sidebar {
-      position: fixed;
-      top: 48px;
-      left: 0;
-      width: 240px;
-      bottom: 0;
-      background: #f5f5f5;
-      padding: 10px;
-      overflow-y: auto;
-      transition: transform 0.2s;
-    }
-
-    .sidebar.hidden {
-      transform: translateX(-100%);
-    }
-
     /* ===== メイン ===== */
-    .main {
-      margin-top: 48px;
-      margin-left: 240px;
-      padding: 20px;
-      transition: margin-left 0.2s;
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 72px 40px 40px 40px; /* 上はメニュー分 */
     }
 
-    .main.full {
-      margin-left: 0;
+    pre, code {
+      font-size: 16px;
     }
   </style>
+
+  <!-- highlight.js -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 </head>
+
 <body>
 
   <!-- ===== メニューバー ===== -->
   <div class="menu-bar">
-    <a href="../一覧.md">一覧</a>
-    <a href="../template.md">template</a>
-    <a href="../累積和まとめ.md">累積和</a>
-    <a href="../数学まとめ.md">数学</a>
-    <a href="../グラフまとめ.md">グラフ</a>
-    <a href="../データ構造.md">データ構造</a>
-    <a href="../二分探索.md">二分探索</a>
-
-    <div class="pin" id="pin">📌</div>
+    <a href="{{ '/library/一覧.html' | relative_url }}">一覧</a>
+    <a href="{{ '/library/template.html' | relative_url }}">template</a>
+    <a href="{{ '/library/累積和まとめ.html' | relative_url }}">累積和</a>
+    <a href="{{ '/library/数学まとめ.html' | relative_url }}">数学</a>
+    <a href="{{ '/library/グラフまとめ.html' | relative_url }}">グラフ</a>
+    <a href="{{ '/library/データ構造.html' | relative_url }}">データ構造</a>
+    <a href="{{ '/library/二分探索.html' | relative_url }}">二分探索</a>
   </div>
 
-  <!-- ===== サイドバー ===== -->
-  <div class="sidebar" id="sidebar">
-    <p>サイドバー</p>
-    <p>ここに目次とか</p>
+  <!-- ===== 本文 ===== -->
+  <div class="container">
+    {{ content }}
   </div>
 
-  <!-- ===== メイン ===== -->
-  <div class="main" id="main">
-    <h1>コンテンツ</h1>
-    <p>ここに markdown が表示される想定</p>
-  </div>
+  <!-- ===== フッター ===== -->
+  <footer style="
+    text-align: center;
+    margin: 40px 0 20px 0;
+    font-size: 0.9em;
+    color: #666;
+  ">
+    <div>created by kansu</div>
+    <div>
+      <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
+         target="_blank" rel="noopener">
+        Source on GitHub
+      </a>
+    </div>
+  </footer>
 
-  <script>
-    const pin = document.getElementById("pin");
-    const sidebar = document.getElementById("sidebar");
-    const main = document.getElementById("main");
-
-    let pinned = localStorage.getItem("sidebarPinned") === "true";
-
-    function update() {
-      if (pinned) {
-        sidebar.classList.remove("hidden");
-        main.classList.remove("full");
-        pin.textContent = "📌";
-      } else {
-        sidebar.classList.add("hidden");
-        main.classList.add("full");
-        pin.textContent = "📍";
-      }
-    }
-
-    pin.addEventListener("click", () => {
-      pinned = !pinned;
-      localStorage.setItem("sidebarPinned", pinned);
-      update();
-    });
-
-    update();
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script src="{{ '/library/copy.js' | relative_url }}"></script>
 
 </body>
 </html>
