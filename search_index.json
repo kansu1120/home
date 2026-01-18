@@ -80,6 +80,11 @@
     "content": "# union find   find：根を求める connect：繋げる(もともと繋がってたらfalseをreturn) same：結合か判定 size：そのノードの連結要素数  ```cpp  class UnionFind { public: \t//@brief Union-Findのコンストラクタ \t//@param n ノード数 \tUnionFind(int n) : PoS(n, -1) {}  \t//@brief 根を求める \t//@param x ノード番号 \t//@return xの根のノード番号 \tint find(int x) { \t\tif (PoS[x] < 0) { \t\t\treturn x; \t\t} \t\treturn (PoS[x] = find(PoS[x])); \t}  \t//@brief 接続かを判定する \t//@param x ノード1 \t//@param y ノード2 \tbool same(int x, int y) { \t\treturn (find(x) == find(y)); \t}  \t//@brief 連結要素数を数える \t//@param x ノード番号 \t//@return xの連結要素数 \tint size(int x) { \t\treturn -PoS[find(x)]; \t}  \t//@brief 集合を繋げる \t//@param x ノード1 \t//@param y ノード2 \t//@return 結合が行えたか(既に結合していた:false) \tbool connect(int x, int y) { \t\tx = find(x); \t\ty = find(y); \t\tif (x == y) return false;  \t\tif (-PoS[x] < -PoS[y]) { \t\t\tstd::swap(x, y); \t\t} \t\tPoS[x] += PoS[y]; \t\tPoS[y] = x; \t\treturn true; \t} private: \t//@brief 親もしくは要素数(Parent or Size) \tstd::vector<int> PoS; };  ``` "
   },
   {
+    "title": "xorセグ木",
+    "url": "xorセグ木.html",
+    "content": "# xorのセグ木  segmenttree seg(n)  サイズnで定義  seg.update(i,x) i番目をxにする  seg.query(l,r) l~rの区間のxorを出す  ```cpp  class segmenttree{ public:     long long INF = 1e18;     long long siz = 1;     vector<long long> v;     segmenttree (long long n){         siz = 1;         while(siz < n)siz *= 2;         v.assign(2*siz,0);     }     void update(long long i, long long x){         i += siz;         v[i] = x;         while(i > 1){             i /= 2;             v[i] = v[i*2]^v[i*2+1];         }     }      long long query(int l,int r){         return query(l,r,1,0,siz-1);     }     private :      long long query(int L,int R,int s,int l,int r){         long long ans = 0;         if(l >= L && r <= R){             ans = ans^v[s];             return ans;         }         if(r < L || l > R)return 0;         ans ^= query(L,R,s*2,l,(l+r)/2);         ans ^= query(L,R,s*2+1,(l+r)/2+1,r);         return ans;     } };  ``` "
+  },
+  {
     "title": "その他典型",
     "url": "その他典型.html",
     "content": "# その他典型 - [ナップザック](ナップザック.md) - [ラングレス圧縮](RLE.md) - [座標圧縮](座標圧縮.md) - [最長増加部分列](最長増加部分列.md) - [便利なやつ](便利なやつ.md) "
