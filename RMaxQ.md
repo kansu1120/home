@@ -7,15 +7,15 @@ segmenttree 名前(サイズ)　で定義
 
 ```cpp
 
-
 class segmenttree{
 public:
+    long long INF = 1e18;
     long long siz = 1;
     vector<long long> v;
     segmenttree (long long n){
         siz = 1;
         while(siz < n)siz *= 2;
-        v.assign(2*siz,-1 * inf);
+        v.assign(2*siz,-INF);
     }
     void update(long long i, long long x){
         i += siz;
@@ -25,19 +25,19 @@ public:
             v[i] = max(v[i*2],v[i*2+1]);
         }
     } 
-    long long query(long long L, long long R){   // 添字、L , R
-        long long ans = -1 * inf;
-        function<void(long long,long long,long long)> f = [&](long long s,long long l,long long r){
-            if(l >= L && r <= R){
-                ans = max(ans,v[s]);
-                return;
-            }
-            if(r < L || l > R)return;
-            f(s*2,l,(l+r)/2);
-            f(s*2+1,(l+r)/2+1,r);
-            return;
-        };
-        f(1,0,siz-1);
+    long long query(int l,int r){
+        return query(l,r,1,0,siz-1);
+    }
+    private : 
+    long long query(int L,int R,int s,int l,int r){
+        long long ans = -INF;
+        if(l >= L && r <= R){
+            ans = max(ans,v[s]);
+            return ans;
+        }
+        if(r < L || l > R)return -INF;
+        ans = max(ans,query(L,R,s*2,l,(l+r)/2));
+        ans = max(ans,query(L,R,s*2+1,(l+r)/2+1,r));
         return ans;
     }
 };
