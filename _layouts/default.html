@@ -4,29 +4,97 @@
   <meta charset="utf-8">
   <title>{{ page.title }}</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-  body {
-    font-size: 18px;
-    line-height: 1.3;
-  }
 
-  .container {
-    max-width: 900px;   /* ← 横幅の上限 */
-    margin: 0 auto;     /* ← 左右を自動で中央寄せ */
-    padding: 40px;      /* ← 端がくっつかないように */
-  }
+  <style>
+    body {
+      font-size: 18px;
+      line-height: 1.3;
+      margin: 0;
+    }
 
-  pre, code {
-    font-size: 16px;
-  }
-</style>
+    /* ===== 上固定メニューバー ===== */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
 
-  <!-- ★ これを追加（コードに色を付ける） -->
+    .topbar-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 12px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: bold;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .menu a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #555;
+      font-size: 0.95em;
+    }
+
+    .menu a:hover {
+      color: #000;
+    }
+
+    /* ===== 本文コンテナ ===== */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px;
+      margin-top: 70px; /* ← メニューバー分の余白 */
+    }
+
+    pre, code {
+      font-size: 16px;
+    }
+
+    footer {
+      text-align: center;
+      margin: 40px 0 20px 0;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+
+  <!-- highlight.js（既存機能そのまま） -->
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 </head>
+
 <body>
 
+  <!-- ===== 追加：上固定メニューバー ===== -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="{{ '/' | relative_url }}" class="logo">
+        kansu cpp library
+      </a>
+
+      <nav class="menu">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/template' | relative_url }}">Template</a>
+        <a href="{{ '/累積和' | relative_url }}">累積和</a>
+        <a href="{{ '/数学' | relative_url }}">数学</a>
+        <a href="{{ '/グラフ' | relative_url }}">グラフ</a>
+        <a href="{{ '/データ構造' | relative_url }}">データ構造</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== 既存の本文エリア（変更なし） ===== -->
   <div class="container">
 
     <div style="margin-bottom:24px; font-size:0.95em;">
@@ -35,19 +103,12 @@
       </a>
     </div>
 
-
-
-
-    
     {{ content }}
+
   </div>
 
-    <footer style="
-    text-align: center;
-    margin: 40px 0 20px 0;
-    font-size: 0.9em;
-    color: #666;
-  ">
+  <!-- ===== 既存のフッター（変更なし） ===== -->
+  <footer>
     <div>created by kansu</div>
     <div>
       <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
@@ -55,12 +116,12 @@
         Source on GitHub
       </a>
     </div>
-      
   </footer>
 
-
+  <!-- ===== 既存の JS（全部維持） ===== -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
   <script src="{{ '/library/copy.js' | relative_url }}"></script>
+
 </body>
 </html>
