@@ -1,234 +1,169 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <title>{{ page.title }}</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<title>{{ page.title }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 
-  <!-- highlight.js -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<style>
+:root{
+  --red:#7a0f18;
+  --bg:#ffffff;
+  --line:#eee;
+}
 
-  <style>
-    :root {
-      --bg: #fdfdfd;
-      --text: #111;
-      --muted: #666;
-      --accent: #7a1f1f;
-      --code-bg: #111;
-      --code-text: #eaeaea;
-    }
+body{
+  margin:0;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:var(--bg);
+  color:#111;
+}
 
-    * { box-sizing: border-box; }
+/* ===== Header ===== */
+.header{
+  position:fixed;
+  top:0; left:0; right:0;
+  height:52px;
+  background:white;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  padding:0 16px;
+  z-index:1000;
+}
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, system-ui, sans-serif;
-      line-height: 1.65;
-    }
+.hamburger{
+  font-size:22px;
+  cursor:pointer;
+  margin-right:12px;
+  display:none;
+}
 
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
+.header-logo{
+  color:var(--red);
+  font-weight:700;
+  letter-spacing:0.02em;
+  text-decoration:none;
+}
 
-    /* ===== サイドバー ===== */
-    .sidebar {
-      width: 220px;
-      padding: 28px 20px;
-      flex-shrink: 0;
-      background: var(--bg);
-    }
+/* ===== Sidebar ===== */
+.sidebar{
+  position:fixed;
+  top:52px;
+  left:0;
+  bottom:0;
+  width:220px;
+  background:white;
+  border-right:1px solid var(--line);
+  padding:16px;
+  overflow-y:auto;
+  transition:transform 0.3s ease;
+}
 
-    .logo {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 14px;
-      margin-bottom: 24px;
-      letter-spacing: 0.02em;
-    }
+.sidebar .logo{
+  font-weight:700;
+  color:var(--red);
+  text-decoration:none;
+  display:block;
+  margin-bottom:16px;
+}
 
-    .logo .accent { color: var(--accent); }
+.sidebar a{
+  display:block;
+  color:#333;
+  text-decoration:none;
+  margin:8px 0;
+  font-size:14px;
+}
 
-    .toc a {
-      display: block;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 14px;
-      margin: 10px 0;
-      padding-left: 8px;
-    }
+.sidebar a:hover{
+  color:var(--red);
+}
 
-    .toc a:hover { color: var(--accent); }
+/* ===== Content ===== */
+.main{
+  margin-left:220px;
+  padding:80px 40px 40px;
+  max-width:900px;
+}
 
-    /* ===== 本文 ===== */
-    .content {
-      flex: 1;
-      max-width: 900px;
-      padding: 56px 64px 80px 64px;
-    }
+pre, code{
+  font-size:15px;
+}
 
-    h1, h2, h3 {
-      font-weight: 600;
-      margin-top: 2.2em;
-      margin-bottom: 0.8em;
-    }
+/* ===== Footer ===== */
+footer{
+  text-align:center;
+  margin:40px 0 20px;
+  font-size:0.9em;
+  color:#666;
+}
 
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    pre {
-      background: var(--code-bg);
-      color: var(--code-text);
-      padding: 16px 20px;
-      margin: 24px 0;
-      overflow-x: auto;
-      font-family: "JetBrains Mono", monospace;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    footer {
-      margin-top: 64px;
-      font-size: 13px;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    /* ===== スマホ用ドロワー ===== */
-    .mobile-header {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 48px;
-      background: var(--bg);
-      padding: 0 16px;
-      align-items: center;
-      z-index: 2000;
-    }
-
-    .hamburger {
-      font-size: 20px;
-      cursor: pointer;
-      color: var(--accent);
-      font-family: "JetBrains Mono", monospace;
-    }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      z-index: 1500;
-    }
-
-    @media (max-width: 800px) {
-      .layout { flex-direction: column; }
-
-      .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        transform: translateX(-100%);
-        transition: transform 0.25s ease;
-        z-index: 1800;
-      }
-
-      .sidebar.open {
-        transform: translateX(0);
-      }
-
-      .mobile-header {
-        display: flex;
-      }
-
-      .content {
-        padding: 80px 20px 60px 20px;
-      }
-
-      .overlay.show {
-        display: block;
-      }
-    }
-  </style>
+/* ===== Mobile ===== */
+@media (max-width: 800px){
+  .hamburger{ display:block; }
+  .sidebar{
+    transform:translateX(-100%);
+    top:52px;
+  }
+  .sidebar.open{
+    transform:translateX(0);
+  }
+  .main{
+    margin-left:0;
+    padding:80px 20px 40px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- スマホ用ヘッダー -->
-  <div class="mobile-header">
-    <div class="hamburger" id="hamburger">≡</div>
+<!-- ===== Header ===== -->
+<div class="header">
+  <div class="hamburger" onclick="toggleSidebar()">☰</div>
+  <a href="{{ '/' | absolute_url }}" class="header-logo">Kansu C++ Library</a>
+</div>
+
+<!-- ===== Sidebar ===== -->
+<div class="sidebar" id="sidebar">
+  <a href="{{ '/' | absolute_url }}" class="logo">Kansu C++ Library</a>
+  <a href="{{ '/一覧.html' | absolute_url }}">一覧</a>
+  <a href="{{ '/累積和まとめ.html' | absolute_url }}">累積和</a>
+  <a href="{{ '/数学まとめ.html' | absolute_url }}">数学</a>
+  <a href="{{ '/グラフまとめ.html' | absolute_url }}">グラフ</a>
+  <a href="{{ '/データ構造.html' | absolute_url }}">データ構造</a>
+  <a href="{{ '/二分探索.html' | absolute_url }}">二分探索</a>
+</div>
+
+<!-- ===== Main ===== -->
+<div class="main">
+  {{ content }}
+</div>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div>created by kansu</div>
+  <div>
+    <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
+       target="_blank" rel="noopener">
+      Source on GitHub
+    </a>
   </div>
+</footer>
 
-  <!-- 暗転背景 -->
-  <div class="overlay" id="overlay"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<script src="{{ '/library/copy.js' | absolute_url }}"></script>
 
-  <div class="layout">
-
-    <!-- サイドバー -->
-    <aside class="sidebar" id="sidebar">
-      <div class="logo">
-        <span class="accent">kansu</span> cpp library
-      </div>
-      <nav class="toc">
-        <a href="{{ '/一覧.html' | absolute_url }}">一覧</a>
-        <a href="{{ '/累積和まとめ.html' | absolute_url }}">累積和</a>
-        <a href="{{ '/数学まとめ.html' | absolute_url }}">数学</a>
-        <a href="{{ '/グラフまとめ.html' | absolute_url }}">グラフ</a>
-        <a href="{{ '/データ構造.html' | absolute_url }}">データ構造</a>
-        <a href="{{ '/二分探索.html' | absolute_url }}">二分探索</a>
-      </nav>
-    </aside>
-
-    <!-- 本文 -->
-    <main class="content">
-      {{ content }}
-
-      <footer>
-        <div>created by kansu</div>
-        <div>
-          <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
-             target="_blank" rel="noopener">
-            Source on GitHub
-          </a>
-        </div>
-      </footer>
-    </main>
-
-  </div>
-
-  <!-- highlight.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>
-
-  <!-- コピー機能 -->
-  <script src="{{ '/library/copy.js' | absolute_url }}"></script>
-
-  <!-- ドロワー制御 -->
-  <script>
-    const hamburger = document.getElementById("hamburger");
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
-
-    hamburger.addEventListener("click", () => {
-      sidebar.classList.add("open");
-      overlay.classList.add("show");
-    });
-
-    overlay.addEventListener("click", () => {
-      sidebar.classList.remove("open");
-      overlay.classList.remove("show");
-    });
-  </script>
+<script>
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("open");
+}
+</script>
 
 </body>
 </html>
