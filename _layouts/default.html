@@ -47,10 +47,9 @@ a:hover{
   z-index:1000;
 }
 
-/* ★ ハンバーガー当たり判定拡張 */
 .hamburger{
   width:54px;
-  height:54px;              /* ← ヘッダーいっぱい */
+  height:54px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -146,26 +145,28 @@ pre{
   background:#e8effd !important;
   padding:12px;
   border-radius:6px;
-  color:#727272;
-}
-
-.hljs{
-  background:#e7effd !important;
 }
 
 code{
   background:#f0f1f3;
   border-radius:4px;
   padding:2px 4px;
-  color:#111;
 }
 
 /* ===== Footer ===== */
 footer{
   text-align:center;
   margin:40px 0 20px;
-  font-size:0.9em;
   color:#aaa;
+}
+
+.footer-brand{
+  font-family:"Bubbler One", sans-serif;
+  font-size:18px;
+  letter-spacing:0.15em;
+  color:#999;
+  display:inline-block;
+  margin-bottom:6px;
 }
 
 footer a{
@@ -198,11 +199,6 @@ footer a{
   <a href="{{ '/グラフまとめ.html' | absolute_url }}">グラフ</a>
   <a href="{{ '/データ構造.html' | absolute_url }}">データ構造</a>
   <a href="{{ '/二分探索.html' | absolute_url }}">二分探索</a>
-  <br>
-    <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
-       target="_blank" rel="noopener">
-      Source on GitHub
-    </a>
 </div>
 
 <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
@@ -212,19 +208,17 @@ footer a{
 </div>
 
 <footer>
-  <div>created by kansu</div>
-  <div>
-    <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
-       target="_blank" rel="noopener">
-      Source on GitHub
-    </a>
-  </div>
+  <a href="{{ '/' | absolute_url }}" class="footer-brand">
+    created by kansu
+  </a><br>
+  <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
+     target="_blank" rel="noopener">
+    Source on GitHub
+  </a>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
-
-<script src="{{ '/library/copy.js' | absolute_url }}"></script>
 
 <script>
 const sidebar = document.getElementById("sidebar");
