@@ -8,8 +8,8 @@
 <link rel="stylesheet"
  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 
-<!-- ロゴ用美フォント -->
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<!-- ロゴ用フォント（少し崩れた上品系） -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -43,15 +43,24 @@ body{
   font-size:22px;
   cursor:pointer;
   margin-right:12px;
-  display:none;
+  display:block;
 }
 
 .header-logo{
+  font-family:"Playfair Display", serif;
+  text-decoration:none;
+  letter-spacing:0.08em;
+  font-size:20px;
+}
+
+.logo-main{
   color:var(--red);
   font-weight:600;
-  letter-spacing:0.08em;
-  text-decoration:none;
-  font-family: "Cormorant Garamond", serif;
+}
+
+.logo-sub{
+  color:#888;
+  font-weight:500;
 }
 
 /* ===== Sidebar ===== */
@@ -68,23 +77,18 @@ body{
   transition:transform 0.3s ease;
   will-change:transform;
   z-index:900;
+  transform:translateX(-100%);
 }
 
-.sidebar .logo{
-  font-family: "Cormorant Garamond", serif;
-  font-weight:600;
-  letter-spacing:0.08em;
-  color:var(--red);
-  text-decoration:none;
-  display:block;
-  margin-bottom:16px;
+.sidebar.open{
+  transform:translateX(0);
 }
 
 .sidebar a{
   display:block;
   color:#333;
   text-decoration:none;
-  margin:8px 0;
+  margin:10px 0;
   font-size:14px;
 }
 
@@ -94,7 +98,7 @@ body{
 
 /* ===== Content ===== */
 .main{
-  margin-left:220px;
+  margin-left:0;
   padding:80px 40px 40px;
   max-width:900px;
 }
@@ -111,24 +115,9 @@ footer{
   color:#666;
 }
 
-/* ===== PC強制表示 ===== */
-@media (min-width: 801px){
-  .sidebar{
-    transform:translateX(0) !important;
-  }
-}
-
 /* ===== Mobile ===== */
 @media (max-width: 800px){
-  .hamburger{ display:block; }
-  .sidebar{
-    transform:translateX(-100%);
-  }
-  .sidebar.open{
-    transform:translateX(0);
-  }
   .main{
-    margin-left:0;
     padding:80px 20px 40px;
   }
 }
@@ -140,12 +129,14 @@ footer{
 <!-- ===== Header ===== -->
 <div class="header">
   <div class="hamburger" onclick="toggleSidebar()">☰</div>
-  <a href="{{ '/' | absolute_url }}" class="header-logo">Kansu C++ Library</a>
+  <a href="{{ '/' | absolute_url }}" class="header-logo">
+    <span class="logo-main">kansu</span>
+    <span class="logo-sub"> C++ Library</span>
+  </a>
 </div>
 
-<!-- ===== Sidebar ===== -->
+<!-- ===== Sidebar (目次のみ) ===== -->
 <div class="sidebar" id="sidebar">
-  <a href="{{ '/' | absolute_url }}" class="logo">Kansu C++ Library</a>
   <a href="{{ '/一覧.html' | absolute_url }}">一覧</a>
   <a href="{{ '/累積和まとめ.html' | absolute_url }}">累積和</a>
   <a href="{{ '/数学まとめ.html' | absolute_url }}">数学</a>
