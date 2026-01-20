@@ -43,14 +43,20 @@ a:hover{
   border-bottom:1px solid #eee;
   display:flex;
   align-items:center;
-  padding:0 16px;
+  padding:0 8px;
   z-index:1000;
 }
 
+/* ★ ハンバーガー当たり判定拡張 */
 .hamburger{
+  width:54px;
+  height:54px;              /* ← ヘッダーいっぱい */
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-size:22px;
   cursor:pointer;
-  margin-right:12px;
+  user-select:none;
 }
 
 /* ===== Logo ===== */
@@ -91,7 +97,6 @@ a:hover{
   z-index:900;
 }
 
-/* ★ 影は「開いている時だけ」 */
 .sidebar.open{
   transform:translateX(0);
   box-shadow:4px 0 12px rgba(0,0,0,0.15);
@@ -126,7 +131,6 @@ a:hover{
 
 /* ===== Content ===== */
 .main{
-  margin-left:0;
   padding:80px 40px 40px;
   max-width:900px;
 }
@@ -146,7 +150,7 @@ pre{
 }
 
 .hljs{
-  background:#f6f7f9 !important;
+  background:#dde8fd !important;
 }
 
 code{
@@ -212,7 +216,6 @@ footer a{
   </div>
 </footer>
 
-<!-- highlight.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
