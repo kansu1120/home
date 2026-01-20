@@ -15,7 +15,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-/* ===== Base ===== */
 body{
   margin:0;
   font-family:"Noto Serif JP", serif;
@@ -25,16 +24,12 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== Link ===== */
 a{
   color:rgb(89, 58, 58);
   text-decoration:none;
 }
-a:hover{
-  text-decoration:underline;
-}
+a:hover{ text-decoration:underline; }
 
-/* ===== Header ===== */
 .header{
   position:fixed;
   top:0; left:0; right:0;
@@ -58,13 +53,11 @@ a:hover{
   user-select:none;
 }
 
-/* ===== Logo ===== */
 .header-logo{
   font-family:"Bubbler One", sans-serif;
   display:flex;
   align-items:flex-end;
   gap:6px;
-  text-decoration:none !important;
 }
 
 .logo-main{
@@ -80,7 +73,6 @@ a:hover{
   margin-bottom:2px;
 }
 
-/* ===== Sidebar ===== */
 .sidebar{
   position:fixed;
   top:52px;
@@ -88,11 +80,9 @@ a:hover{
   bottom:0;
   width:220px;
   background:rgb(251, 225, 225);
-  border-right:1px solid #eee;
   padding:16px;
-  overflow-y:auto;
   transform:translateX(-100%);
-  transition:transform 0.3s ease;
+  transition:0.3s;
   z-index:900;
 }
 
@@ -105,21 +95,15 @@ a:hover{
   display:block;
   color:#b88160;
   margin:10px 0;
-  font-size:14px;
 }
 
-.sidebar a:hover{
-  color:#7a0f18;
-}
-
-/* ===== Overlay ===== */
 .overlay{
   position:fixed;
   inset:0;
   background:rgba(60, 30, 20, 0.35);
   opacity:0;
   pointer-events:none;
-  transition:opacity 0.3s ease;
+  transition:0.3s;
   z-index:800;
 }
 
@@ -128,36 +112,14 @@ a:hover{
   pointer-events:auto;
 }
 
-/* ===== Content ===== */
 .main{
   padding:80px 40px 40px;
   max-width:900px;
 }
 
-/* ===== Headings ===== */
-h1,h2,h3{
-  color:#7a0f18;
-  font-weight:500;
-}
-
-/* ===== Code ===== */
-pre{
-  background:#e8effd !important;
-  padding:12px;
-  border-radius:6px;
-}
-
-code{
-  background:#f0f1f3;
-  border-radius:4px;
-  padding:2px 4px;
-}
-
-/* ===== Footer ===== */
 footer{
   text-align:center;
   margin:40px 0 20px;
-  color:#aaa;
 }
 
 .footer-brand{
@@ -165,19 +127,6 @@ footer{
   font-size:18px;
   letter-spacing:0.15em;
   color:#999;
-  display:inline-block;
-  margin-bottom:6px;
-}
-
-footer a{
-  color:#999;
-}
-
-/* ===== Mobile ===== */
-@media (max-width: 800px){
-  .main{
-    padding:80px 20px 40px;
-  }
 }
 </style>
 </head>
@@ -199,10 +148,6 @@ footer a{
   <a href="{{ '/グラフまとめ.html' | absolute_url }}">グラフ</a>
   <a href="{{ '/データ構造.html' | absolute_url }}">データ構造</a>
   <a href="{{ '/二分探索.html' | absolute_url }}">二分探索</a>
-    <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
-     target="_blank" rel="noopener">
-    Source on GitHub
-  </a>
 </div>
 
 <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
@@ -212,7 +157,7 @@ footer a{
 </div>
 
 <footer>
-  <a href="{{ '/' | absolute_url }}" class="footer-brand">
+  <a href="https://www.google.com/search?q=%E3%81%8C%E3%82%93%E3%81%99&sca_esv=fb6ec2c420ab31bb&rlz=1C5CHFA_enJP1165JP1178&sxsrf=ANbL-n43WdMKwafhojntA_75fghrl92-Ig%3A1768922865256&ei=8Z5vaYWrD4yx0-kPy5if8QU&ved=0ahUKEwjF55KYt5qSAxWM2DQHHUvMJ14Q4dUDCBE&uact=5&oq=%E3%81%8C%E3%82%93%E3%81%99&gs_lp=Egxnd3Mtd2l6LXNlcnAiCeOBjOOCk-OBmTIFEAAYgAQyBRAAGIAEMg4QABiABBixAxiDARiKBTIFEAAYgAQyBRAAGIAEMgUQABiABDIHEAAYgAQYBDINEAAYgAQYsQMYgwEYBDIKEAAYgAQYsQMYBDIHEAAYgAQYBEiQOFDHAliQNHAIeAGQAQCYAXagAeoNqgEENS4xMrgBA8gBAPgBAZgCFqAClgyoAgrCAgoQABiwAxjWBBhHwgIMEAAYgAQYQxiKBRgKwgIKEAAYgAQYQxiKBcICEBAAGIAEGLEDGIMBGAQYigXCAhAQABiABBixAxhDGIMBGIoFwgINEAAYgAQYsQMYQxiKBcICBhAAGAMYBMICEBAAGAMYtAIY6gIYjwHYAQHCAgsQABiABBixAxiDAcICEBAAGIAEGLEDGAQYigUYjQbCAggQABiABBixA8ICDRAAGIAEGLEDGAQYyQPCAgoQABiABBiSAxgEwgIHEAAYgAQYDcICCBAAGIAEGKIEwgIIEAAYBRgNGB7CAgUQABjvBZgDBPEF74nYsQyYC0OIBgGQBgq6BgQIARgKkgcFMTEuMTGgB6oysgcEMy4xMbgH9QvCBwYwLjcuMTXIB0mACAA&sclient=gws-wiz-serp{{ page.path }}" class="footer-brand">
     created by kansu
   </a><br>
   <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
@@ -221,8 +166,12 @@ footer a{
   </a>
 </footer>
 
+<!-- highlight.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
+
+<!-- ★ コピー機能（復活） -->
+<script src="{{ '/library/copy.js' | absolute_url }}"></script>
 
 <script>
 const sidebar = document.getElementById("sidebar");
@@ -232,7 +181,6 @@ function toggleSidebar(){
   sidebar.classList.toggle("open");
   overlay.classList.toggle("active");
 }
-
 function closeSidebar(){
   sidebar.classList.remove("open");
   overlay.classList.remove("active");
