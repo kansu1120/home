@@ -5,11 +5,9 @@
 <title>{{ page.title }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- highlight.js -->
 <link rel="stylesheet"
  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 
-<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
@@ -24,10 +22,7 @@ body{
   overflow-x:hidden;
 }
 
-a{
-  color:rgb(89, 58, 58);
-  text-decoration:none;
-}
+a{ color:rgb(89,58,58); text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
 .header{
@@ -79,7 +74,7 @@ a:hover{ text-decoration:underline; }
   left:0;
   bottom:0;
   width:220px;
-  background:rgb(251, 225, 225);
+  background:rgb(251,225,225);
   padding:16px;
   transform:translateX(-100%);
   transition:0.3s;
@@ -100,7 +95,7 @@ a:hover{ text-decoration:underline; }
 .overlay{
   position:fixed;
   inset:0;
-  background:rgba(60, 30, 20, 0.35);
+  background:rgba(60,30,20,0.35);
   opacity:0;
   pointer-events:none;
   transition:0.3s;
@@ -116,6 +111,9 @@ a:hover{ text-decoration:underline; }
   padding:80px 40px 40px;
   max-width:900px;
 }
+
+pre{ background:#f2f3f5 !important; border-radius:6px; padding:12px; }
+code{ background:#f0f1f3; padding:2px 4px; border-radius:4px; }
 
 footer{
   text-align:center;
@@ -135,19 +133,19 @@ footer{
 
 <div class="header">
   <div class="hamburger" onclick="toggleSidebar()">☰</div>
-  <a href="https://kansu1120.github.io/library/{{}}class="header-logo">
+  <a href="{{ '/' | relative_url }}" class="header-logo">
     <span class="logo-main">kansu</span>
     <span class="logo-sub">C++ Library</span>
   </a>
 </div>
 
 <div class="sidebar" id="sidebar">
-  <a href="{{ '/一覧.html' | absolute_url }}">一覧</a>
-  <a href="{{ '/累積和まとめ.html' | absolute_url }}">累積和</a>
-  <a href="{{ '/数学まとめ.html' | absolute_url }}">数学</a>
-  <a href="{{ '/グラフまとめ.html' | absolute_url }}">グラフ</a>
-  <a href="{{ '/データ構造.html' | absolute_url }}">データ構造</a>
-  <a href="{{ '/二分探索.html' | absolute_url }}">二分探索</a>
+  <a href="{{ '/一覧.html' | relative_url }}">一覧</a>
+  <a href="{{ '/累積和まとめ.html' | relative_url }}">累積和</a>
+  <a href="{{ '/数学まとめ.html' | relative_url }}">数学</a>
+  <a href="{{ '/グラフまとめ.html' | relative_url }}">グラフ</a>
+  <a href="{{ '/データ構造.html' | relative_url }}">データ構造</a>
+  <a href="{{ '/二分探索.html' | relative_url }}">二分探索</a>
 </div>
 
 <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
@@ -157,21 +155,16 @@ footer{
 </div>
 
 <footer>
-  <a href="https://www.google.com/search?q=%E3%81%8C%E3%82%93%E3%81%99&sca_esv=fb6ec2c420ab31bb&rlz=1C5CHFA_enJP1165JP1178&sxsrf=ANbL-n43WdMKwafhojntA_75fghrl92-Ig%3A1768922865256&ei=8Z5vaYWrD4yx0-kPy5if8QU&ved=0ahUKEwjF55KYt5qSAxWM2DQHHUvMJ14Q4dUDCBE&uact=5&oq=%E3%81%8C%E3%82%93%E3%81%99&gs_lp=Egxnd3Mtd2l6LXNlcnAiCeOBjOOCk-OBmTIFEAAYgAQyBRAAGIAEMg4QABiABBixAxiDARiKBTIFEAAYgAQyBRAAGIAEMgUQABiABDIHEAAYgAQYBDINEAAYgAQYsQMYgwEYBDIKEAAYgAQYsQMYBDIHEAAYgAQYBEiQOFDHAliQNHAIeAGQAQCYAXagAeoNqgEENS4xMrgBA8gBAPgBAZgCFqAClgyoAgrCAgoQABiwAxjWBBhHwgIMEAAYgAQYQxiKBRgKwgIKEAAYgAQYQxiKBcICEBAAGIAEGLEDGIMBGAQYigXCAhAQABiABBixAxhDGIMBGIoFwgINEAAYgAQYsQMYQxiKBcICBhAAGAMYBMICEBAAGAMYtAIY6gIYjwHYAQHCAgsQABiABBixAxiDAcICEBAAGIAEGLEDGAQYigUYjQbCAggQABiABBixA8ICDRAAGIAEGLEDGAQYyQPCAgoQABiABBiSAxgEwgIHEAAYgAQYDcICCBAAGIAEGKIEwgIIEAAYBRgNGB7CAgUQABjvBZgDBPEF74nYsQyYC0OIBgGQBgq6BgQIARgKkgcFMTEuMTGgB6oysgcEMy4xMbgH9QvCBwYwLjcuMTXIB0mACAA&sclient=gws-wiz-serp{{ page.path }}" class="footer-brand">
-    created by kansu
-  </a><br>
+  <div class="footer-brand">created by kansu</div>
   <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
      target="_blank" rel="noopener">
     Source on GitHub
   </a>
 </footer>
 
-<!-- highlight.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
-
-<!-- ★ コピー機能（復活） -->
-<script src="{{ '/library/copy.js' | absolute_url }}"></script>
+<script src="{{ '/library/copy.js' | relative_url }}"></script>
 
 <script>
 const sidebar = document.getElementById("sidebar");
