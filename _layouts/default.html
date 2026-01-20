@@ -8,22 +8,33 @@
 <link rel="stylesheet"
  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 
-<!-- ロゴ用フォント（Sacramento系で整った美しさ） -->
 <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --red:#7a0f18;
-  --bg:#ffffff;
-  --line:#eee;
-}
-
 body{
   margin:0;
   font-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background:var(--bg);
-  color:#111;
+  background:#ffffff;
+  color:#b88160;
   overflow-x:hidden;
+}
+
+/* ===== Link ===== */
+a{
+  color:#cd7272;
+  text-decoration:none;
+}
+
+a:hover{
+  text-decoration:underline;
+}
+
+/* ロゴだけは下線を出さない */
+.header-logo,
+.header-logo:hover,
+.header-logo:focus,
+.header-logo:active{
+  text-decoration:none;
 }
 
 /* ===== Header ===== */
@@ -32,7 +43,7 @@ body{
   top:0; left:0; right:0;
   height:52px;
   background:white;
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid #eee;
   display:flex;
   align-items:center;
   padding:0 16px;
@@ -43,23 +54,21 @@ body{
   font-size:22px;
   cursor:pointer;
   margin-right:12px;
-  display:block;
 }
 
 .header-logo{
   font-family:"Parisienne", cursive;
-  text-decoration:none;
   letter-spacing:0.05em;
-  font-size:26px;
+  font-size:28px;
   line-height:1;
 }
 
 .logo-main{
-  color:var(--red);
+  color:#7a0f18;
 }
 
 .logo-sub{
-  color:#999;
+  color:#858585;
   font-size:0.7em;
   margin-left:4px;
 }
@@ -72,11 +81,10 @@ body{
   bottom:0;
   width:220px;
   background:white;
-  border-right:1px solid var(--line);
+  border-right:1px solid #eee;
   padding:16px;
   overflow-y:auto;
   transition:transform 0.3s ease;
-  will-change:transform;
   z-index:900;
   transform:translateX(-100%);
 }
@@ -87,14 +95,13 @@ body{
 
 .sidebar a{
   display:block;
-  color:#333;
-  text-decoration:none;
+  color:#b88160;
   margin:10px 0;
   font-size:14px;
 }
 
 .sidebar a:hover{
-  color:var(--red);
+  color:#7a0f18;
 }
 
 /* ===== Content ===== */
@@ -104,10 +111,12 @@ body{
   max-width:900px;
 }
 
+/* ===== Code ===== */
 pre{
   background:#f6f7f9 !important;
   padding:12px;
   border-radius:6px;
+  color:#727272;
 }
 
 .hljs{
@@ -118,6 +127,7 @@ code{
   background:#f0f1f3;
   border-radius:4px;
   padding:2px 4px;
+  color:#111;
 }
 
 /* ===== Footer ===== */
@@ -125,7 +135,7 @@ footer{
   text-align:center;
   margin:40px 0 20px;
   font-size:0.9em;
-  color:#666;
+  color:#aaa;
 }
 
 /* ===== Mobile ===== */
@@ -139,7 +149,6 @@ footer{
 
 <body>
 
-<!-- ===== Header ===== -->
 <div class="header">
   <div class="hamburger" onclick="toggleSidebar()">☰</div>
   <a href="{{ '/' | absolute_url }}" class="header-logo">
@@ -148,7 +157,6 @@ footer{
   </a>
 </div>
 
-<!-- ===== Sidebar (目次のみ) ===== -->
 <div class="sidebar" id="sidebar">
   <a href="{{ '/一覧.html' | absolute_url }}">一覧</a>
   <a href="{{ '/累積和まとめ.html' | absolute_url }}">累積和</a>
@@ -158,12 +166,10 @@ footer{
   <a href="{{ '/二分探索.html' | absolute_url }}">二分探索</a>
 </div>
 
-<!-- ===== Main ===== -->
 <div class="main">
   {{ content }}
 </div>
 
-<!-- ===== Footer ===== -->
 <footer>
   <div>created by kansu</div>
   <div>
@@ -176,7 +182,6 @@ footer{
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
-<script src="{{ '/library/copy.js' | absolute_url }}"></script>
 
 <script>
 function toggleSidebar(){
