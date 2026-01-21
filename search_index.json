@@ -110,6 +110,11 @@
     "content": "# ダイクストラ  vector<vector<pair<int,int>>>の形のグラフを投入  ds(グラフ,スタート地点)  スタート視点からの距離が記録されたvectorが帰ってくる  負の重みを持つ辺を入れてはいけない   ```cpp   vector<long long> ds(vector<vector<pair<long long,long long>>>& v,long long str){     long long inf = 1e9;     vector<long long> ans(v.size(),inf);     ans[str] = 0;     priority_queue<pair<long long,long long>,vector<pair<long long,long long>>,greater<pair<long long,long long>>> q;     q.push({0,str});     while(q.size()!=0){         long long cos = q.top().first;         long long pos = q.top().second;         q.pop();         if(cos > ans[pos])continue;         for(pair<long long,long long> i : v[pos]){             if(ans[i.first] > cos + i.second){                 ans[i.first] = cos + i.second;                 q.push({cos+i.second,i.first});             }         }     }     return ans; }  ``` "
   },
   {
+    "title": "ダブリング",
+    "url": "ダブリング.html",
+    "content": "# ダブリング  dub(vector<int>) で宣言する  引数のvectorはそれぞれの場所について次の日に行く場所を記録  query(x,y)で今xにいる時y日後の場所がわかる  ```cpp  class dub{     public:      vector<vector<int>> d;     int n;     dub(vector<int>& a){          // 今の場所 i 　         // 次の日 a[i]　         // のvectorを入れる          n = a.size();         d.assign(n,vector<int>(64));         rep(i,n){             d[i][0] = a[i];         }         for(int j = 1;j < 64;j++){             for(int i = 0;i < n;i++){                 d[i][j] = d[d[i][j-1]][j-1];             }         }             }     int query(int x,int y){         //  今xにいる時y日後にいるところ         bitset<64> b(y);         int now = x;         rep(i,64){             if(b.test(i)){                 now = d[now][i];             }         }            return now;          } };  ``` "
+  },
+  {
     "title": "データ構造",
     "url": "データ構造.html",
     "content": "# たまに使えるかもしれないデータ構造  - [二分探索用vector](二分探索用vector.md) - [countmultiset](countmultiset.md) - [treap木](treap木.md) - [order_statistic_tree](order_statistic_tree.md) - [セグメント木](セグ木まとめ.md) - [imos](imos.md) - [imos2D](imos2D.md) - [union_find](unionfind.md) "
