@@ -42,7 +42,7 @@
   {
     "title": "index",
     "url": "index.html",
-    "content": "   - [一覧](一覧.md)  - [template](template.md)    - [累積和](累積和まとめ.md)    - [数学](数学まとめ.md)    - [グラフ](グラフまとめ.md)    - [データ構造](データ構造.md)  - [二分探索](二分探索.md)  - [その他典型](その他典型.md)     <br> <br> <br> <br>        "
+    "content": " - [一覧](一覧.md)  - [template](template.md)    - [累積和](累積和まとめ.md)    - [数学](数学まとめ.md)    - [グラフ](グラフまとめ.md)    - [データ構造](データ構造.md)  - [二分探索](二分探索.md)  - [その他典型](その他典型.md)           "
   },
   {
     "title": "order_statistic_tree",
