@@ -1,6 +1,6 @@
 
 <!-- 検索ボックス -->
-<input type="text" id="searchBox" placeholder="検索ゥゥゥ!!!!!" style="width: 50%; padding: 8px; margin-bottom: 16px;">
+<input type="text" id="searchBox" placeholder="検索" style="width: 50%; padding: 8px; margin-bottom: 16px;">
 <ul id="searchResults"></ul>
 
 <script src="search.js"></script>
