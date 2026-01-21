@@ -12,11 +12,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
 
+<style>
+/* ===== 検索（ヘッダー） ===== */
 .header-search{
-  margin-right:32x; /* ← 数字を調整 */
+  margin-left:auto;
+  margin-right:32px; /* ← 左に寄せる調整 */
   position:relative;
 }
-
 
 .header-search input{
   width:180px;
@@ -25,10 +27,10 @@
   border:1px solid #ccc;
   font-size:14px;
 }
- .header-search ul:empty{
+
+.header-search ul:empty{
   display:none;
 }
-
 
 .header-search ul{
   position:absolute;
@@ -44,7 +46,7 @@
   padding:6px;
   margin:0;
   box-shadow:0 4px 10px rgba(0,0,0,0.1);
-  z-index:1100;
+  z-index:1300;
 }
 
 .header-search li{
@@ -56,8 +58,7 @@
   color:#7a0f18;
 }
 
-
- 
+/* ===== 全体 ===== */
 body{
   margin:0;
   font-family:"Noto Serif JP", serif;
@@ -70,6 +71,7 @@ body{
 a{ color:#8b0000; text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
+/* ===== ヘッダー ===== */
 .header{
   position:fixed;
   top:0; left:0; right:0;
@@ -113,6 +115,7 @@ a:hover{ text-decoration:underline; }
   margin-bottom:2px;
 }
 
+/* ===== サイドバー ===== */
 .sidebar{
   position:fixed;
   top:52px;
@@ -138,6 +141,7 @@ a:hover{ text-decoration:underline; }
   font-size:14px;
 }
 
+/* ===== オーバーレイ ===== */
 .overlay{
   position:fixed;
   inset:0;
@@ -153,6 +157,7 @@ a:hover{ text-decoration:underline; }
   pointer-events:auto;
 }
 
+/* ===== メイン ===== */
 .main{
   padding:80px 40px 40px;
   max-width:900px;
@@ -183,6 +188,7 @@ code{
   background:transparent !important;
 }
 
+/* ===== フッター ===== */
 footer{
   text-align:center;
   margin:40px 0 20px;
@@ -195,9 +201,13 @@ footer{
   color:#999;
 }
 
+/* ===== モバイル ===== */
 @media (max-width: 800px){
   .main{
     padding:80px 20px 40px;
+  }
+  .header-search input{
+    width:130px;
   }
 }
 </style>
@@ -211,7 +221,7 @@ footer{
     <span class="logo-main">kansu</span>
     <span class="logo-sub">C++ Library</span>
   </a>
-  <!-- ★ 検索ボックス -->
+
   <div class="header-search">
     <input type="text" id="searchBox" placeholder="検索">
     <ul id="searchResults"></ul>
@@ -219,7 +229,6 @@ footer{
 </div>
 
 <div class="sidebar" id="sidebar">
-
   <a href="{{ '/一覧.html' | relative_url }}">一覧</a>
   <a href="{{ '/累積和まとめ.html' | relative_url }}">累積和</a>
   <a href="{{ '/数学まとめ.html' | relative_url }}">数学</a>
@@ -245,10 +254,7 @@ footer{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
-<!-- コピー機能 -->
 <script src="{{ '/library/copy.js' | relative_url }}"></script>
-
-<!-- ★ 既存検索機能 -->
 <script src="{{ '/library/search.js' | relative_url }}"></script>
 
 <script>
