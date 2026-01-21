@@ -16,7 +16,7 @@
 /* ===== 検索（ヘッダー） ===== */
 .header-search{
   margin-left:auto;
-  margin-right:32px; /* ← 左に寄せる調整 */
+  margin-right:32px;
   position:relative;
 }
 
@@ -93,6 +93,14 @@ a:hover{ text-decoration:underline; }
   font-size:22px;
   cursor:pointer;
   user-select:none;
+}
+
+/* ★ ロゴ下線無効（追加） */
+.header-logo,
+.header-logo:hover,
+.header-logo:active,
+.header-logo:focus{
+  text-decoration:none;
 }
 
 .header-logo{
