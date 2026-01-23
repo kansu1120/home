@@ -31,11 +31,10 @@ public:
     private : 
     long long query(int L,int R,int s,int l,int r){
         long long ans = -INF;
-        if(l >= L && r <= R){
-            ans = max(ans,v[s]);
-            return ans;
-        }
         if(r < L || l > R)return -INF;
+        if(l >= L && r <= R){
+            return v[s];
+        }
         ans = max(ans,query(L,R,s*2,l,(l+r)/2));
         ans = max(ans,query(L,R,s*2+1,(l+r)/2+1,r));
         return ans;
