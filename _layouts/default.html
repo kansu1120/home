@@ -15,11 +15,12 @@
 :root{
   --bg:#fbfbfb; --text:#1e1e1e; --sub:#666;
   --line:#e5e5e5; --accent:#7a0f18; --gold:#c9a24d;
+  --header-bg:#e5e5e5;
 }
 
 body{
   margin:0;
-  font-family:"Noto Serif JP", serif;
+  font-family:"Bubbler One", serif;
   background:var(--bg);
   color:var(--text);
   line-height:1.9;
@@ -33,7 +34,7 @@ a:hover{ text-decoration:underline; }
   position:fixed;
   top:0; left:0; right:0;
   height:56px;
-  background:rgba(251,251,251,0.95);
+  background :var(--header-bg);
   border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
@@ -49,14 +50,34 @@ a:hover{ text-decoration:underline; }
 }
 
 .header-logo{
-  font-family:"Cinzel", serif;
+  font-family:"Bubbler One", sans-serif;
+  display:flex;
+  align-items:flex-end;
+  gap:6px;
+}
+
+.logo-main{
+  font-size:30px;
+  letter-spacing:0.08em;
+  color:#7a0f18;
+}
+
+.logo-sub{
+  font-size:20px;
   letter-spacing:0.15em;
-  display:flex; align-items:flex-end; gap:6px;
-  margin-left:4px;
+  color:#999;
+  margin-bottom:2px;
+}
+
+.header-logo,
+.header-logo:hover,
+.header-logo:active,
+.header-logo:focus{
+  text-decoration:none;
 }
 
 .logo-main{ font-size:22px; color:var(--accent); }
-.logo-sub{ font-size:12px; color:var(--gold); margin-bottom:3px; }
+.logo-sub{ font-size:14px; color:var(--gold); margin-bottom:3px; }
 
 .header-actions{ margin-left:auto; }
 
@@ -82,9 +103,10 @@ a:hover{ text-decoration:underline; }
 .header-search.open{ transform:translateY(0); }
 
 .header-search input{
+  background :var(--header-bg);
   width:100%;
   padding:10px;
-  font-size:18px;
+  font-size:16px;
   border:1px solid var(--line);
   border-radius:6px;
 }
@@ -175,7 +197,7 @@ footer{
   <div class="hamburger" onclick="toggleSidebar()">☰</div>
 
   <a href="{{ '/' | relative_url }}" class="header-logo">
-    <span class="logo-main">KANSU</span>
+    <span class="logo-main">Kansu</span>
     <span class="logo-sub">C++ Library</span>
   </a>
 
@@ -207,7 +229,7 @@ footer{
 </div>
 
 <footer>
-  <div class="footer-brand">KANSU C++ LIBRARY</div>
+  <div class="footer-brand">created by Kansu</div>
   <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}" target="_blank">Source on GitHub</a>
 </footer>
 
@@ -234,6 +256,5 @@ function toggleHeaderSearch(){
   headerSearch.classList.toggle("open");
 }
 </script>
-
 </body>
 </html>
