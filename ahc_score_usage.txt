@@ -1,0 +1,19 @@
+AHC スコア計算ページ 使い方
+
+1. AtCoder から配布されるテストケース zip を選択します。
+2. 手元の出力 zip を選択します（入力と同じパスがあればそれを使用し、
+   見つからない場合はファイル名のみで照合します）。
+3. 「スコア計算」を押すと各ケースのスコアが表示されます。
+
+スコア計算の簡易ルール:
+- 入力と出力の数値の差の合計
+- 片方にしか存在しない数値は 1000 点ペナルティ
+
+ロジックを変更したい場合:
+- library/ahc_score.cpp を編集してください。
+- 変更後は以下のコマンドで WASM を再生成します。
+  clang++ --target=wasm32-unknown-unknown -O3 -nostdlib \
+    -Wl,--no-entry -Wl,--export=score -Wl,--export=alloc -Wl,--export=reset_alloc \
+    -Wl,--export-table -Wl,--export=__heap_base -Wl,--export=__data_end \
+    -Wl,--initial-memory=131072 -Wl,--max-memory=16777216 -Wl,--import-memory \
+    -o library/ahc_score.wasm library/ahc_score.cpp
