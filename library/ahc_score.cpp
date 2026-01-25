@@ -1,9 +1,10 @@
 #include <stdint.h>
+#include <limits.h>
 
 extern "C" {
 extern uint8_t __heap_base;
 static uint32_t heap_ptr = 0;
-// 入力・出力の数値ペアが欠けている場合のペナルティ。
+// Missing penalty when input/output value pairs are not available.
 constexpr int64_t kMissingPenalty = 1000;
 
 uint32_t alloc(uint32_t size) {
@@ -19,8 +20,8 @@ void reset_alloc() {
   heap_ptr = reinterpret_cast<uint32_t>(&__heap_base);
 }
 
-// data 内の数値を読み取る。数字が読めたら 1 を返し、out に値を入れる。
-// 非数字はスキップし、終端に達したら 0 を返す。
+// Reads the next integer from data. Returns 1 if a number is read and stored in out.
+// Non-numeric characters are skipped; returns 0 on end of input.
 static int read_int(const uint8_t* data, int32_t size, int32_t* index, int32_t* out) {
   int32_t i = *index;
   while (i < size) {
@@ -43,7 +44,18 @@ static int read_int(const uint8_t* data, int32_t size, int32_t* index, int32_t* 
     while (i < size) {
       uint8_t c = data[i];
       if (c < '0' || c > '9') break;
-      value = value * 10 + (c - '0');
+      int digit = c - '0';
+      if (value > (INT32_MAX - digit) / 10) {
+        value = INT32_MAX;
+        while (i < size) {
+          uint8_t skip = data[i];
+          if (skip < '0' || skip > '9') break;
+          ++i;
+        }
+        found = 1;
+        break;
+      }
+      value = value * 10 + digit;
       found = 1;
       ++i;
     }

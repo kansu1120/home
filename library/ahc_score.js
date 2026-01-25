@@ -21,6 +21,7 @@
   const formatScore = score => score.toString();
 
   const toNumberSafe = value => {
+    if (typeof value !== "bigint") return Number(value);
     const limit = BigInt(Number.MAX_SAFE_INTEGER);
     if (value > limit) return Number.MAX_SAFE_INTEGER;
     if (value < -limit) return -Number.MAX_SAFE_INTEGER;
@@ -88,6 +89,7 @@
     results.appendChild(header);
 
     const range = stats.worst - stats.best;
+    const rangeNumber = range === 0n ? 0 : toNumberSafe(range);
 
     rows.forEach((row, index) => {
       const rowEl = document.createElement("div");
@@ -99,7 +101,7 @@
       const fill = document.createElement("div");
       fill.className = "ahc-bar-fill";
 
-      const ratio = range === 0n ? 0 : toNumberSafe(row.score - stats.best) / toNumberSafe(range);
+      const ratio = range === 0n ? 0 : toNumberSafe(row.score - stats.best) / rangeNumber;
       const inverted = Math.max(0, Math.min(1, 1 - ratio));
       fill.style.width = `${Math.round(10 + inverted * 90)}%`;
       fill.style.background = `hsl(${Math.round(120 * inverted)}, 70%, 45%)`;
