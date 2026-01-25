@@ -52,7 +52,7 @@
 
   const loadWasm = async () => {
     if (wasmReady) return wasmReady;
-    if (!wasmUrl) throw new Error("WASM URL が見つかりません。");
+    if (!wasmUrl) throw new Error("WebAssembly の URL が見つかりません。");
     wasmReady = (async () => {
       const memory = new WebAssembly.Memory({ initial: 4, maximum: 256 });
       const response = await fetch(wasmUrl);

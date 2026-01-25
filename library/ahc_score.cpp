@@ -3,6 +3,7 @@
 extern "C" {
 extern uint8_t __heap_base;
 static uint32_t heap_ptr = 0;
+// 入力・出力の数値ペアが欠けている場合のペナルティ。
 constexpr int64_t kMissingPenalty = 1000;
 
 uint32_t alloc(uint32_t size) {
@@ -18,6 +19,8 @@ void reset_alloc() {
   heap_ptr = reinterpret_cast<uint32_t>(&__heap_base);
 }
 
+// data 内の数値を読み取る。数字が読めたら 1 を返し、out に値を入れる。
+// 非数字はスキップし、終端に達したら 0 を返す。
 static int read_int(const uint8_t* data, int32_t size, int32_t* index, int32_t* out) {
   int32_t i = *index;
   while (i < size) {

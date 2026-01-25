@@ -56,7 +56,7 @@ AtCoder Heuristic Contest のテストケース zip と出力 zip を読み込�
 2. 手元の出力 zip を選択します（パス一致がなければファイル名のみで照合します）。
 3. 「スコア計算」を押すと各ケースのスコアが一覧表示されます。
 
-> 現在のスコアは「入力・出力の数値の差の合計 + 欠損データ 1000 点ペナルティ」の簡易スコアです。
+> 現在のスコアは「入力・出力の数値の差の合計 + 欠損データ 1000 点ペナルティ」の簡易スコアです（`library/ahc_score.cpp` の `kMissingPenalty` で変更できます）。
 > AHC 本番のスコアロジックは `library/ahc_score.cpp` を編集してください。
 
 <script src="{{ '/library/jszip.min.js' | relative_url }}"></script>
