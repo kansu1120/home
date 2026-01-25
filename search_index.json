@@ -132,7 +132,7 @@
   {
     "title": "ライブラリ全文",
     "url": "ライブラリ全文.html",
-    "content": "--- layout: default title: Kansu Library Full Dump (For AI) permalink: /ai-all/ ---  # Kansu C++ Library — Full Dump for AI  {% assign md_pages = site.pages   | where_exp: \"p\", \"p.path contains '.md'\"   | where_exp: \"p\", \"p.name != 'ai_all.md'\"   | sort: \"path\" %}  {% for p in md_pages %}  ---  ## {{ p.title | default: p.name }}  {{ p.content }}  {% endfor %} "
+    "content": "--- layout: default title: Kansu Library Full Dump (For AI) permalink: /ai-all/ ---  # Kansu C++ Library — Full Dump for AI  {% assign md_pages = site.pages   | where_exp: \"p\", \"p.path contains '.md'\"   | where_exp: \"p\", \"p.name != 'ai_all.md'\"   | sort: \"path\" %}  {% for p in md_pages %}  ---  ## {{ p.path }}  {{ p.content }}  {% endfor %} "
   },
   {
     "title": "ワーシャルフロイド",
