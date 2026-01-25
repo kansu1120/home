@@ -45,7 +45,7 @@ static int read_int(const uint8_t* data, int32_t size, int32_t* index, int32_t* 
       uint8_t c = data[i];
       if (c < '0' || c > '9') break;
       int digit = c - '0';
-      if (value > (INT32_MAX - digit) / 10) {
+      if (value > (INT32_MAX / 10) || (value == INT32_MAX / 10 && digit > (INT32_MAX % 10))) {
         value = INT32_MAX;
         while (i < size) {
           uint8_t skip = data[i];
