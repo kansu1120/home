@@ -154,7 +154,7 @@ a:hover{ text-decoration:underline; }
   max-width:900px;
 }
 
-/* ===== コード表示（角丸なし・枠線なし・高級ドキュメント風） ===== */
+/* ===== コード表示（小さめ・角丸なし・枠なし・高級ドキュメント風） ===== */
 pre{
   background:#f5f6f8;
   padding:16px;
@@ -162,6 +162,10 @@ pre{
   border:none;
   border-radius:0;
   box-shadow:none;
+  font-family:"Fira Code", monospace;
+  font-size:13px;      /* 小さめ */
+  line-height:1.6;    /* 少し詰める */
+  font-variant-ligatures:none;
 }
 
 code{
@@ -169,6 +173,8 @@ code{
   padding:2px 4px;
   border-radius:0;
   font-family:"Fira Code", monospace;
+  font-size:13px;
+  font-variant-ligatures:none;
 }
 
 .hljs{
