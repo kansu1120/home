@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>採点システム - kansu C++ Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: "Noto Serif JP", serif;
+            background: #fffdfa;
+            color: #332f2c;
+            line-height: 1.8;
+        }
+
+        .header {
+            background: #fffdfa;
+            border-bottom: 1px solid #eee;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-logo {
+            font-family: "Bubbler One", sans-serif;
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .logo-main {
+            font-size: 30px;
+            letter-spacing: 0.08em;
+            color: #7a0f18;
+        }
+
+        .logo-sub {
+            font-size: 20px;
+            letter-spacing: 0.15em;
+            color: #999;
+            margin-bottom: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: #7a0f18;
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        .section {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .section h2 {
+            color: #7a0f18;
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #fbe1e1;
+            padding-bottom: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        select, input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            background: white;
+        }
+
+        select:focus, input[type="file"]:focus {
+            outline: none;
+            border-color: #7a0f18;
+        }
+
+        .btn {
+            background: #7a0f18;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #5a0a12;
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .result-box {
+            background: #f9f9f9;
+            border-left: 4px solid #7a0f18;
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 24px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        .score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #7a0f18;
+            margin: 16px 0;
+        }
+
+        .status {
+            padding: 8px 16px;
+            border-radius: 6px;
+            display: inline-block;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .status.processing {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196f3;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+
+        footer {
+            text-align: center;
+            margin: 40px 0 20px;
+            color: #999;
+        }
+
+        .footer-brand {
+            font-family: "Bubbler One", sans-serif;
+            font-size: 18px;
+            letter-spacing: 0.15em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px 16px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .score {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="./" class="header-logo">
+            <span class="logo-main">kansu</span>
+            <span class="logo-sub">C++ Library</span>
+        </a>
+    </div>
+
+    <div class="container">
+        <h1>コンテスト採点システム</h1>
+        <p class="description">
+            テストケースのZIPファイルをアップロードして、ブラウザ上で自動採点します。
+        </p>
+
+        <div class="info-box">
+            <h3>📋 使い方</h3>
+            <ol>
+                <li>採点したいコンテストを選択します</li>
+                <li>テストケースを含むZIPファイルをアップロードします</li>
+                <li>「採点開始」ボタンをクリックします</li>
+                <li>スコアが表示されます</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>1. コンテストを選択</h2>
+            <div class="form-group">
+                <label for="contestSelect">コンテスト:</label>
+                <select id="contestSelect">
+                    <option value="">-- コンテストを選択してください --</option>
+                    <option value="example">サンプルコンテスト</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. テストケースをアップロード</h2>
+            <div class="form-group">
+                <label for="fileInput">ZIPファイル:</label>
+                <input type="file" id="fileInput" accept=".zip,.txt" />
+            </div>
+            <p style="color: #666; font-size: 14px;">
+                ※ テストデータは以下の形式で作成してください：<br>
+                <code style="background: #f4f4f7; padding: 2px 6px; border-radius: 4px;">
+                INPUT:<br>
+                (入力データ)<br>
+                EXPECTED:<br>
+                (期待される出力)<br>
+                OUTPUT:<br>
+                (実際の出力)
+                </code>
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>3. 採点を実行</h2>
+            <button class="btn" id="scoreBtn" disabled>採点開始</button>
+            
+            <div class="result-box" id="resultBox">
+                <div class="status" id="statusBox"></div>
+                <div id="scoreDisplay"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-brand">created by kansu</div>
+        <a href="https://github.com/kansu1120/library" target="_blank" rel="noopener" style="color: #8b0000;">
+            GitHub
+        </a>
+    </footer>
+
+    <script>
+        // グローバル変数
+        let scorerModule = null;
+        let selectedContest = '';
+        let uploadedFile = null;
+
+        // DOM要素
+        const contestSelect = document.getElementById('contestSelect');
+        const fileInput = document.getElementById('fileInput');
+        const scoreBtn = document.getElementById('scoreBtn');
+        const resultBox = document.getElementById('resultBox');
+        const statusBox = document.getElementById('statusBox');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+
+        // コンテスト選択時
+        contestSelect.addEventListener('change', async (e) => {
+            selectedContest = e.target.value;
+            scorerModule = null; // リセット
+            updateButtonState();
+
+            if (selectedContest) {
+                await loadScorerModule(selectedContest);
+            }
+        });
+
+        // ファイル選択時
+        fileInput.addEventListener('change', (e) => {
+            uploadedFile = e.target.files[0];
+            updateButtonState();
+        });
+
+        // ボタンの有効/無効を更新
+        function updateButtonState() {
+            scoreBtn.disabled = !(selectedContest && uploadedFile && scorerModule);
+        }
+
+        // スコアラーモジュールを読み込む
+        async function loadScorerModule(contestName) {
+            try {
+                statusBox.textContent = 'スコアラーを読み込み中...';
+                statusBox.className = 'status processing';
+                resultBox.classList.add('show');
+
+                // スコアラーモジュールを動的に読み込む
+                const script = document.createElement('script');
+                script.src = `./contests/${contestName}/scorer.js`;
+                
+                await new Promise((resolve, reject) => {
+                    script.onload = resolve;
+                    script.onerror = reject;
+                    document.head.appendChild(script);
+                });
+
+                // モジュールを初期化
+                if (typeof createScorerModule === 'function') {
+                    scorerModule = await createScorerModule();
+                    statusBox.textContent = 'スコアラーの読み込みが完了しました';
+                    statusBox.className = 'status success';
+                    updateButtonState();
+                } else {
+                    throw new Error('スコアラーモジュールが見つかりません');
+                }
+            } catch (error) {
+                console.error('Error loading scorer:', error);
+                statusBox.textContent = 'スコアラーの読み込みに失敗しました: ' + error.message;
+                statusBox.className = 'status error';
+            }
+        }
+
+        // 採点を実行
+        scoreBtn.addEventListener('click', async () => {
+            if (!scorerModule || !uploadedFile) return;
+
+            try {
+                scoreBtn.disabled = true;
+                statusBox.textContent = '採点中...';
+                statusBox.className = 'status processing';
+                scoreDisplay.innerHTML = '';
+                resultBox.classList.add('show');
+
+                // ファイルを読み込む
+                const fileContent = await readFileAsText(uploadedFile);
+
+                // スコアを計算
+                const dataPtr = scorerModule._malloc(fileContent.length + 1);
+                scorerModule.stringToUTF8(fileContent, dataPtr, fileContent.length + 1);
+                
+                const score = scorerModule._computeScore(dataPtr, fileContent.length);
+                
+                scorerModule._free(dataPtr);
+
+                // 結果を表示
+                statusBox.textContent = '採点完了';
+                statusBox.className = 'status success';
+                scoreDisplay.innerHTML = `
+                    <div style="margin-top: 16px;">
+                        <div style="color: #666; font-size: 18px;">スコア</div>
+                        <div class="score">${score.toFixed(2)} 点</div>
+                    </div>
+                `;
+
+                scoreBtn.disabled = false;
+            } catch (error) {
+                console.error('Scoring error:', error);
+                statusBox.textContent = '採点エラー: ' + error.message;
+                statusBox.className = 'status error';
+                scoreDisplay.innerHTML = '';
+                scoreBtn.disabled = false;
+            }
+        });
+
+        // ファイルをテキストとして読み込む
+        function readFileAsText(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.onerror = reject;
+                reader.readAsText(file);
+            });
+        }
+    </script>
+</body>
+</html>

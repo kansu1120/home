@@ -1,0 +1,24 @@
+# Build artifacts
+*.wasm
+node_modules/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Emscripten
+emsdk/
+*.bc
+
+# Temporary files
+/tmp/
+*.tmp
