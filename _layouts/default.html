@@ -17,20 +17,21 @@ body{
   margin:0;
   font-family:"Noto Serif JP", serif;
   background:#ffffff;
-  color:#2a2a2a;
+  color:#2b2b2b;
   line-height:1.8;
   overflow-x:hidden;
 }
 
-a{ color:#7a0f18; text-decoration:none; }
+a{ color:#6b0f14; text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
+/* ===== ヘッダー ===== */
 .header{
   position:fixed;
   top:0; left:0; right:0;
   height:56px;
   background:#ffffff;
-  border-bottom:1px solid #e6e6e6;
+  border-bottom:1px solid #eee;
   display:flex;
   align-items:center;
   padding:0 10px;
@@ -38,11 +39,8 @@ a:hover{ text-decoration:underline; }
 }
 
 .hamburger{
-  width:54px;
-  height:54px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width:50px;
+  text-align:center;
   font-size:22px;
   cursor:pointer;
 }
@@ -52,12 +50,10 @@ a:hover{ text-decoration:underline; }
   display:flex;
   align-items:flex-end;
   gap:6px;
-  text-decoration:none;
 }
 
 .logo-main{
-  font-size:30px;
-  letter-spacing:0.08em;
+  font-size:28px;
   color:#7a0f18;
 }
 
@@ -68,79 +64,78 @@ a:hover{ text-decoration:underline; }
   margin-bottom:2px;
 }
 
+/* ===== 検索（PCヘッダー） ===== */
 .header-search{
   margin-left:auto;
   position:relative;
+  width:60%;
+  max-width:280px;
 }
 
 .header-search input{
-  width:180px;
+  width:100%;
   padding:6px 10px;
-  border-radius:6px;
   border:1px solid #ccc;
+  border-radius:4px;
 }
 
 .header-search ul{
   position:absolute;
   top:36px;
   right:0;
-  width:260px;
-  max-height:300px;
-  overflow-y:auto;
-  background:#fff;
-  border:1px solid #ddd;
-  border-radius:6px;
+  width:100%;
+  background:white;
   list-style:none;
   padding:6px;
   margin:0;
+  border:1px solid #ddd;
+  max-height:250px;
+  overflow-y:auto;
   z-index:2000;
 }
 
-.header-search ul:empty{ display:none; }
-
+/* ===== サイドバー ===== */
 .sidebar{
   position:fixed;
   top:56px;
   left:0;
   bottom:0;
   width:240px;
-  background:#f9f9f9;
+  background:#fafafa;
   padding:16px;
   transform:translateX(-100%);
-  transition:0.3s;
-  z-index:1100;
-}
-
-.sidebar.open{ transform:translateX(0); }
-
-.sidebar a{
-  display:block;
-  margin:8px 0;
-  color:#7a0f18;
-}
-
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.3);
-  opacity:0;
-  pointer-events:none;
   transition:0.3s;
   z-index:1000;
 }
 
-.overlay.active{
-  opacity:1;
-  pointer-events:auto;
+.sidebar.open{
+  transform:translateX(0);
+  box-shadow:4px 0 12px rgba(0,0,0,0.15);
 }
 
+.sidebar a{
+  display:block;
+  margin:6px 0;
+}
+
+/* ===== スマホ時は検索をサイドバーに移動 ===== */
+@media(max-width:800px){
+  .header-search{ display:none; }
+  .sidebar-search{ display:block; }
+}
+@media(min-width:801px){
+  .sidebar-search{ display:none; }
+}
+
+/* ===== メイン ===== */
 .main{
   padding:90px 40px 40px;
   max-width:900px;
 }
 
+/* ===== コード表示（角丸なし・枠なし・小さめ） ===== */
 pre{
-  background:#f3f3f5;
+  background:#f5f6f8;
   padding:14px;
   overflow-x:auto;
   font-size:13px;
@@ -149,11 +144,15 @@ pre{
 }
 
 code{
-  background:#f0f0f3;
+  background:#f0f1f4;
   padding:2px 4px;
   font-size:13px;
+  border-radius:0;
 }
 
+.hljs{ background:transparent !important; }
+
+/* ===== フッター ===== */
 footer{
   text-align:center;
   margin:40px 0 20px;
@@ -161,13 +160,7 @@ footer{
 
 .footer-brand{
   font-family:"Bubbler One", sans-serif;
-  color:#aaa;
-  letter-spacing:0.15em;
-}
-
-@media (max-width: 800px){
-  .header-search{ display:none; }
-  .sidebar-search{ display:block; }
+  color:#999;
 }
 </style>
 </head>
@@ -181,6 +174,7 @@ footer{
     <span class="logo-sub">C++ Library</span>
   </a>
 
+  <!-- PC用検索 -->
   <div class="header-search">
     <input type="text" id="searchBox" placeholder="検索">
     <ul id="searchResults"></ul>
@@ -188,8 +182,12 @@ footer{
 </div>
 
 <div class="sidebar" id="sidebar">
-  <input type="text" id="searchBoxMobile" placeholder="検索ゥゥゥ!!!!!" style="width:100%; padding:8px; margin-bottom:12px;">
-  <ul id="searchResultsMobile"></ul>
+
+  <!-- スマホ用検索 -->
+  <div class="sidebar-search">
+    <input type="text" id="searchBoxMobile" placeholder="検索" style="width:100%;padding:6px;">
+    <ul id="searchResultsMobile"></ul>
+  </div>
 
   <a href="{{ '/一覧.html' | relative_url }}">一覧</a>
   <a href="{{ '/累積和まとめ.html' | relative_url }}">累積和</a>
@@ -199,18 +197,13 @@ footer{
   <a href="{{ '/二分探索.html' | relative_url }}">二分探索</a>
 </div>
 
-<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
-
 <div class="main">
   {{ content }}
 </div>
 
 <footer>
   <div class="footer-brand">created by kansu</div>
-  <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
-     target="_blank" rel="noopener">
-    Source on GitHub
-  </a>
+  <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}" target="_blank">Source on GitHub</a>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -221,15 +214,8 @@ footer{
 
 <script>
 const sidebar = document.getElementById("sidebar");
-const overlay = document.getElementById("overlay");
-
 function toggleSidebar(){
   sidebar.classList.toggle("open");
-  overlay.classList.toggle("active");
-}
-function closeSidebar(){
-  sidebar.classList.remove("open");
-  overlay.classList.remove("active");
 }
 </script>
 
