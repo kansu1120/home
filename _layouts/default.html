@@ -10,89 +10,146 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
   font-family:"Noto Serif JP", serif;
   background:#ffffff;
-  color:#2b2b2b;
+  color:#2c2c2c;
   line-height:1.8;
+  overflow-x:hidden;
 }
 
-a{ color:#6b4e3d; text-decoration:none; }
+a{ color:#7a0f18; text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
+/* ===== Header ===== */
 .header{
   position:fixed;
   top:0; left:0; right:0;
   height:56px;
   background:#ffffff;
-  border-bottom:1px solid #e5e5e5;
+  border-bottom:1px solid #e6e6e6;
   display:flex;
   align-items:center;
-  padding:0 16px;
-  z-index:1000;
+  padding:0 12px;
+  z-index:1200;
 }
 
 .hamburger{
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-size:22px;
   cursor:pointer;
-  margin-right:16px;
 }
 
 .header-logo{
-  font-family:"Playfair Display", serif;
-  font-size:26px;
-  letter-spacing:0.08em;
-  color:#3a2a1f;
+  font-family:"Bubbler One", sans-serif;
+  display:flex;
+  align-items:flex-end;
+  gap:6px;
+  text-decoration:none;
 }
 
+.logo-main{
+  font-size:28px;
+  letter-spacing:0.08em;
+  color:#7a0f18;
+}
+
+.logo-sub{
+  font-size:16px;
+  letter-spacing:0.15em;
+  color:#aaa;
+  margin-bottom:2px;
+}
+
+/* ===== Search (PC Header) ===== */
+.header-search{
+  margin-left:auto;
+  position:relative;
+}
+
+.header-search input{
+  width:180px;
+  padding:6px 10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+.header-search ul{
+  position:absolute;
+  top:36px;
+  right:0;
+  width:240px;
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:6px;
+  list-style:none;
+  padding:6px;
+  margin:0;
+  max-height:300px;
+  overflow-y:auto;
+}
+
+.header-search ul:empty{ display:none; }
+
+/* ===== Sidebar ===== */
 .sidebar{
   position:fixed;
   top:56px;
   left:0;
   bottom:0;
-  width:260px;
+  width:240px;
   background:#fafafa;
-  padding:20px;
+  padding:16px;
   transform:translateX(-100%);
   transition:0.3s;
-  z-index:900;
-  border-right:1px solid #e5e5e5;
+  z-index:1000;
 }
 
 .sidebar.open{
   transform:translateX(0);
+  box-shadow:4px 0 12px rgba(0,0,0,0.15);
 }
 
 .sidebar a{
   display:block;
-  margin:10px 0;
-  color:#5a3f2e;
+  color:#7a0f18;
+  margin:8px 0;
+  font-size:14px;
 }
 
-.search-box{
-  margin-bottom:20px;
+/* ===== Search (Mobile Sidebar) ===== */
+.sidebar-search{
+  margin-bottom:12px;
 }
 
-.search-box input{
+.sidebar-search input{
   width:100%;
-  padding:8px 10px;
-  border:1px solid #ccc;
+  padding:6px 10px;
   border-radius:6px;
-  font-family:inherit;
+  border:1px solid #ccc;
+}
+
+.sidebar-search ul{
+  list-style:none;
+  padding:0;
+  margin:6px 0 0 0;
 }
 
 .overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.2);
+  background:rgba(0,0,0,0.3);
   opacity:0;
   pointer-events:none;
   transition:0.3s;
-  z-index:800;
 }
 
 .overlay.active{
@@ -100,24 +157,44 @@ a:hover{ text-decoration:underline; }
   pointer-events:auto;
 }
 
+/* ===== Main ===== */
 .main{
-  padding:96px 40px 40px;
-  max-width:900px;
+  padding:90px 40px 40px;
+  max-width:960px;
   margin:auto;
 }
 
-/* highlight.js を殺さないように背景だけ上品に */
 pre{
-  background:#f8f8f8 !important;
-  border-radius:8px;
+  background:#f5f5f7;
+  border-left:4px solid #7a0f18;
   padding:16px;
+  border-radius:6px;
+  overflow-x:auto;
 }
 
+code{
+  background:#ececf0;
+  padding:2px 4px;
+  border-radius:4px;
+}
+
+.hljs{ background:transparent !important; }
+
+/* ===== Footer ===== */
 footer{
   text-align:center;
-  margin:60px 0 20px;
-  color:#888;
-  font-family:"Playfair Display", serif;
+  margin:40px 0 20px;
+}
+
+.footer-brand{
+  font-family:"Bubbler One", sans-serif;
+  letter-spacing:0.15em;
+  color:#aaa;
+}
+
+/* ===== Mobile ===== */
+@media(max-width:800px){
+  .header-search{ display:none; }
 }
 </style>
 </head>
@@ -126,15 +203,23 @@ footer{
 
 <div class="header">
   <div class="hamburger" onclick="toggleSidebar()">☰</div>
-  <div class="header-logo">KANSU C++ LIBRARY</div>
+  <a href="{{ '/' | relative_url }}" class="header-logo">
+    <span class="logo-main">kansu</span>
+    <span class="logo-sub">C++ Library</span>
+  </a>
+
+  <div class="header-search">
+    <input type="text" id="searchBox" placeholder="検索">
+    <ul id="searchResults"></ul>
+  </div>
 </div>
 
 <div class="sidebar" id="sidebar">
 
-  <!-- 検索ボックス -->
-  <div class="search-box">
-    <input type="text" id="searchBox" placeholder="検索ゥゥゥ!!!!!">
-    <ul id="searchResults"></ul>
+  <!-- モバイル用検索 -->
+  <div class="sidebar-search">
+    <input type="text" id="searchBoxMobile" placeholder="検索">
+    <ul id="searchResultsMobile"></ul>
   </div>
 
   <a href="{{ '/一覧.html' | relative_url }}">一覧</a>
@@ -152,13 +237,16 @@ footer{
 </div>
 
 <footer>
-  created by kansu
+  <div class="footer-brand">created by kansu</div>
+  <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
+     target="_blank" rel="noopener">Source on GitHub</a>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
-<script src="search.js"></script>
+<script src="{{ '/library/copy.js' | relative_url }}"></script>
+<script src="{{ '/library/search.js' | relative_url }}"></script>
 
 <script>
 const sidebar = document.getElementById("sidebar");
