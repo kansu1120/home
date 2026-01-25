@@ -17,7 +17,7 @@ body{
   margin:0;
   font-family:"Noto Serif JP", serif;
   background:#ffffff;
-  color:#2c2c2c;
+  color:#2a2a2a;
   line-height:1.8;
   overflow-x:hidden;
 }
@@ -25,27 +25,27 @@ body{
 a{ color:#7a0f18; text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
-/* ===== Header ===== */
 .header{
   position:fixed;
   top:0; left:0; right:0;
   height:56px;
   background:#ffffff;
-  border-bottom:1px solid #e6e6e6;
+  border-bottom:1px solid #eee;
   display:flex;
   align-items:center;
-  padding:0 12px;
+  padding:0 10px;
   z-index:1200;
 }
 
 .hamburger{
-  width:48px;
-  height:48px;
+  width:56px;
+  height:56px;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:22px;
   cursor:pointer;
+  user-select:none;
 }
 
 .header-logo{
@@ -53,23 +53,22 @@ a:hover{ text-decoration:underline; }
   display:flex;
   align-items:flex-end;
   gap:6px;
-  text-decoration:none;
 }
 
 .logo-main{
-  font-size:28px;
+  font-size:30px;
   letter-spacing:0.08em;
   color:#7a0f18;
 }
 
 .logo-sub{
-  font-size:16px;
+  font-size:20px;
   letter-spacing:0.15em;
   color:#aaa;
   margin-bottom:2px;
 }
 
-/* ===== Search (PC Header) ===== */
+/* ===== 検索（PC: ヘッダー） ===== */
 .header-search{
   margin-left:auto;
   position:relative;
@@ -78,18 +77,17 @@ a:hover{ text-decoration:underline; }
 .header-search input{
   width:180px;
   padding:6px 10px;
-  border-radius:6px;
   border:1px solid #ccc;
+  font-size:14px;
 }
 
 .header-search ul{
   position:absolute;
   top:36px;
   right:0;
-  width:240px;
+  width:260px;
   background:#fff;
   border:1px solid #ddd;
-  border-radius:6px;
   list-style:none;
   padding:6px;
   margin:0;
@@ -99,7 +97,7 @@ a:hover{ text-decoration:underline; }
 
 .header-search ul:empty{ display:none; }
 
-/* ===== Sidebar ===== */
+/* ===== サイドバー ===== */
 .sidebar{
   position:fixed;
   top:56px;
@@ -120,27 +118,20 @@ a:hover{ text-decoration:underline; }
 
 .sidebar a{
   display:block;
-  color:#7a0f18;
   margin:8px 0;
   font-size:14px;
 }
 
-/* ===== Search (Mobile Sidebar) ===== */
+/* ===== 検索（スマホ: サイドバー） ===== */
 .sidebar-search{
-  margin-bottom:12px;
+  display:none;
+  margin-bottom:16px;
 }
 
 .sidebar-search input{
   width:100%;
   padding:6px 10px;
-  border-radius:6px;
   border:1px solid #ccc;
-}
-
-.sidebar-search ul{
-  list-style:none;
-  padding:0;
-  margin:6px 0 0 0;
 }
 
 .overlay{
@@ -150,6 +141,7 @@ a:hover{ text-decoration:underline; }
   opacity:0;
   pointer-events:none;
   transition:0.3s;
+  z-index:900;
 }
 
 .overlay.active{
@@ -157,30 +149,33 @@ a:hover{ text-decoration:underline; }
   pointer-events:auto;
 }
 
-/* ===== Main ===== */
 .main{
   padding:90px 40px 40px;
-  max-width:960px;
-  margin:auto;
+  max-width:900px;
 }
 
+/* ===== コード表示（角丸なし・枠線なし・高級ドキュメント風） ===== */
 pre{
-  background:#f5f5f7;
-  border-left:4px solid #7a0f18;
+  background:#f5f6f8;
   padding:16px;
-  border-radius:6px;
   overflow-x:auto;
+  border:none;
+  border-radius:0;
+  box-shadow:none;
 }
 
 code{
-  background:#ececf0;
+  background:#eceff3;
   padding:2px 4px;
-  border-radius:4px;
+  border-radius:0;
+  font-family:"Fira Code", monospace;
 }
 
-.hljs{ background:transparent !important; }
+.hljs{
+  background:transparent !important;
+}
 
-/* ===== Footer ===== */
+/* ===== フッター ===== */
 footer{
   text-align:center;
   margin:40px 0 20px;
@@ -192,9 +187,11 @@ footer{
   color:#aaa;
 }
 
-/* ===== Mobile ===== */
-@media(max-width:800px){
+/* ===== レスポンシブ ===== */
+@media (max-width: 800px){
   .header-search{ display:none; }
+  .sidebar-search{ display:block; }
+  .main{ padding:90px 20px 40px; }
 }
 </style>
 </head>
@@ -215,11 +212,9 @@ footer{
 </div>
 
 <div class="sidebar" id="sidebar">
-
-  <!-- モバイル用検索 -->
   <div class="sidebar-search">
-    <input type="text" id="searchBoxMobile" placeholder="検索">
-    <ul id="searchResultsMobile"></ul>
+    <input type="text" id="searchBox" placeholder="検索">
+    <ul id="searchResults"></ul>
   </div>
 
   <a href="{{ '/一覧.html' | relative_url }}">一覧</a>
@@ -239,7 +234,9 @@ footer{
 <footer>
   <div class="footer-brand">created by kansu</div>
   <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}"
-     target="_blank" rel="noopener">Source on GitHub</a>
+     target="_blank" rel="noopener">
+    Source on GitHub
+  </a>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
