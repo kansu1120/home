@@ -5,55 +5,182 @@
 <title>{{ page.title }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- highlight.js -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#fbfbfb;
-  --text:#1e1e1e;
-  --sub:#666;
-  --line:#e5e5e5;
-  --accent:#7a0f18;
-  --gold:#c9a24d;
+  --bg: #fbfbfb;
+  --text: #1e1e1e;
+  --sub: #666;
+  --line: #e5e5e5;
+  --accent: #7a0f18;
+  --gold: #c9a24d;
 }
-body{margin:0;font-family:"Noto Serif JP",serif;background:var(--bg);color:var(--text);}
-a{color:var(--accent);text-decoration:none}
+
+/* Base */
+body{
+  margin:0;
+  font-family:"Noto Serif JP", serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.9;
+}
+
+/* Links */
+a{ color:var(--accent); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+/* Header */
 .header{
-  position:fixed;top:0;left:0;right:0;height:56px;
-  background:rgba(251,251,251,.95);
+  position:fixed;
+  top:0; left:0; right:0;
+  height:56px;
+  background:rgba(251,251,251,0.95);
   border-bottom:1px solid var(--line);
-  display:flex;align-items:center;padding:0 16px;z-index:1000;
+  display:flex;
+  align-items:center;
+  padding:0 16px;
+  z-index:1200;
+  backdrop-filter: blur(6px);
 }
-.hamburger{font-size:22px;cursor:pointer;width:40px}
-.header-logo{font-family:"Cinzel",serif;letter-spacing:.15em;display:flex;gap:6px}
-.logo-main{font-size:22px;color:var(--accent)}
-.logo-sub{font-size:12px;color:var(--gold)}
-.header-search{margin-left:auto;position:relative}
-#searchBox{width:60%;padding:8px;border:1px solid var(--line)}
-#searchResults{
-  position:absolute;right:0;top:40px;
-  list-style:none;margin:0;padding:8px;
-  background:white;border:1px solid var(--line);
-  max-height:300px;overflow:auto;
+
+.hamburger{
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
 }
+
+.header-logo{
+  font-family:"Cinzel", serif;
+  letter-spacing:0.15em;
+  display:flex;
+  align-items:flex-end;
+  gap:6px;
+  margin-left:4px;
+}
+
+.logo-main{
+  font-size:22px;
+  color:var(--accent);
+}
+
+.logo-sub{
+  font-size:12px;
+  color:var(--gold);
+  margin-bottom:3px;
+}
+
+/* Sidebar */
 .sidebar{
-  position:fixed;top:56px;left:0;bottom:0;width:240px;
-  background:white;border-right:1px solid var(--line);
-  padding:16px;transform:translateX(-100%);
-  transition:.3s;z-index:900;
+  position:fixed;
+  top:56px;
+  left:0;
+  bottom:0;
+  width:240px;
+  background:#ffffff;
+  border-right:1px solid var(--line);
+  padding:16px;
+  transform:translateX(-100%);
+  transition:0.4s cubic-bezier(.22,.61,.36,1);
+  z-index:900;
 }
-.sidebar.open{transform:translateX(0)}
-.sidebar a{display:block;margin:10px 0}
-.sidebar input{width:100%;padding:8px;margin-bottom:12px}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.15);opacity:0;pointer-events:none;transition:.3s}
-.overlay.active{opacity:1;pointer-events:auto}
-.main{padding:96px 48px 48px;max-width:900px;margin:auto}
-pre{background:#f5f5f5;border:none;border-radius:0;padding:16px;font-size:13px}
-footer{text-align:center;margin:40px 0;color:var(--sub)}
+
+.sidebar.open{
+  transform:translateX(0);
+  box-shadow:0 0 30px rgba(0,0,0,0.08);
+}
+
+.sidebar a{
+  display:block;
+  margin:10px 0;
+  font-size:14px;
+  color:#444;
+}
+
+.sidebar-search{
+  margin-bottom:12px;
+}
+
+.sidebar-search input{
+  width:100%;
+  padding:8px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  font-size:14px;
+}
+
+/* Overlay */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.15);
+  opacity:0;
+  pointer-events:none;
+  transition:0.3s;
+  z-index:800;
+}
+.overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* Main */
+.main{
+  padding:96px 48px 48px;
+  max-width:900px;
+  margin:auto;
+}
+
+/* Code */
+pre{
+  background:linear-gradient(180deg,#ffffff,#f6f6f6);
+  border:none;
+  border-radius:0;
+  padding:16px;
+  overflow:auto;
+  font-family:"Fira Code", monospace;
+  font-size:13px;
+  box-shadow:0 0 20px rgba(201,162,77,0.08);
+}
+
+code{
+  background:#f0f0f0;
+  padding:2px 5px;
+  border-radius:0;
+  font-family:"Fira Code", monospace;
+  font-size:13px;
+}
+
+.hljs{ background:transparent !important; }
+
+/* Footer */
+footer{
+  text-align:center;
+  margin:60px 0 30px;
+  color:var(--sub);
+  font-size:14px;
+}
+
+.footer-brand{
+  font-family:"Cinzel", serif;
+  letter-spacing:0.2em;
+  color:var(--gold);
+}
+
+/* Mobile */
+@media(max-width:800px){
+  .main{ padding:88px 20px 40px; }
+}
 </style>
 </head>
 
@@ -65,17 +192,14 @@ footer{text-align:center;margin:40px 0;color:var(--sub)}
     <span class="logo-main">KANSU</span>
     <span class="logo-sub">C++ Library</span>
   </a>
-
-  <!-- 本体検索（search.jsが見るのはこれだけ） -->
-  <div class="header-search">
-    <input type="text" id="searchBox" placeholder="検索..." onkeyup="search()">
-    <ul id="searchResults"></ul>
-  </div>
 </div>
 
 <div class="sidebar" id="sidebar">
-  <!-- サイドバー用検索（本体と同期） -->
-  <input type="text" id="sidebarSearch" placeholder="検索..." onkeyup="syncSearch()">
+  <!-- サイドバー検索 -->
+  <div class="sidebar-search">
+    <input type="text" id="searchBox" placeholder="検索..." style="width:100%; padding:8px;">
+    <ul id="searchResults"></ul>
+  </div>
 
   <a href="{{ '/一覧.html' | relative_url }}">一覧</a>
   <a href="{{ '/累積和まとめ.html' | relative_url }}">累積和</a>
@@ -92,10 +216,8 @@ footer{text-align:center;margin:40px 0;color:var(--sub)}
 </div>
 
 <footer>
-  <div>KANSU C++ LIBRARY</div>
-  <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}" target="_blank">
-    Source on GitHub
-  </a>
+  <div class="footer-brand">KANSU C++ LIBRARY</div>
+  <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}" target="_blank">Source on GitHub</a>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -105,8 +227,8 @@ footer{text-align:center;margin:40px 0;color:var(--sub)}
 <script src="{{ '/library/search.js' | relative_url }}"></script>
 
 <script>
-const sidebar=document.getElementById("sidebar");
-const overlay=document.getElementById("overlay");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
 
 function toggleSidebar(){
   sidebar.classList.toggle("open");
@@ -115,14 +237,6 @@ function toggleSidebar(){
 function closeSidebar(){
   sidebar.classList.remove("open");
   overlay.classList.remove("active");
-}
-
-/* サイドバー検索を本体検索に同期 */
-function syncSearch(){
-  const v = document.getElementById("sidebarSearch").value;
-  const main = document.getElementById("searchBox");
-  main.value = v;
-  if (typeof search === "function") search();
 }
 </script>
 
