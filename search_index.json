@@ -147,7 +147,7 @@
   {
     "title": "一覧",
     "url": "一覧.html",
-    "content": "--- layout: default title: All フォルダ内 index.md 全文表示 permalink: /all-full/ ---  # All フォルダ内 index.md 全文表示  {% assign all_indexes = site.pages    | where: \"name\", \"index.md\"    | where_exp: \"p\", \"p.path contains 'all/'\"    | sort: \"path\" %}  {% if all_indexes.size > 0 %}   {% for p in all_indexes %}     <hr>     <h2>{{ p.path }}</h2>     <div class=\"markdown-content\">       {{ p.content | markdownify }}     </div>   {% endfor %} {% else %}   <p>all フォルダ内に index.md は見つかりませんでした。</p> {% endif %} "
+    "content": "--- layout: default title: 一覧 permalink: /一覧/ ---  # 一覧  {% assign all_indexes = site.pages    | where: \"name\", \"index.md\"    | where_exp: \"p\", \"p.path contains 'all/'\"    | sort: \"path\" %}  {% if all_indexes.size > 0 %}   {% for p in all_indexes %}     <hr>     <h2>{{ p.path }}</h2>     <div class=\"markdown-content\">       {{ p.content | markdownify }}     </div>   {% endfor %} {% else %}   <p>all フォルダ内に index.md は見つかりませんでした。</p> {% endif %} "
   },
   {
     "title": "中央値",
