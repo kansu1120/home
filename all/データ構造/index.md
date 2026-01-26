@@ -3,7 +3,7 @@ layout: default
 title: データ構造
 ---
 
-# データ構造まとめ
+# データ構造
 
 <ul>
 {% assign md_pages = site.pages
