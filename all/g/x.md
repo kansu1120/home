@@ -3,17 +3,15 @@ layout: default
 title: Index
 ---
 
-# グラフ
-
-{% assign current_dir = page.path | split: "/" | slice: 0, -1 | join: "/" %}
-
-{% assign pages = site.pages
-  | where_exp: "p", "p.path contains current_dir"
-  | where_exp: "p", "p.name != 'index.md'"
-  | where_exp: "p", "p.path contains '.md'"
-  | sort: "path" %}
+# Index
 
 <ul>
+{% assign pages = site.pages
+  | where_exp: "p", "p.dir == page.dir"
+  | where_exp: "p", "p.name != 'index.md'"
+  | where_exp: "p", "p.ext == '.md'"
+  | sort: "name" %}
+
 {% for p in pages %}
   <li>
     <a href="{{ p.url }}">
@@ -22,6 +20,7 @@ title: Index
   </li>
 {% endfor %}
 </ul>
+
 
 
 
