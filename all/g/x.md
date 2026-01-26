@@ -3,7 +3,7 @@ layout: default
 title: グラフアルゴリズム一覧
 ---
 
-# グラフアルゴリズム一覧
+# グラフアルゴリズム一覧nnn
 
 <ul>
 {% assign md_pages = site.pages
@@ -13,11 +13,10 @@ title: グラフアルゴリズム一覧
 
 {% for p in md_pages %}
   <li>
-    <!-- 同じ階層の md へのリンク -->
-    <a href="{{ p.url | default: p.path }}">
+    <!-- HTML ページとして開くリンク -->
+    <a href="{{ p.url }}">
       {{ p.title | default: p.name | replace: ".md", "" }}
     </a>
   </li>
 {% endfor %}
 </ul>
-
