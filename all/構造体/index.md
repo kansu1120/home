@@ -1,13 +1,13 @@
 ---
 layout: default
-title: データ構造
+title: 構造体
 ---
 
 # データ構造
 
 <ul>
 {% assign md_pages = site.pages
-  | where_exp: "p", "p.path contains 'データ構造/'"
+  | where_exp: "p", "p.path contains '構造体/'"
   | where_exp: "p", "p.name != 'index.md'"
   | sort: "path" %}
 
