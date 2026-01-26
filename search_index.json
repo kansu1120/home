@@ -152,7 +152,7 @@
   {
     "title": "一覧",
     "url": "一覧.html",
-    "content": "--- layout: default title: 全てのページ一覧 permalink: /all-pages/ ---  # 一覧  <ul> {% assign md_pages = site.pages   | where_exp: \"p\", \"p.name != 'index.md'\"   # 自分自身を除外   | sort: \"path\" %}  {% for p in md_pages %}   <li>     <!-- HTML ページとしてリンク -->     <a href=\"{{ p.url }}\">       {{ p.title | default: p.name | replace: \".md\", \"\" }}     </a>     <small>({{ p.path }})</small> <!-- 階層確認用 -->   </li> {% endfor %} </ul> "
+    "content": "--- layout: default title: 全文表示ページ permalink: /all-full/ ---  # 一覧  {% assign target = site.pages | where: \"name\", \"index.md\" | where_exp: \"p\", \"p.path contains 'all/'\" | first %}  {% if target %} <div class=\"markdown-content\"> {{ target.content }} </div> {% else %} <p>all/index.md が見つかりませんでした。</p> {% endif %} "
   },
   {
     "title": "中央値",
