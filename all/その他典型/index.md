@@ -3,7 +3,7 @@ layout: default
 title: その他典型
 ---
 
-# グラフアルゴリズム一覧
+# その他典型
 
 <ul>
 {% assign md_pages = site.pages
