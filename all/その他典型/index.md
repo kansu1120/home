@@ -1,9 +1,9 @@
 ---
 layout: default
-title:その他典型
+title: その他典型
 ---
 
-# その他典型
+# グラフアルゴリズム一覧
 
 <ul>
 {% assign md_pages = site.pages
@@ -20,4 +20,3 @@ title:その他典型
   </li>
 {% endfor %}
 </ul>
-
