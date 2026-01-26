@@ -1,0 +1,22 @@
+---
+layout: default
+title: グラフアルゴリズム一覧
+---
+
+# グラフアルゴリズム一覧
+
+<ul>
+{% assign md_pages = site.pages
+  | where_exp: "p", "p.path contains 'グラフ/'"
+  | where_exp: "p", "p.name != 'index.md'"
+  | sort: "path" %}
+
+{% for p in md_pages %}
+  <li>
+    <!-- HTML ページとして開くリンク -->
+    <a href="{{ p.url }}">
+      {{ p.title | default: p.name | replace: ".md", "" }}
+    </a>
+  </li>
+{% endfor %}
+</ul>
