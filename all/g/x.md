@@ -13,7 +13,10 @@ title: グラフアルゴリズム一覧
 
 {% for p in md_pages %}
   <li>
-    {{ p.title | default: p.name | replace: ".md", "" }}
+    <!-- 同じ階層の md へのリンク -->
+    <a href="{{ p.url | default: p.path }}">
+      {{ p.title | default: p.name | replace: ".md", "" }}
+    </a>
   </li>
 {% endfor %}
 </ul>
