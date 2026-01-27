@@ -15,7 +15,7 @@
 :root{
   --bg:#fbfbfb; --text:#1e1e1e; --sub:#666;
   --line:#e5e5e5; --accent:#7a0f18; --gold:#c9a24d;
-  --header-bg:#e5e5e5;
+  --header-bg:#e0e0e0;
 }
 
 body{
@@ -29,12 +29,13 @@ body{
 a{ color:var(--accent); text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
-/* Header */
+/* ================= Header ================= */
+
 .header{
   position:fixed;
   top:0; left:0; right:0;
   height:56px;
-  background :var(--header-bg);
+  background:var(--header-bg);
   border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
@@ -50,34 +51,24 @@ a:hover{ text-decoration:underline; }
 }
 
 .header-logo{
-  font-family:"Bubbler One", sans-serif;
   display:flex;
   align-items:flex-end;
   gap:6px;
-}
-
-.logo-main{
-  font-size:30px;
-  letter-spacing:0.08em;
-  color:#7a0f18;
-}
-
-.logo-sub{
-  font-size:20px;
-  letter-spacing:0.15em;
-  color:#999;
-  margin-bottom:2px;
-}
-
-.header-logo,
-.header-logo:hover,
-.header-logo:active,
-.header-logo:focus{
   text-decoration:none;
 }
 
-.logo-main{ font-size:22px; color:var(--accent); }
-.logo-sub{ font-size:14px; color:var(--gold); margin-bottom:3px; }
+.logo-main{
+  font-size:22px;
+  color:var(--accent);
+  letter-spacing:0.08em;
+}
+
+.logo-sub{
+  font-size:14px;
+  color:var(--gold);
+  margin-bottom:3px;
+  letter-spacing:0.15em;
+}
 
 .header-actions{ margin-left:auto; }
 
@@ -87,35 +78,73 @@ a:hover{ text-decoration:underline; }
   cursor:pointer; font-size:20px;
 }
 
-/* Header Search (slide) */
+/* ================= Header Search ================= */
+
 .header-search{
   position:fixed;
   top:56px; left:0; right:0;
   background:#fff;
   border-bottom:1px solid var(--line);
-  padding:16px 24px;
+  padding:16px 24px 24px;
   transform:translateY(-120%);
   transition:0.4s cubic-bezier(.22,.61,.36,1);
   z-index:1100;
   box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
+  /* ★重要：検索結果の基準点 */
+  position:relative;
 }
 
 .header-search.open{ transform:translateY(0); }
 
 .header-search input{
-  background :var(--header-bg);
   width:100%;
-  padding:10px;
+  padding:10px 12px;
   font-size:16px;
   border:1px solid var(--line);
   border-radius:6px;
+  background:var(--header-bg);
 }
+
+/* ===== Search Results Dropdown ===== */
 
 #searchResults{
-  margin-top:10px;
+  position:absolute;
+  left:24px;
+  right:24px;
+  top:64px;
+  max-height:360px;
+  overflow-y:auto;
+
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:10px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.12);
+
+  padding:8px 0;
+  margin:0;
+  list-style:none;
+  z-index:1300;
 }
 
-/* Sidebar */
+#searchResults li{
+  list-style:none;
+}
+
+#searchResults a{
+  display:block;
+  padding:10px 18px;
+  font-size:14px;
+  color:#333;
+  text-decoration:none;
+}
+
+#searchResults a:hover{
+  background:#f3f3f3;
+}
+
+/* ================= Sidebar ================= */
+
 .sidebar{
   position:fixed;
   top:56px; left:0; bottom:0;
@@ -138,7 +167,8 @@ a:hover{ text-decoration:underline; }
   color:#444;
 }
 
-/* Overlay */
+/* ================= Overlay ================= */
+
 .overlay{
   position:fixed; inset:0;
   background:rgba(0,0,0,0.15);
@@ -150,7 +180,8 @@ a:hover{ text-decoration:underline; }
   opacity:1; pointer-events:auto;
 }
 
-/* Main */
+/* ================= Main ================= */
+
 .main{
   padding:96px 48px 48px;
   max-width:900px;
@@ -172,6 +203,8 @@ code{
   font-family:"Fira Code", monospace;
   font-size:13px;
 }
+
+/* ================= Footer ================= */
 
 footer{
   text-align:center;
@@ -206,13 +239,11 @@ footer{
   </div>
 </div>
 
-<!-- Header Search -->
 <div class="header-search" id="headerSearch">
   <input type="text" id="searchBox" placeholder="検索...">
   <ul id="searchResults"></ul>
 </div>
 
-<!-- Sidebar -->
 <div class="sidebar" id="sidebar">
   <a href="{{ '/一覧' | relative_url }}">ライブラリ一覧</a>
   <a href="{{ '/all/累積和/index.html' | relative_url }}">累積和</a>
@@ -230,7 +261,9 @@ footer{
 
 <footer>
   <div class="footer-brand">created by Kansu</div>
-  <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}" target="_blank">Source on GitHub</a>
+  <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}" target="_blank">
+    Source on GitHub
+  </a>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -256,5 +289,6 @@ function toggleHeaderSearch(){
   headerSearch.classList.toggle("open");
 }
 </script>
+
 </body>
 </html>
