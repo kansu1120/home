@@ -147,7 +147,7 @@
   {
     "title": "一覧",
     "url": "一覧.html",
-    "content": "--- layout: default title: 各ジャンルの MD 一覧 permalink: /all-md-list/ ---  # library/all フォルダ内 MD 一覧  {% assign genres = \"数学,累積和,グラフ,データ構造,二分探索,その他典型\" | split: \",\" %}  {% for genre in genres %}   <h2>{{ genre }}</h2>   <ul>   {% assign folder_path = 'library/all/' | append: genre | append: '/' %}   {% assign md_files = site.pages      | where_exp: \"p\", \"p.path contains folder_path and p.name != 'index.md'\"      | sort: \"path\" %}    {% if md_files.size > 0 %}     {% for p in md_files %}       <li>         <a href=\"{{ p.url }}\">           {{ p.title | default: p.name | replace: \".md\", \"\" }}         </a>       </li>     {% endfor %}   {% else %}     <li>このジャンルには md ファイルがありません</li>   {% endif %}   </ul> {% endfor %} "
+    "content": "--- layout: default title: Allフォルダ内ジャンル別MD一覧 permalink: /all-list/ ---  # Allフォルダ内ジャンル別MD一覧  {% assign genres = \"数学,累積和,グラフ,データ構造,二分探索,その他典型\" | split: \",\" %}  {% for genre in genres %}   <h2>{{ genre }}</h2>   <ul>     {% for p in site.pages %}       {% if p.path contains 'all/' and p.path contains genre and p.name != 'index.md' %}         <li>           <a href=\"{{ p.url }}\">{{ p.title | default: p.name | replace: \".md\", \"\" }}</a>         </li>       {% endif %}     {% endfor %}   </ul> {% endfor %} "
   },
   {
     "title": "中央値",
