@@ -1,6 +1,6 @@
 let pages = [];
 
-fetch("search_index.json")
+fetch("/library/search.json")
   .then(res => res.json())
   .then(data => {
     pages = data.map(p => ({
