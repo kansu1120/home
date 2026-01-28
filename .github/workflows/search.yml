@@ -8,23 +8,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # ← これを追加
+      contents: write   # GitHub Pages 用に書き込み権限
 
     steps:
+      # ① リポジトリをチェックアウト
       - uses: actions/checkout@v3
 
+      # ② Node.js をセットアップ
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: "18"
 
-      - name: Build index
-        run: node build_index.js
+      # ③ build_index.js を実行（library/ 内にある場合）
+      - name: Build search index
+        run: node library/build_index.js
 
-      - name: Commit index
+      # ④ 生成された search_index.json をコミットして push
+      - name: Commit search index
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add search_index.json
+          git add library/search_index.json
           git commit -m "auto update search index" || echo "no change"
           git push
