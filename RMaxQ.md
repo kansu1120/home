@@ -5,6 +5,7 @@ segmenttree 名前(サイズ)　で定義
 
 名前.query( l , r ) で l から r の範囲内の最大値を取得
 
+```cpp
 class segmenttree{
 public:
     long long INF = 1e18;
