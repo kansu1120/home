@@ -1,0 +1,9 @@
+{
+  "name": "library-search-index-builder",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "remove-markdown": "^0.3.0"
+  }
+}

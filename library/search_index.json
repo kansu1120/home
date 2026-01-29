@@ -1,56 +1,272 @@
 [
-  {"title":"template","url":"template.md","content":"C++ テンプレート 競技プログラミング 初期設定 便利"},
-  {"title":"便利なやつ","url":"便利なやつ.md","content":"C++ 競プロ 定型文 便利関数"},
-  
-  {"title":"データ構造まとめ","url":"データ構造.md","content":"vector set map queue stack priority_queue データ構造"},
-  {"title":"セグ木まとめ","url":"セグ木まとめ.md","content":"segment tree RMQ RSQ 遅延セグ木 区間更新"},
-  {"title":"RMaxQ","url":"RMaxQ.md","content":"segment tree RMQ range maximum query"},
-  {"title":"RMinQ","url":"RMinQ.md","content":"segment tree RMQ range minimum query"},
-  {"title":"RSQ（区間和）","url":"RSQ.md","content":"segment tree RSQ range sum query"},
-  {"title":"区間最大代入遅延セグ木","url":"区間最大代入遅延セグ木.md","content":"segment tree range assign max lazy"},
-  {"title":"区間最小代入遅延セグ木","url":"区間最小代入遅延セグ木.md","content":"segment tree range assign min lazy"},
-  {"title":"treap木","url":"treap木.md","content":"treap binary search tree ランダム化 balanced tree"},
-  {"title":"order statistic tree","url":"order_statistic_tree.md","content":"order statistics set C++ policy based tree"},
-  {"title":"count が高速な multiset","url":"countmultiset.md","content":"multiset C++ 高速 個数管理"},
-  {"title":"中央値","url":"中央値.md","content":"median multiset order statistics"},
-
-  {"title":"累積和","url":"累積和.md","content":"prefix sum cumulative sum"},
-  {"title":"累積和まとめ","url":"累積和まとめ.md","content":"2D 累積和 range sum query"},
-  {"title":"二次元累積和","url":"二次元累積和.md","content":"2D prefix sum"},
-  {"title":"imos 法","url":"imos.md","content":"区間加算 cumulative sum"},
-  {"title":"二次元 imos","url":"imos2D.md","content":"2D 区間加算 cumulative sum"},
-
-  {"title":"二分探索","url":"二分探索.md","content":"binary search lower_bound upper_bound"},
-  {"title":"二分探索用 vector","url":"二分探索用vector.md","content":"binary search vector"},
-  {"title":"答えで二分探索","url":"答えで二分探索.md","content":"binary search answer method"},
-  {"title":"答えで二分探索2","url":"答えで二分探索2.md","content":"binary search answer method increasing"},
-  {"title":"答えで二分探索3","url":"答えで二分探索3.md","content":"binary search answer method non decreasing"},
-  {"title":"答えで lower_bound","url":"答えでlower_bound.md","content":"lower_bound binary search"},
-  {"title":"答えで upper_bound","url":"答えでupper_bound.md","content":"upper_bound binary search"},
-
-  {"title":"RLE（ランレングス圧縮）","url":"RLE.md","content":"run length encoding 文字列圧縮"},
-  {"title":"string 部分一致","url":"string部分一致.md","content":"string substring 部分一致 KMP"},
-
-  {"title":"数学まとめ","url":"数学まとめ.md","content":"mod 素数 約数 GCD LCM"},
-  {"title":"数列","url":"数列.md","content":"sequence 数列操作"},
-  {"title":"N進数変換","url":"N進数変換.md","content":"base conversion n進数"},
-  {"title":"数字桁数","url":"数字桁数.md","content":"digit length 桁数"},
-  {"title":"座標圧縮","url":"座標圧縮.md","content":"coordinate compression"},
-  {"title":"素数まとめ","url":"素数まとめ.md","content":"prime sieve 素数"},
-  {"title":"エラトステネスの篩","url":"エラトステネスの篩.md","content":"sieve prime エラトステネス"},
-  {"title":"素因数分解 vi","url":"素因数分解vi.md","content":"prime factorization"},
-  {"title":"素因数分解 pi","url":"素因数分解pi.md","content":"prime factorization"},
-
-  {"title":"グラフまとめ","url":"グラフまとめ.md","content":"graph adjacency list adjacency matrix BFS DFS Dijkstra"},
-  {"title":"強連結成分分解","url":"強連結成分分解.md","content":"SCC Kosaraju Tarjan"},
-  {"title":"木直径","url":"木直径.md","content":"tree diameter BFS DFS"},
-  {"title":"ワーシャルフロイド","url":"ワーシャルフロイド.md","content":"floyd warshall APSP"},
-
-  {"title":"最大フロー","url":"最大フロー.md","content":"max flow dinic"},
-  {"title":"フローまとめ","url":"フローまとめ.md","content":"flow max bipartite matching"},
-  {"title":"二部マッチング","url":"二部マッチング.md","content":"bipartite matching maximum matching"},
-
-  {"title":"ナップザック","url":"ナップザック.md","content":"dp knapsack"},
-  {"title":"最長増加部分列","url":"最長増加部分列.md","content":"LIS dynamic programming"},
-  {"title":"その他典型","url":"その他典型.md","content":"typical dp standard problems"}
+  {
+    "title": "ラングレス圧縮",
+    "url": "/library/all/その他典型/RLE",
+    "content": "ラングレス圧縮 string を入力 int char の pair の vector でリターン aaab -> { 3 , a } , { 1 , b } vector> r(string s){ vector> ans; for(int i = 0;i < s.size();i++){ if(ans.size()==0 || ans[ans.size()-1].second != s[i]){ ans.push_back({1,s[i]}); } else{ ans[ans.size()-1].first++; } } return ans; }"
+  },
+  {
+    "title": "その他典型",
+    "url": "/library/all/その他典型/",
+    "content": "その他典型 便利なやつ {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains 'その他典型/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "循環配列での長さwの区間の和の最大値",
+    "url": "/library/all/その他典型/rmax",
+    "content": "循環配列での長さwの区間の和の最大値 循環させる前の配列と長さWを入れる long long rmax(vector v,long long w){ int n = v.size(); rep(i,n)v.push_back(v[i]); n *= 2; if(w >= n/2){ long long ans = 0; rep(i,n/2)ans += v[i]; return ans; } long long sum = 0; rep(i,w)sum += v[i]; long long ans = sum; for(long long i = 0;i < n/2-1;i++){ sum -= v[i]; sum += v[i+w]; ans = max(ans,sum); } return ans; }"
+  },
+  {
+    "title": "循環配列での長さwの区間の和の最小値",
+    "url": "/library/all/その他典型/rmin",
+    "content": "循環配列での長さwの区間の和の最小値 循環させる前の配列と長さWを入れる long long rmax(vector v,long long w){ int n = v.size(); rep(i,n)v.push_back(v[i]); n *= 2; if(w >= n/2){ long long ans = 0; rep(i,n/2)ans += v[i]; return ans; } long long sum = 0; rep(i,w)sum += v[i]; long long ans = sum; for(long long i = 0;i < n/2-1;i++){ sum -= v[i]; sum += v[i+w]; ans = min(ans,sum); } return ans; }"
+  },
+  {
+    "title": "string部分一致確認",
+    "url": "/library/all/その他典型/string部分一致",
+    "content": "string部分一致確認 bool same(string& s,string& t,int x){ // sのx文字目からがtと一致するならtrue int j = 0; for(int i = x;i = s.size())return false; if(j >= t.size())return false; if(s[i]!=t[j]){ return false; } j++; } return true; }"
+  },
+  {
+    "title": "ナップザック",
+    "url": "/library/all/その他典型/ナップザック",
+    "content": "ナップザック int npz(vector> v,int w){ //{重さ、価値}、重さ制限 int n = v.size(); vector> dp(n,vector(w+1,-1)); dp0 = 0; if(v[0].first <= w){ dp0.first] = v[0].second; } for(int i = 0;i < n-1;i++){ for(int j = 0;j <= w;j++){ if(dpi==-1)continue; if(j+v[i+1].first <= w){ dpi+1.first] = max(dpi+1.first],dpi+v[i+1].second); } dpi+1 = max(dpi+1,dpi); } } int ans = -1; for(int j = 0;j <= w;j++){ ans = max(ans,dpn-1); } return ans; }"
+  },
+  {
+    "title": "ナップザック復元",
+    "url": "/library/all/その他典型/ナップザック復元",
+    "content": "ナップザック復元 string npz_rev(vector> v,long long m){ // ( {重さ、価値} 、重さ制限 ) // 必要 = A // どっちでも = B // いらない = C long long n = v.size(); vector> dp(n,vector(m+1,-INF)); dp0 = 0; if(v[0].first sss = {false,false}; vector> ans(n,sss); vector> ok(n,vector(m+1,false)); for(long long i = 0;i > cnt(n); for(long long i = n-1;i > 0;i--){ for(long long j = 0;j <= m;j++){ if(!oki)continue; if(dpi-1==dpi){ ans[i].first = true; oki-1 = true; } if(j - v[i].first < 0)continue; if(dpi-1.first] + vi].second == dp[i){ ans[i].second = true; oki-1.first] = true; } } } if(ok0==true){ ans[0].first = true; } if(v0].first <= m && ok[0.first]){ ans[0].second = true; } string ret; rep(i,n){ if(ans[i].first && ans[i].second){ ret += 'B'; } else if(!ans[i].first && ans[i].second){ ret += 'A'; } else{ ret += 'C'; } } return ret; }"
+  },
+  {
+    "title": "転倒数",
+    "url": "/library/all/その他典型/転倒数",
+    "content": "転倒数 ten(v)に入れたら勝手に座標圧縮されて転倒数が帰ってくる セグ木が一緒についてきてるのでセグ木を別で定義してる場合は気を付ける class st{ public: long long siz = 1; vector v; st (long long n){ siz = 1; while(siz 1){ i /= 2; v[i] = v[i2]+v[i2+1]; } } long long query(long long L, long long R){ // 添字、L , R long long ans = 0; function f = &{ if(l >= L && r R)return; f(s*2,l,(l+r)/2); f(s*2+1,(l+r)/2+1,r); return; }; f(1,0,siz-1); return ans; } }; void ash(map& m,vector v){ long long n = v.size(); m.clear(); sort(v.begin(),v.end()); long long j = 0; for(long long i = 0;i v){ long long n = v.size(); map m; ash(m,v); st seg(m.size()); long long ans = 0; for(int i = 0;i v; st (long long n){ siz = 1; while(siz 1){ i /= 2; v[i] = v[i2]+v[i2+1]; } } long long query(long long L, long long R){ // 添字、L , R long long ans = 0; function f = &{ if(l >= L && r R)return; f(s*2,l,(l+r)/2); f(s*2+1,(l+r)/2+1,r); return; }; f(1,0,siz-1); return ans; } }; void ash(map& m,vector v){ long long n = v.size(); m.clear(); sort(v.begin(),v.end()); long long j = 0; for(long long i = 0;i v){ long long n = v.size(); map m; ash(m,v); st seg(m.size()); long long ans = 0; for(int i = 0;i < n;i++){ ans += seg.query(m[v[i]]+1,m.size()-1); seg.plus(m[v[i]]); } return ans; }"
+  },
+  {
+    "title": "グラフアルゴリズム一覧",
+    "url": "/library/all/グラフ/",
+    "content": "グラフアルゴリズム一覧 {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains 'グラフ/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "グラフ法則",
+    "url": "/library/all/グラフ/グラフ法則",
+    "content": ""
+  },
+  {
+    "title": "ダイクストラ",
+    "url": "/library/all/グラフ/ダイクストラ",
+    "content": "ダイクストラ vector>>の形のグラフを投入 v[i]にあるvector>をpとしたときpにはiからの{行き先、距離}を記録する ds(グラフ,スタート地点) スタート視点からの距離が記録されたvectorが帰ってくる 負の重みを持つ辺を入れてはいけない vector ds(vector>>& v,long long str){ long long inf = 1e9; vector ans(v.size(),inf); ans[str] = 0; priority_queue,vector>,greater>> q; q.push({0,str}); while(q.size()!=0){ long long cos = q.top().first; long long pos = q.top().second; q.pop(); if(cos > ans[pos])continue; for(pair i : v[pos]){ if(ans[i.first] > cos + i.second){ ans[i.first] = cos + i.second; q.push({cos+i.second,i.first}); } } } return ans; }"
+  },
+  {
+    "title": "トポロジカルソート",
+    "url": "/library/all/グラフ/トポロジカルソート",
+    "content": "トポロジカルソート vviのグラフを入れるとviの順番が返ってくる vector tpr(vector> v){ int n = v.size(); vectorans; vector cnt(n,0); for(int i = 0;i q; for(int i = 0;i < n;i++){ if(cnt[i]==0)q.push(i); } while(q.size()!=0){ int pos = q.front(); ans.push_back(pos); q.pop(); for(int i : v[pos]){ cnt[i]--; if(cnt[i]==0){ q.push(i); } } } return ans; }"
+  },
+  {
+    "title": "フローのあれこれ",
+    "url": "/library/all/グラフ/フローまとめ",
+    "content": "フローのあれこれ 最大フロー 二部マッチング"
+  },
+  {
+    "title": "ワーシャルフロイド",
+    "url": "/library/all/グラフ/ワーシャルフロイド",
+    "content": "ワーシャルフロイド vvpの形のグラフを入れる wf(vvp) でvviに変換されて返ってくる vector> wf(vector>> v){ int n = v.size(); vector> dis(n); for(int i = 0;i ans(n,inf); ans[i] = 0; priority_queue,vector>,greater>> q; q.push({0,i}); while(q.size()!=0){ int cos = q.top().first; int pos = q.top().second; q.pop(); if(ans[pos] p : v[pos]){ if(ans[p.first] > ans[pos]+p.second){ ans[p.first] = ans[pos]+p.second; q.push({ans[pos]+p.second,p.first}); } } } dis[i] = ans; } return dis; }"
+  },
+  {
+    "title": "二部マッチング",
+    "url": "/library/all/グラフ/二部マッチング",
+    "content": "二部マッチング AIに書かせました また今度ちゃんと書きます 計算量 |E|√|V| class bipartite_matching{ public: int nL,nR; vector> g; vector dist; vector matchL,matchR; bipartite_matching(int L,int R){ nL = L; nR = R; g.resize(nL); matchL.assign(nL,-1); matchR.assign(nR,-1); dist.resize(nL); } void add_edge(int l,int r){ // l : 0..nL-1, r : 0..nR-1 g[l].push_back(r); } bool bfs(){ queue q; for(int i = 0;i = 0){ if(dist[u] = 0 && dist[u] == dist[v] + 1 && dfs(u))){ matchL[v] = to; matchR[to] = v; return true; } } dist[v] = -1; return false; } int max_matching(){ int res = 0; while(bfs()){ for(int i = 0;i < nL;i++){ if(matchL[i] == -1){ if(dfs(i)){ res++; } } } } return res; } };"
+  },
+  {
+    "title": "強連結成分分解",
+    "url": "/library/all/グラフ/強連結成分分解",
+    "content": "強連結成分分解 強連結成分それぞれをvectorにまとめたvviでreturnが来る scc( 頂点数 、 vviの形のグラフ ） でできる vector> scc(int n,const vector>& v){ vector> vv(n); for(int i = 0;i res; vector visited(n,false); function f = &{ visited[pos] = true; for(int i : v[pos]){ if(!visited[i])f(i); } res.push_back(pos); }; for(int i = 0;i > ans; visited.assign(n,false); for(int i = res.size()-1; i >= 0;i--){ if(visited[res[i]])continue; vector p = {res[i]}; function d = &{ visited[pos] = true; for(int i : vv[pos]){ if(visited[i])continue; p.push_back(i); d(i); } }; d(res[i]); ans.push_back(p); } return ans; }"
+  },
+  {
+    "title": "最大フロー",
+    "url": "/library/all/グラフ/最大フロー",
+    "content": "最大フロー add(u,v,f) u ~ v にcapがfの辺を追加して flow(s,t) で結果が出てくる class din{ struct edge{ int to; int cap; int rev; }; public : int n; vector> g; vector level; vector ite; din(int x){ n = x; g.resize(n); level.resize(n); ite.resize(n); } void add(int from,int to,int cap){ g[from].push_back(edge{to,cap,(int)g[to].size()}); g[to].push_back(edge{from,0,(int)g[from].size()-1}); } bool bfs(int s,int t){ level.assign(n,-1); queue q; q.push(s); level[s] = 0; while(q.size()!=0){ int pos = q.front(); q.pop(); for(const edge& e : g[pos]){ if(e.cap > 0 && level[e.to] = 0; } int dfs(int v,int t,int f){ if(v==t)return f; for(int &i = ite[v];i 0 && level[v] 0){ e.cap -= d; ge.to.cap += d; return d; } } } return 0; } int flow(int s,int t){ int ans = 0; while(1){ if(!bfs(s,t))break; ite.assign(n,0); int f = dfs(s,t,INF); while(1){ if(f>0){ ans += f; f = dfs(s,t,INF); } else{ break; } } } return ans; } }; 辺を復元したい class din{ struct edge{ int to; int cap; int rev; }; public : int n; vector> g; vector level; vector ite; din(int x){ n = x; g.resize(n); level.resize(n); ite.resize(n); } void add(int from,int to,int cap){ g[from].push_back(edge{to,cap,(int)g[to].size()}); g[to].push_back(edge{from,0,(int)g[from].size()-1}); } bool bfs(int s,int t){ level.assign(n,-1); queue q; q.push(s); level[s] = 0; while(q.size()!=0){ int pos = q.front(); q.pop(); for(const edge& e : g[pos]){ if(e.cap > 0 && level[e.to] = 0; } int dfs(int v,int t,int f){ if(v==t)return f; for(int &i = ite[v];i 0 && level[v] 0){ e.cap -= d; ge.to.cap += d; return d; } } } return 0; } int flow(int s,int t,vector>& res){ int ans = 0; while(1){ if(!bfs(s,t))break; ite.assign(n,0); int f = dfs(s,t,INF); while(1){ if(f>0){ ans += f; f = dfs(s,t,INF); } else{ break; } } } rep(i,n){ for(edge& e : g[i]){ if(e.to==s || e.to==t)continue; if(e.cap==0){ res.push_back({i,e.to}); } } } return ans; } int flow(int s,int t){ int ans = 0; while(1){ if(!bfs(s,t))break; ite.assign(n,0); int f = dfs(s,t,INF); while(1){ if(f>0){ ans += f; f = dfs(s,t,INF); } else{ break; } } } return ans; } };"
+  },
+  {
+    "title": "無向グラフの最小全域木",
+    "url": "/library/all/グラフ/最小全域木",
+    "content": "無向グラフの最小全域木 vector>> の状態のグラフを入れる 最小全域木のコストが返ってくる 非連結の場合は-1が返ってくる long long cost(vector>>& v){ long long n = v.size(); long long ans = 0; dsu d(n); priority_queue>,vector>>,greater>>> q; rep(i,n)for(pair p : v[i]){ if(p.first > i){ q.push({p.second,{i,p.first}}); } } while(q.size()!=0){ long long w = q.top().first; long long x = q.top().second.first; long long y = q.top().second.second; q.pop(); if(!d.same(x,y)){ ans += w; d.merge(x,y); } } if(d.size(0)!=n)return -1; return ans; } 最小全域木の内容が欲しい場合 vector> cost(vector>>& v){ long long n = v.size(); vector> ans; dsu d(n); priority_queue>,vector>>,greater>>> q; rep(i,n)for(pair p : v[i]){ if(p.first > i){ q.push({p.second,{i,p.first}}); } } while(q.size()!=0){ long long w = q.top().first; long long x = q.top().second.first; long long y = q.top().second.second; q.pop(); if(!d.same(x,y)){ d.merge(x,y); ans.push_back({x,y}); } } if(d.size(0)!=n)return {{-1,-1}}; return ans; }"
+  },
+  {
+    "title": "木の直径を求める",
+    "url": "/library/all/グラフ/木直径",
+    "content": "木の直径を求める cho(vvi) vviのグラフを入れる 木の直径が返ってくる int cho(vector>& v){ int n = v.size(); vector go(n,-1); queue q; q.push(0); go[0] = 0; while(q.size()!=0){ int pos = q.front(); q.pop(); for(int i : v[pos]){ if(go[i] == -1){ go[i] = go[pos]+1; q.push(i); } } } int st = max_element(go.begin(),go.end())-go.begin(); q.push(st); go.assign(n,-1); go[st] = 0; while(q.size()!=0){ int pos = q.front(); q.pop(); for(int i : v[pos]){ if(go[i] == -1){ go[i] = go[pos]+1; q.push(i); } } } return *max_element(go.begin(),go.end()); } 直径になるペアが知りたい場合 pair cho(vector>& v){ int n = v.size(); vector go(n,-1); queue q; q.push(0); go[0] = 0; while(q.size()!=0){ int pos = q.front(); q.pop(); for(int i : v[pos]){ if(go[i] == -1){ go[i] = go[pos]+1; q.push(i); } } } int st = max_element(go.begin(),go.end())-go.begin(); q.push(st); go.assign(n,-1); go[st] = 0; while(q.size()!=0){ int pos = q.front(); q.pop(); for(int i : v[pos]){ if(go[i] == -1){ go[i] = go[pos]+1; q.push(i); } } } return {st,max_element(go.begin(),go.end()) - go.begin()}; }"
+  },
+  {
+    "title": "二分探索",
+    "url": "/library/all/二分探索/",
+    "content": "二分探索 {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains '二分探索/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "二分探索",
+    "url": "/library/all/二分探索/二分探索",
+    "content": "二分探索 boolの答えで二分探索 答えでlower_bound 答えでupper_bound 広義短調増加となる答えで特定の値の範囲を求める 短調非増加となる答えで特定の値の範囲を求める 二分探索用vector"
+  },
+  {
+    "title": "二分探索用vector",
+    "url": "/library/all/二分探索/二分探索用vector",
+    "content": "二分探索用vector 使い方は普通のvectorと同じ lb = lower_bound up = upperbound ika = 以下 mim = 未満 結果がイテレータではなく添字で帰ってくる end() に相当するリターンは-1 X ~ Y の間にある個数を数えたいときは ub(Y) - lb(X) class bs{ public : vector v; bs(long long n,long long x){ v.assign(n,x); return; } void sort(){ std::sort(v.begin(),v.end()); } long long& at(long long pos){ return v[pos]; } long long& operator{ return v[pos]; } const long long& operator const{ return v[pos]; } void push_back(long long x){ v.push_back(x); } void pop_back(){ v.pop_back(); } long long lb(long long x){ auto it = lower_bound(v.begin(),v.end(),x); if(it == v.end()){ return -1; } else{ return it - v.begin(); } } long long ub(long long x){ auto it = upper_bound(v.begin(),v.end(),x); if(it == v.end()){ return -1; } else{ return it - v.begin(); } } long long mim(long long x){ auto it = lower_bound(v.begin(),v.end(),x); if(it == v.begin()){ return -1; } else{ --it; return it - v.begin(); } } long long ika(long long x){ auto it = upper_bound(v.begin(),v.end(),x); if(it == v.begin()){ return -1; } else{ --it; return it - v.begin(); } } long long cnt_ika(long long x){ return ika(x)+1; } long long cnt_mim(long long x){ return mim(x)+1; } long long cnt_lb(long long x){ if(lb(x) == -1){ return 0; } return v.size() - lb(x); } long long cnt_ub(long long x){ if(ub(x)==-1){ return 0; } return v.size() - ub(x); } };"
+  },
+  {
+    "title": "答えが広義短調増加となる問題での特定の値の範囲を求める二分探索",
+    "url": "/library/all/二分探索/答えが広義短調増加になる問題の二分探索",
+    "content": "答えが広義短調増加となる問題での特定の値の範囲を求める二分探索 int test(mid) でmid の時の値を返す関数を作っておく必要がある bs(k) = 答えがkとなる範囲を{L,R}のpairで返す pair bs(int k){ int big,small; int l = 0; int r = INF; while(l+1 k) r = mid; else l = mid; } big = l; l = 0; r = INF; while(l+1 = k)r = mid; else l = mid; } small = r; if(small > big) return {-1, -1}; return {small,big}; }"
+  },
+  {
+    "title": "短調非増加の答えでの値Kの範囲",
+    "url": "/library/all/二分探索/答えが短調非減少になる問題の二分探索",
+    "content": "短調非増加の答えでの値Kの範囲 int test(mid) の関数をあらかじめ作っておく必要がある bs(k) = 答えがkになる範囲の{L,R}をpairで返す pair bs(int k){ int big,small; int l = 0; int r = INF; while(l+1 = k){ l = mid; } else{ r = mid; } } big = l; l = 0; r = INF; while(l+1 k){ l = mid; } else{ r = mid; } } small = r; return {small,big}; }"
+  },
+  {
+    "title": "答えでlower_bound",
+    "url": "/library/all/二分探索/答えでlower_bound",
+    "content": "答えでlower_bound intを返すtest()を作っておく必要がある int bs(int x){ // xについてlower_bound int l = -1; int r = INF; while(l+1 = x)r = mid; else l = mid; } return r; }"
+  },
+  {
+    "title": "答えでupper_bound",
+    "url": "/library/all/二分探索/答えでupper_bound",
+    "content": "答えでupper_bound intを返すtest()を作っておく必要がある int bs(int x){ // xについてupper_bound int l = -1; int r = INF; while(l+1 x)r = mid; else l = mid; } return r; }"
+  },
+  {
+    "title": "答えで二分探索",
+    "url": "/library/all/二分探索/答えで二分探索",
+    "content": "答えで二分探索 boolを返すtestという関数にmidを入れれば使える状態にしておく必要がある 答えの最小化 true true true false false このtrueとなる時の値を返す int bs_min(){ long long l = 0; long long r = 1e18; while (r - l > 1) { long long mid = (l + r) / 2; if (test(mid)) { r = mid; } else { l = mid; } } return r; }"
+  },
+  {
+    "title": "N進数変換",
+    "url": "/library/all/数学/N進数変換",
+    "content": "N進数変換 10進数の時はintを使い他のときはstringを使っている 10 -> N f(n,N) で任意の10進数n をN進数に変換できる string f(int n,int N){ string ans = \"\"; while (n) { ans.push_back('0' + n % N); n /= N; } reverse(ans.begin(),ans.end()); return ans; } N -> 10 f(s,n) で任意のn進数(n y // 先頭の 0 を削除 void trim(vector& a){ while(a.size() > 1 && a[0] == 0) a.erase(a.begin()); } // a（x進数）を y で割る // 商を a に格納し、余りを返す int div_mod(vector& a, int x, int y){ vector q; int cur = 0; for(int d : a){ cur = cur * x + d; q.push_back(cur / y); cur %= y; } a = q; trim(a); return cur; } // x進数(string) → y進数(string) string f(string s, int x, int y){ vector a; for(char c : s) a.push_back(c - '0'); trim(a); if(a.size() == 1 && a[0] == 0) return \"0\"; string res; while(!(a.size() == 1 && a[0] == 0)){ int r = div_mod(a, x, y); res.push_back(char('0' + r)); } reverse(res.begin(), res.end()); return res; }"
+  },
+  {
+    "title": "数学",
+    "url": "/library/all/数学/",
+    "content": "数学 {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains '数学/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "エラトステネスの篩",
+    "url": "/library/all/数学/エラトステネスの篩",
+    "content": "エラトステネスの篩 p(n) = vectorの中にp以下の素数を列挙してリターンする 計算量 NloglogN vector p(int n) { vector ok(n+1,1); ok[0] = ok[1] = 0; for(int i = 2;i*i ans; rep(i,n+1){ if(ok[i]){ ans.push_back(i); } } return ans; }"
+  },
+  {
+    "title": "ダブリング",
+    "url": "/library/all/数学/ダブリング",
+    "content": "ダブリング dub(vector) で宣言する 引数のvectorはそれぞれの場所について次の日に行く場所を記録 query(x,y)で今xにいる時y日後の場所がわかる class dub{ public: vector> d; int n; dub(vector& a){ // 今の場所 i // 次の日 a[i] // のvectorを入れる n = a.size(); d.assign(n,vector(64)); rep(i,n){ di = a[i]; } for(int j = 1;j b(y); int now = x; rep(i,64){ if(b.test(i)){ now = dnow; } } return now; } };"
+  },
+  {
+    "title": "中央値",
+    "url": "/library/all/数学/中央値",
+    "content": "中央値 chu(v) でvの中央値が求められる 中央値は小数になることもあることに注意 template double chu(vector v){ int n = v.size(); sort(v.begin(),v.end()); if(n%2==0){ return (double)(v[n/2-1]+v[n/2])/(double)2; } else{ return (double)v[n/2]; } }"
+  },
+  {
+    "title": "分数",
+    "url": "/library/all/数学/分数",
+    "content": "分数 分数を扱える構造体 - * / ができる あまり大きくしすぎると壊れる 比較演算とsortがそのまま使える 初期化 ft x = {3,4} // ４分の３ class ft{ public: long long si, bo; // si/bo ft(long long s=0, long long b=1){ si = s; bo = b; normalize(); } void normalize(){ if(bo < 0) si = -si, bo = -bo; long long g = gcd(llabs(si), llabs(bo)); si /= g; bo /= g; } // 加算 ft operator+(const ft& x) const { long long g = gcd(bo, x.bo); int128 nb = (int128)bo / g * x.bo; __int128 ns = (__int128)si * (x.bo / g) (__int128)x.si * (bo / g); return ft((long long)ns, (long long)nb); } // 減算 ft operator-(const ft& x) const { long long g = gcd(bo, x.bo); int128 nb = (int128)bo / g * x.bo; __int128 ns = (__int128)si * (x.bo / g) (__int128)x.si * (bo / g); return ft((long long)ns, (long long)nb); } // 乗算 ft operator*(const ft& x) const { long long g1 = gcd(llabs(si), llabs(x.bo)); long long g2 = gcd(llabs(x.si), llabs(bo)); int128 ns = (int128)(si/g1) * (x.si/g2); int128 nb = (int128)(bo/g2) * (x.bo/g1); return ft((long long)ns, (long long)nb); } // 除算 ft operator/(const ft& x) const { assert(x.si != 0); long long g1 = gcd(llabs(si), llabs(x.si)); long long g2 = gcd(llabs(x.bo), llabs(bo)); int128 ns = (int128)(si/g1) * (x.bo/g2); int128 nb = (int128)(bo/g2) * (x.si/g1); return ft((long long)ns, (long long)nb); } // 比較 bool operator<(const ft& x) const { return (int128)si * x.bo < (int128)x.si * bo; } bool operator==(const ft& x) const { return si == x.si && bo == x.bo; } };"
+  },
+  {
+    "title": "座標圧縮",
+    "url": "/library/all/数学/座標圧縮",
+    "content": "座標圧縮 結果を入れるmap、逆の復元用のvector、圧縮したいvector を入れる mapに圧縮前の座礁を入れると圧縮後の座標が帰ってくる vectorに圧縮後の座標を入れると圧縮前の座標が帰ってくる void ash(map& m,vector& g,vector v){ int n = v.size(); m.clear(); sort(v.begin(),v.end()); int j = 0; for(int i = 0;i < n;i++){ if(m.count(v[i]))continue; m[v[i]] = j; while ((int)g.size() <= j) g.push_back(0); g[j] = v[i]; j++; } return ; }"
+  },
+  {
+    "title": "数字桁数",
+    "url": "/library/all/数学/数字桁数",
+    "content": "数字桁数 ket(x)でxの桁数が返ってくる int ket(int n){ int ans = 0; while(n != 0){ ans++; n /= 10; } return ans; }"
+  },
+  {
+    "title": "最長増加部分列",
+    "url": "/library/all/数学/最長増加部分列",
+    "content": "最長増加部分列 lis_sizeで最長部分増加列の長さ los_posでそれぞれの位置までの最長増加部分列の長さが記録されたvectorが帰っってくる int lis_size(vector v){ vector dp; int n = v.size(); for(int i : v){ auto it = lower_bound(dp.begin(),dp.end(),i); if(it == dp.end())dp.push_back(i); else *it = i; } return dp.size(); } vector lis_pos(vector v){ vector dp; int n = v.size(); vector ans(n); for(int j = 0;j < n;j++){ int i = v[j]; auto it = lower_bound(dp.begin(),dp.end(),i); if(it == dp.end()){ dp.push_back(i); ans[j] = dp.size(); } else{ *it = i; ans[j] = (it - dp.begin())+1; } } return ans; }"
+  },
+  {
+    "title": "素因数分解　pair int,int",
+    "url": "/library/all/数学/素因数分解pi",
+    "content": "素因数分解 pair int,int vector> p(int n){ vector> ans; int x = n; int k = 0; while(x % 2 == 0){ k++; x /= 2; } if(k != 0){ ans.push_back({2,k}); } for(int i = 3;i * i <= n;i+=2){ int cnt = 0; while(x % i == 0){ cnt++; x /= i; } if(cnt != 0){ ans.push_back({i,cnt}); } if(x == 1){ break; } } if(x!=1)ans.push_back({x,1}); return ans; };"
+  },
+  {
+    "title": "素因数分解 vector int",
+    "url": "/library/all/数学/素因数分解vi",
+    "content": "素因数分解 vector int vector p(int n){ vector ans; int x = n; while(x % 2 == 0){ x /= 2; ans.push_back(2); } for(int i = 3;i * i <= n;i+=2){ while(x % i == 0){ x /= i; ans.push_back(i); } if(x == 1){ break; } } if(x!=1)ans.push_back(x); return ans; };"
+  },
+  {
+    "title": "RMaxQ",
+    "url": "/library/all/構造体/RMaxQ",
+    "content": "RMaxQ segmenttree 名前(サイズ) で定義 名前.update( i , x ) で i 番目の要素を x に変更 名前.query( l , r ) で l から r の範囲内の最大値を取得 class segmenttree{ public: long long INF = 1e18; long long siz = 1; vector v; segmenttree (long long n){ siz = 1; while(siz 1){ i /= 2; v[i] = max(v[i2],v[i2+1]); } } long long query(int l,int r){ return query(l,r,1,0,siz-1); } private : long long query(int L,int R,int s,int l,int r){ long long ans = -INF; if(r R)return -INF; if(l >= L && r <= R){ return v[s]; } ans = max(ans,query(L,R,s*2,l,(l+r)/2)); ans = max(ans,query(L,R,s*2+1,(l+r)/2+1,r)); return ans; } };"
+  },
+  {
+    "title": "RMinQ",
+    "url": "/library/all/構造体/RMinQ",
+    "content": "RMinQ segmenttree 名前(サイズ) で定義 名前.update( i , x ) で i 番目の要素を x に変更 名前.query( l , r ) で l から r の範囲内の最大値を取得 class segmenttree{ public: long long INF = 1e18; long long siz = 1; vector v; segmenttree (long long n){ siz = 1; while(siz 1){ i /= 2; v[i] = min(v[i2],v[i2+1]); } } long long query(int l,int r){ return query(l,r,1,0,siz-1); } private : long long query(int L,int R,int s,int l,int r){ long long ans = INF; if(l >= L && r R)return INF; ans = min(ans,query(L,R,s*2,l,(l+r)/2)); ans = min(ans,query(L,R,s*2+1,(l+r)/2+1,r)); return ans; } };"
+  },
+  {
+    "title": "区間和のセグ木",
+    "url": "/library/all/構造体/RSQ",
+    "content": "区間和のセグ木 segmenttree 名前(サイズ) で定義 名前.update( i , x ) で i 番目の要素を x に変更 名前.query( l , r ) で l から r の範囲内の合計値を取得 class segmenttree{ public: long long siz = 1; vector v; segmenttree (long long n){ siz = 1; while(siz 1){ i /= 2; v[i] = v[i2]+v[i2+1]; } } long long query(int l,int r){ return query(l,r,1,0,siz-1); } private : long long query(int L,int R,int s,int l,int r){ long long ans = 0; if(l >= L && r R)return 0; ans += query(L,R,s*2,l,(l+r)/2); ans += query(L,R,s*2+1,(l+r)/2+1,r); return ans; } };"
+  },
+  {
+    "title": "countが高速に行えるmaltiset",
+    "url": "/library/all/構造体/countmultiset",
+    "content": "countが高速に行えるmaltiset 使い方はmulsisetと同じ countがlogNで実行できる template class countable_multiset{ public : multiset ms; map cnt; void insert(const T& n){ cnt[n]++; ms.insert(n); } void all_erase(const T& n){ cnt.erase(n); ms.erase(n); } void it_erase(const T& n){ auto it = ms.find(n); if(it==ms.end())return; cnt[n] = max(0,cnt[n]-1); if(cnt[n]==0)cnt.erase(n); ms.erase(it); } int count(const T& n){ if(cnt.count(n))return cnt[n]; return 0; } auto find(const T& n){ return ms.find(n); } };"
+  },
+  {
+    "title": "構造体",
+    "url": "/library/all/構造体/",
+    "content": "データ構造 {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains '構造体/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "order_statistic_tree",
+    "url": "/library/all/構造体/order_statistic_tree",
+    "content": "orderstatistictree insert,erase,find,cnt,order,lowerbound,upperbound,miman,ika が可能 class trp{ const long long INF = 1e18; struct node{ int key; int priority; int siz; node* left; node* right; node(int k,int p){ key = k; priority = p; siz = 1; left = nullptr; right = nullptr; } }; node* root; bool find(node* t,int x){ if(t == nullptr)return false; if(t -> key == x)return true; if(x key)return find(t->left,x); else return find(t->right,x); } node* merge(node* l,node* r){ if(l == nullptr)return r; if(r == nullptr)return l; if(l->priority > r->priority){ l-> right = merge(l->right,r); update(l); return l; } else{ r->left = merge(l,r->left); update(r); return r; } } pair split(node* t,int x){ if(t==nullptr)return {nullptr,nullptr}; if(x key){ pair p = split(t->left,x); t -> left = p.second; update(t); return {p.first,t}; } else{ pair p = split(t->right,x); t -> right = p.first; update(t); return {t,p.second}; } } int size(node* t){ if(t == nullptr)return 0; else return t -> siz; } void update(node* t){ if(t == nullptr)return; t -> siz = 1 + size(t->left)+size(t->right); } int cnt(node* t,int k){ if(t == nullptr)return -INF; int lsiz = size(t->left); if(lsiz > k){ return cnt(t -> left,k); } else if(k==lsiz){ return t->key; } else{ return cnt(t -> right,k - lsiz - 1); } } int order(node* t,int x){ if(t == nullptr)return 0; if(x key){ return order(t -> left,x); } else{ return size(t -> left) + 1 + order(t->right,x); } } node* lower_bound(node* t, int x){ if(t == nullptr) return nullptr; if(t->key right, x); } else{ node* res = lower_bound(t->left, x); if(res != nullptr) return res; else return t; } } node* upper_bound(node* t, int x){ if(t == nullptr) return nullptr; if(t->key right, x); } else{ node* res = upper_bound(t->left, x); if(res != nullptr) return res; else return t; } } node* ika(node* t,int x){ if(t==nullptr)return nullptr; if(t -> key > x){ return ika(t->left,x); } else{ node*res = ika(t->right,x); if(res != nullptr)return res; else return t; } } public : trp(){ root = nullptr; } bool find(int x){ return find(root,x); } void insert(int x){ if(find(x))return; pair p = split(root,x); node* r = p.second; node* l = p.first; node* n = new node(x,rand()); root = merge(merge(l,n),r); } void erase(int x){ if(!find(x))return ; pair a = split(root,x); pair b = split(a.second,x+1); root = merge(a.first,b.second); } int cnt(int k){ return cnt(root,k); } int order(int x){ return order(root,x); } int lower_bound(int x){ node* res = lower_bound(root, x); if(res == nullptr) return -INF; return res->key; } int upper_bound(int x){ node* res = upper_bound(root, x); if(res == nullptr) return -INF; return res->key; } int miman(int x){ int k = order(x) -1; if(k key; } };"
+  },
+  {
+    "title": "treap木",
+    "url": "/library/all/構造体/treap木",
+    "content": "treap木 insert find erase ができる class trp{ struct node{ int key; int priority; node* left; node* right; node(int k,int p){ key = k; priority = p; left = nullptr; right = nullptr; } }; node* root; bool find(node* t,int x){ if(t == nullptr)return false; if(t -> key == x)return true; if(x key)return find(t->left,x); else return find(t->right,x); } node* merge(node* l,node* r){ if(l == nullptr)return r; if(r == nullptr)return l; if(l->priority > r->priority){ l-> right = merge(l->right,r); return l; } else{ r->left = merge(l,r->left); return r; } } pair split(node* t,int x){ if(t==nullptr)return {nullptr,nullptr}; if(x key){ pair p = split(t->left,x); t -> left = p.second; return {p.first,t}; } else{ pair p = split(t->right,x); t -> right = p.first; return {t,p.second}; } } public : trp(){ root = nullptr; } bool find(int x){ return find(root,x); } void insert(int x){ if(find(x))return; pair p = split(root,x); node* r = p.second; node* l = p.first; node* n = new node(x,rand()); root = merge(merge(l,n),r); } void erase(int x){ if(!find(x))return ; pair a = split(root,x); pair b = split(a.second,x+1); root = merge(a.first,b.second); } };"
+  },
+  {
+    "title": "union find",
+    "url": "/library/all/構造体/unionfind",
+    "content": "union find find：根を求める connect：繋げる(もともと繋がってたらfalseをreturn) same：結合か判定 size：そのノードの連結要素数 class UnionFind { public: //@brief Union-Findのコンストラクタ //@param n ノード数 UnionFind(int n) : PoS(n, -1) {} //@brief 根を求める //@param x ノード番号 //@return xの根のノード番号 int find(int x) { if (PoS[x] PoS; };"
+  },
+  {
+    "title": "xorのセグ木",
+    "url": "/library/all/構造体/xorセグ木",
+    "content": "xorのセグ木 segmenttree seg(n) サイズnで定義 seg.update(i,x) i番目をxにする seg.query(l,r) l~rの区間のxorを出す class segmenttree{ public: long long INF = 1e18; long long siz = 1; vector v; segmenttree (long long n){ siz = 1; while(siz 1){ i /= 2; v[i] = v[i2]^v[i2+1]; } } long long query(int l,int r){ return query(l,r,1,0,siz-1); } private : long long query(int L,int R,int s,int l,int r){ long long ans = 0; if(l >= L && r R)return 0; ans ^= query(L,R,s*2,l,(l+r)/2); ans ^= query(L,R,s*2+1,(l+r)/2+1,r); return ans; } };"
+  },
+  {
+    "title": "区間最大遅延セグ木",
+    "url": "/library/all/構造体/区間最大遅延セグ木",
+    "content": "区間最大遅延セグ木 segenttree seg(N) サイズNのセグ木を宣言 初期値-INFなのでちゃんとしといてください 初期化まじでちゃんとしてください range_add(l,r,x) lからrまでにxを加算 range_set(l,r,x) lからrまでをxに変更 query(l,r) lからrまでの最大値を出力 計算量 全て logN class segmenttree{ public: long long INF = 1e18; long long siz = 1; vector v; vector lazy_add; vector lazy_set; vector hav_set; segmenttree (long long n){ siz = 1; while(siz r)return -INF; return query(l,r,1,0,siz-1); } void range_add(long long l,long long r,long long x){ range_add(l,r,1,0,siz-1,x); } void range_set(long long l,long long r,long long x){ range_set(l,r,1,0,siz-1,x); } void apply_set(long long s,long long x){ v[s] = x; lazy_set[s] = x; lazy_add[s] = 0; hav_set[s] = true; } void apply_add(long long s,long long x){ v[s] += x; if(hav_set[s]){ lazy_set[s] += x; } else{ lazy_add[s] += x; } } void push(long long s){ if(hav_set[s]){ applyset(s*2,lazyset[s]); applyset(s*2+1,lazyset[s]); hav_set[s] = false; lazy_set[s] = 0; } if(lazy_add[s]!=0){ applyadd(s*2,lazyadd[s]); applyadd(s*2+1,lazyadd[s]); lazy_add[s] = 0; } } void pull(long long s){ v[s] = max(v[s2],v[s2+1]); } long long query(long long L,long long R,long long s,long long l,long long r){ if(r R)return -INF; if(l >= L && r R)return; if(l >= L && r R)return; if(l >= L && r <= R){ apply_add(s,x); return; } push(s); range_add(L,R,s*2,l,(l+r)/2,x); range_add(L,R,s*2+1,(l+r)/2+1,r,x); pull(s); } };"
+  },
+  {
+    "title": "区間最小遅延セグ木",
+    "url": "/library/all/構造体/区間最小遅延セグ木",
+    "content": "区間最小遅延セグ木 segenttree seg(N) サイズNのセグ木を宣言 初期値INFなのでちゃんとしといてください 初期化まじでちゃんとしてください range_add(l,r,x) lからrまでにxを加算 range_set(l,r,x) lからrまでをxに変更 query(l,r) lからrまでの最小値を出力 計算量 全て logN class segmenttree{ public: long long INF = 1e18; long long siz = 1; vector v; vector lazy_add; vector lazy_set; vector hav_set; segmenttree (long long n){ siz = 1; while(siz r)return INF; return query(l,r,1,0,siz-1); } void range_add(long long l,long long r,long long x){ range_add(l,r,1,0,siz-1,x); } void range_set(long long l,long long r,long long x){ range_set(l,r,1,0,siz-1,x); } void apply_set(long long s,long long x){ v[s] = x; lazy_set[s] = x; lazy_add[s] = 0; hav_set[s] = true; } void apply_add(long long s,long long x){ v[s] += x; if(hav_set[s]){ lazy_set[s] += x; } else{ lazy_add[s] += x; } } void push(long long s){ if(hav_set[s]){ applyset(s*2,lazyset[s]); applyset(s*2+1,lazyset[s]); hav_set[s] = false; lazy_set[s] = 0; } if(lazy_add[s]!=0){ applyadd(s*2,lazyadd[s]); applyadd(s*2+1,lazyadd[s]); lazy_add[s] = 0; } } void pull(long long s){ v[s] = min(v[s2],v[s2+1]); } long long query(long long L,long long R,long long s,long long l,long long r){ if(r R)return INF; if(l >= L && r R)return; if(l >= L && r R)return; if(l >= L && r <= R){ apply_add(s,x); return; } push(s); range_add(L,R,s*2,l,(l+r)/2,x); range_add(L,R,s*2+1,(l+r)/2+1,r,x); pull(s); } };"
+  },
+  {
+    "title": "imos法のライブラリ",
+    "url": "/library/all/累積和/imos",
+    "content": "imos法のライブラリ plus(l,r,x) でl~rまでにxを加算する solve() をしたら完成 そこからは普通のvecotrと同じようにアクセスできる class imos{ public : vector v; long long n; imos(long long x){ v.assign(x,0); n = v.size(); } void plus(long long l,long long r,long long x){ v[l] += x; if(r != n-1)v[r+1]-=x; } void solve(){ for(long long i = 1;i < n;i++){ v[i] += v[i-1]; } } long long at(long long pos){ return v[pos]; } long long operator const { return v[pos]; } };"
+  },
+  {
+    "title": "imos2D",
+    "url": "/library/all/累積和/imos2D",
+    "content": "imos2D (a,b)( )( ) ( )( )( ) ( )( )(c,d) update(a,b,c,d,x)でここの範囲に+xできる build()をやったらOK class imos2D{ public : vector> v; long long h,w; imos2D(long long H,long long W){ h = H; w = W; v.assign(h,vector(w)); } void update(long long a,long long b,long long c,long long d,long long x){ va+=x; if(c+1 & operator{ return v[i]; } const vector& operator const{ return v[i]; } };"
+  },
+  {
+    "title": "累積和",
+    "url": "/library/all/累積和/",
+    "content": "累積和 {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains '累積和/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "二次元累積和",
+    "url": "/library/all/累積和/二次元累積和",
+    "content": "二次元累積和 rui2D R(v) でvの二次元累積和を作る R.query(a,b,c,d)で (a,b)( )( ) ( )( )( ) ( )( )(c,d) の区間の累積を取る class rui2D{ public : vector> v; rui2D(vector>& a){ v = a; int h = v.size(); int w = v[0].size(); for(int i = 0;i < h;i++){ for(int j = 1;j < w;j++){ vi += vi; } } for(int j = 0;j < w;j++){ for(int i = 1;i < h;i++){ vi += vi-1; } } } int query(int a,int b,int c,int d){ int ans = vc; if(a!=0)ans -= va-1; if(b!=0)ans -= vc; if(a!=0 && b != 0)ans += va-1; return ans; } };"
+  },
+  {
+    "title": "累積和をやるためのライブラリ",
+    "url": "/library/all/累積和/累積和",
+    "content": "累積和をやるためのライブラリ rui R(v)でvを累積和にしたRを作れる queryで(l,r)の範囲の和を求められる template class rui{ public: vector v; rui(const vector& a){ v = a; for(int i = 1;i < a.size();i++){ v[i] += v[i-1]; } } T query(int l,int r){ if(l == 0){ return v[r]; } else{ return v[r] - v[l-1]; } } };"
+  }
 ]
