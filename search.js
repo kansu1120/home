@@ -1,1 +1,83 @@
-fetch("search_index.json") .then(res => res.json()) .then(data => { pages = data.map(p => ({ title: p.title, url: p.url, title_l: p.title.toLowerCase(), content_l: p.content.toLowerCase() })); }); // ★要素ではなく document にイベント document.addEventListener("input", function(e){ if(e.target.id !== "searchBox") return; const q = e.target.value.toLowerCase().trim(); const results = document.getElementById("searchResults"); results.innerHTML = ""; if(!q) return; let count = 0; for(const page of pages){ if(page.title_l.includes(q) || page.content_l.includes(q)){ const li = document.createElement("li"); const a = document.createElement("a"); a.href = page.url; a.textContent = page.title; li.appendChild(a); results.appendChild(li); if(++count >= 20) break; } } });
+function normalizeText(text) {
+  if (!text) return '';
+  
+  // Convert to lowercase first
+  text = text.toLowerCase();
+  
+  // Normalize full-width alphanumeric and symbols to half-width
+  text = text.replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => {
+    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+  });
+  
+  // Normalize hiragana to katakana for kana-insensitive search
+  text = text.replace(/[\u3041-\u3096]/g, s => {
+    return String.fromCharCode(s.charCodeAt(0) + 0x60);
+  });
+  
+  // Normalize half-width katakana to full-width katakana
+  const halfToFull = {
+    'ｱ': 'ア', 'ｲ': 'イ', 'ｳ': 'ウ', 'ｴ': 'エ', 'ｵ': 'オ',
+    'ｶ': 'カ', 'ｷ': 'キ', 'ｸ': 'ク', 'ｹ': 'ケ', 'ｺ': 'コ',
+    'ｻ': 'サ', 'ｼ': 'シ', 'ｽ': 'ス', 'ｾ': 'セ', 'ｿ': 'ソ',
+    'ﾀ': 'タ', 'ﾁ': 'チ', 'ﾂ': 'ツ', 'ﾃ': 'テ', 'ﾄ': 'ト',
+    'ﾅ': 'ナ', 'ﾆ': 'ニ', 'ﾇ': 'ヌ', 'ﾈ': 'ネ', 'ﾉ': 'ノ',
+    'ﾊ': 'ハ', 'ﾋ': 'ヒ', 'ﾌ': 'フ', 'ﾍ': 'ヘ', 'ﾎ': 'ホ',
+    'ﾏ': 'マ', 'ﾐ': 'ミ', 'ﾑ': 'ム', 'ﾒ': 'メ', 'ﾓ': 'モ',
+    'ﾔ': 'ヤ', 'ﾕ': 'ユ', 'ﾖ': 'ヨ',
+    'ﾗ': 'ラ', 'ﾘ': 'リ', 'ﾙ': 'ル', 'ﾚ': 'レ', 'ﾛ': 'ロ',
+    'ﾜ': 'ワ', 'ｦ': 'ヲ', 'ﾝ': 'ン',
+    'ｧ': 'ァ', 'ｨ': 'ィ', 'ｩ': 'ゥ', 'ｪ': 'ェ', 'ｫ': 'ォ',
+    'ｯ': 'ッ', 'ｬ': 'ャ', 'ｭ': 'ュ', 'ｮ': 'ョ',
+    'ｰ': 'ー', '｡': '。', '｢': '「', '｣': '」', '､': '、', '･': '・'
+  };
+  
+  // Handle voiced marks (dakuten/handakuten)
+  text = text.replace(/ｶﾞ/g, 'ガ').replace(/ｷﾞ/g, 'ギ').replace(/ｸﾞ/g, 'グ').replace(/ｹﾞ/g, 'ゲ').replace(/ｺﾞ/g, 'ゴ');
+  text = text.replace(/ｻﾞ/g, 'ザ').replace(/ｼﾞ/g, 'ジ').replace(/ｽﾞ/g, 'ズ').replace(/ｾﾞ/g, 'ゼ').replace(/ｿﾞ/g, 'ゾ');
+  text = text.replace(/ﾀﾞ/g, 'ダ').replace(/ﾁﾞ/g, 'ヂ').replace(/ﾂﾞ/g, 'ヅ').replace(/ﾃﾞ/g, 'デ').replace(/ﾄﾞ/g, 'ド');
+  text = text.replace(/ﾊﾞ/g, 'バ').replace(/ﾋﾞ/g, 'ビ').replace(/ﾌﾞ/g, 'ブ').replace(/ﾍﾞ/g, 'ベ').replace(/ﾎﾞ/g, 'ボ');
+  text = text.replace(/ﾊﾟ/g, 'パ').replace(/ﾋﾟ/g, 'ピ').replace(/ﾌﾟ/g, 'プ').replace(/ﾍﾟ/g, 'ペ').replace(/ﾎﾟ/g, 'ポ');
+  text = text.replace(/ｳﾞ/g, 'ヴ');
+  
+  // Replace remaining half-width katakana
+  text = text.replace(/[ｱ-ﾝｧ-ｮｰ｡｢｣､･]/g, s => halfToFull[s] || s);
+  
+  return text;
+}
+
+let pages = [];
+
+fetch("search_index.json")
+  .then(res => res.json())
+  .then(data => {
+    pages = data.map(p => ({
+      title: p.title,
+      url: p.url,
+      title_norm: p.title_normalized || normalizeText(p.title),
+      content_norm: p.content_normalized || normalizeText(p.content)
+    }));
+  });
+
+// ★要素ではなく document にイベント
+document.addEventListener("input", function(e){
+  if(e.target.id !== "searchBox") return;
+  
+  const q = normalizeText(e.target.value.trim());
+  const results = document.getElementById("searchResults");
+  results.innerHTML = "";
+  
+  if(!q) return;
+  
+  let count = 0;
+  for(const page of pages){
+    if(page.title_norm.includes(q) || page.content_norm.includes(q)){
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = page.url;
+      a.textContent = page.title;
+      li.appendChild(a);
+      results.appendChild(li);
+      if(++count >= 20) break;
+    }
+  }
+});
