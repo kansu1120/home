@@ -1,0 +1,39 @@
+name: Generate Search Index
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Build search index
+        run: node build_index.js
+      
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --exit-code library/search_index.json || echo "changes=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changes == 'true' && github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add library/search_index.json
+          git commit -m "Auto-update search index [skip ci]"
+          git push

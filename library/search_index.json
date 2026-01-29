@@ -1,56 +1,272 @@
 [
-  {"title":"template","url":"template.md","content":"C++ テンプレート 競技プログラミング 初期設定 便利"},
-  {"title":"便利なやつ","url":"便利なやつ.md","content":"C++ 競プロ 定型文 便利関数"},
-  
-  {"title":"データ構造まとめ","url":"データ構造.md","content":"vector set map queue stack priority_queue データ構造"},
-  {"title":"セグ木まとめ","url":"セグ木まとめ.md","content":"segment tree RMQ RSQ 遅延セグ木 区間更新"},
-  {"title":"RMaxQ","url":"RMaxQ.md","content":"segment tree RMQ range maximum query"},
-  {"title":"RMinQ","url":"RMinQ.md","content":"segment tree RMQ range minimum query"},
-  {"title":"RSQ（区間和）","url":"RSQ.md","content":"segment tree RSQ range sum query"},
-  {"title":"区間最大代入遅延セグ木","url":"区間最大代入遅延セグ木.md","content":"segment tree range assign max lazy"},
-  {"title":"区間最小代入遅延セグ木","url":"区間最小代入遅延セグ木.md","content":"segment tree range assign min lazy"},
-  {"title":"treap木","url":"treap木.md","content":"treap binary search tree ランダム化 balanced tree"},
-  {"title":"order statistic tree","url":"order_statistic_tree.md","content":"order statistics set C++ policy based tree"},
-  {"title":"count が高速な multiset","url":"countmultiset.md","content":"multiset C++ 高速 個数管理"},
-  {"title":"中央値","url":"中央値.md","content":"median multiset order statistics"},
-
-  {"title":"累積和","url":"累積和.md","content":"prefix sum cumulative sum"},
-  {"title":"累積和まとめ","url":"累積和まとめ.md","content":"2D 累積和 range sum query"},
-  {"title":"二次元累積和","url":"二次元累積和.md","content":"2D prefix sum"},
-  {"title":"imos 法","url":"imos.md","content":"区間加算 cumulative sum"},
-  {"title":"二次元 imos","url":"imos2D.md","content":"2D 区間加算 cumulative sum"},
-
-  {"title":"二分探索","url":"二分探索.md","content":"binary search lower_bound upper_bound"},
-  {"title":"二分探索用 vector","url":"二分探索用vector.md","content":"binary search vector"},
-  {"title":"答えで二分探索","url":"答えで二分探索.md","content":"binary search answer method"},
-  {"title":"答えで二分探索2","url":"答えで二分探索2.md","content":"binary search answer method increasing"},
-  {"title":"答えで二分探索3","url":"答えで二分探索3.md","content":"binary search answer method non decreasing"},
-  {"title":"答えで lower_bound","url":"答えでlower_bound.md","content":"lower_bound binary search"},
-  {"title":"答えで upper_bound","url":"答えでupper_bound.md","content":"upper_bound binary search"},
-
-  {"title":"RLE（ランレングス圧縮）","url":"RLE.md","content":"run length encoding 文字列圧縮"},
-  {"title":"string 部分一致","url":"string部分一致.md","content":"string substring 部分一致 KMP"},
-
-  {"title":"数学まとめ","url":"数学まとめ.md","content":"mod 素数 約数 GCD LCM"},
-  {"title":"数列","url":"数列.md","content":"sequence 数列操作"},
-  {"title":"N進数変換","url":"N進数変換.md","content":"base conversion n進数"},
-  {"title":"数字桁数","url":"数字桁数.md","content":"digit length 桁数"},
-  {"title":"座標圧縮","url":"座標圧縮.md","content":"coordinate compression"},
-  {"title":"素数まとめ","url":"素数まとめ.md","content":"prime sieve 素数"},
-  {"title":"エラトステネスの篩","url":"エラトステネスの篩.md","content":"sieve prime エラトステネス"},
-  {"title":"素因数分解 vi","url":"素因数分解vi.md","content":"prime factorization"},
-  {"title":"素因数分解 pi","url":"素因数分解pi.md","content":"prime factorization"},
-
-  {"title":"グラフまとめ","url":"グラフまとめ.md","content":"graph adjacency list adjacency matrix BFS DFS Dijkstra"},
-  {"title":"強連結成分分解","url":"強連結成分分解.md","content":"SCC Kosaraju Tarjan"},
-  {"title":"木直径","url":"木直径.md","content":"tree diameter BFS DFS"},
-  {"title":"ワーシャルフロイド","url":"ワーシャルフロイド.md","content":"floyd warshall APSP"},
-
-  {"title":"最大フロー","url":"最大フロー.md","content":"max flow dinic"},
-  {"title":"フローまとめ","url":"フローまとめ.md","content":"flow max bipartite matching"},
-  {"title":"二部マッチング","url":"二部マッチング.md","content":"bipartite matching maximum matching"},
-
-  {"title":"ナップザック","url":"ナップザック.md","content":"dp knapsack"},
-  {"title":"最長増加部分列","url":"最長増加部分列.md","content":"LIS dynamic programming"},
-  {"title":"その他典型","url":"その他典型.md","content":"typical dp standard problems"}
+  {
+    "title": "countが高速に行えるmaltiset",
+    "url": "all/構造体/countmultiset.html",
+    "content": "countが高速に行えるmaltiset 使い方はmulsisetと同じ countがlogNで実行できる"
+  },
+  {
+    "title": "imos2D",
+    "url": "all/累積和/imos2D.html",
+    "content": "imos2D update(a,b,c,d,x)でここの範囲に+xできる build()をやったらOK"
+  },
+  {
+    "title": "imos法のライブラリ",
+    "url": "all/累積和/imos.html",
+    "content": "imos法のライブラリ plus(l,r,x) でl~rまでにxを加算する solve() をしたら完成 そこからは普通のvecotrと同じようにアクセスできる"
+  },
+  {
+    "title": "N進数変換",
+    "url": "all/数学/N進数変換.html",
+    "content": "N進数変換 10進数の時はintを使い他のときはstringを使っている 10 -> N f(n,N) で任意の10進数n をN進数に変換できる N -> 10 f(s,n) で任意のn進数(n y"
+  },
+  {
+    "title": "order_statistic_tree",
+    "url": "all/構造体/order_statistic_tree.html",
+    "content": "order_statistic_tree insert,erase,find,cnt,order,lower_bound,upper_bound,miman,ika が可能"
+  },
+  {
+    "title": "RMaxQ",
+    "url": "all/構造体/RMaxQ.html",
+    "content": "RMaxQ segmenttree 名前(サイズ) で定義 名前.update( i , x ) で i 番目の要素を x に変更 名前.query( l , r ) で l から r の範囲内の最大値を取得"
+  },
+  {
+    "title": "RMinQ",
+    "url": "all/構造体/RMinQ.html",
+    "content": "RMinQ segmenttree 名前(サイズ) で定義 名前.update( i , x ) で i 番目の要素を x に変更 名前.query( l , r ) で l から r の範囲内の最大値を取得"
+  },
+  {
+    "title": "string部分一致確認",
+    "url": "all/その他典型/string部分一致.html",
+    "content": "string部分一致確認"
+  },
+  {
+    "title": "treap木",
+    "url": "all/構造体/treap木.html",
+    "content": "treap木 insert find erase ができる"
+  },
+  {
+    "title": "union find",
+    "url": "all/構造体/unionfind.html",
+    "content": "union find find：根を求める connect：繋げる(もともと繋がってたらfalseをreturn) same：結合か判定 size：そのノードの連結要素数"
+  },
+  {
+    "title": "xorのセグ木",
+    "url": "all/構造体/xorセグ木.html",
+    "content": "xorのセグ木 segmenttree seg(n) サイズnで定義 seg.update(i,x) i番目をxにする seg.query(l,r) l~rの区間のxorを出す"
+  },
+  {
+    "title": "エラトステネスの篩",
+    "url": "all/数学/エラトステネスの篩.html",
+    "content": "エラトステネスの篩 p(n) = vector の中にp以下の素数を列挙してリターンする 計算量 NloglogN"
+  },
+  {
+    "title": "グラフアルゴリズム一覧",
+    "url": "all/グラフ/index.html",
+    "content": "グラフアルゴリズム一覧 {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains 'グラフ/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "グラフ法則",
+    "url": "all/グラフ/グラフ法則.html",
+    "content": ""
+  },
+  {
+    "title": "その他典型",
+    "url": "all/その他典型/index.html",
+    "content": "その他典型 便利なやつ {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains 'その他典型/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "ダイクストラ",
+    "url": "all/グラフ/ダイクストラ.html",
+    "content": "ダイクストラ vector >>の形のグラフを投入 v[i]にあるvector >をpとしたときpにはiからの{行き先、距離}を記録する ds(グラフ,スタート地点) スタート視点からの距離が記録されたvectorが帰ってくる 負の重みを持つ辺を入れてはいけない"
+  },
+  {
+    "title": "ダブリング",
+    "url": "all/数学/ダブリング.html",
+    "content": "ダブリング dub(vector ) で宣言する 引数のvectorはそれぞれの場所について次の日に行く場所を記録 query(x,y)で今xにいる時y日後の場所がわかる"
+  },
+  {
+    "title": "トポロジカルソート",
+    "url": "all/グラフ/トポロジカルソート.html",
+    "content": "トポロジカルソート vviのグラフを入れるとviの順番が返ってくる"
+  },
+  {
+    "title": "ナップザック",
+    "url": "all/その他典型/ナップザック.html",
+    "content": "ナップザック"
+  },
+  {
+    "title": "ナップザック復元",
+    "url": "all/その他典型/ナップザック復元.html",
+    "content": "ナップザック復元"
+  },
+  {
+    "title": "フローのあれこれ",
+    "url": "all/グラフ/フローまとめ.html",
+    "content": "フローのあれこれ - 最大フロー - 二部マッチング"
+  },
+  {
+    "title": "ラングレス圧縮",
+    "url": "all/その他典型/RLE.html",
+    "content": "ラングレス圧縮 string を入力 int char の pair の vector でリターン aaab -> { 3 , a } , { 1 , b }"
+  },
+  {
+    "title": "ワーシャルフロイド",
+    "url": "all/グラフ/ワーシャルフロイド.html",
+    "content": "ワーシャルフロイド vvpの形のグラフを入れる wf(vvp) でvviに変換されて返ってくる"
+  },
+  {
+    "title": "中央値",
+    "url": "all/数学/中央値.html",
+    "content": "中央値 chu(v) でvの中央値が求められる 中央値は小数になることもあることに注意"
+  },
+  {
+    "title": "二分探索",
+    "url": "all/二分探索/index.html",
+    "content": "二分探索 {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains '二分探索/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "二分探索",
+    "url": "all/二分探索/二分探索.html",
+    "content": "二分探索 - boolの答えで二分探索 - 答えでlower_bound - 答えでupper_bound - 広義短調増加となる答えで特定の値の範囲を求める - 短調非増加となる答えで特定の値の範囲を求める - 二分探索用vector"
+  },
+  {
+    "title": "二分探索用vector",
+    "url": "all/二分探索/二分探索用vector.html",
+    "content": "二分探索用vector 使い方は普通のvectorと同じ lb = lower_bound up = upperbound ika = 以下 mim = 未満 結果がイテレータではなく添字で帰ってくる end() に相当するリターンは-1 X ~ Y の間にある個数を数えたいときは ub(Y) - lb(X)"
+  },
+  {
+    "title": "二次元累積和",
+    "url": "all/累積和/二次元累積和.html",
+    "content": "二次元累積和 rui2D R(v) でvの二次元累積和を作る R.query(a,b,c,d)で の区間の累積を取る"
+  },
+  {
+    "title": "二部マッチング",
+    "url": "all/グラフ/二部マッチング.html",
+    "content": "二部マッチング AIに書かせました また今度ちゃんと書きます 計算量 |E|√|V|"
+  },
+  {
+    "title": "最大フロー",
+    "url": "all/グラフ/最大フロー.html",
+    "content": "最大フロー add(u,v,f) u ~ v にcapがfの辺を追加して flow(s,t) で結果が出てくる 辺を復元したい"
+  },
+  {
+    "title": "最長増加部分列",
+    "url": "all/数学/最長増加部分列.html",
+    "content": "最長増加部分列 lis_sizeで最長部分増加列の長さ los_posでそれぞれの位置までの最長増加部分列の長さが記録されたvectorが帰っってくる"
+  },
+  {
+    "title": "分数",
+    "url": "all/数学/分数.html",
+    "content": "分数 分数を扱える構造体 あまり大きくしすぎると壊れる 比較演算とsortがそのまま使える 初期化 ft x = {3,4} // ４分の３"
+  },
+  {
+    "title": "区間最大遅延セグ木",
+    "url": "all/構造体/区間最大遅延セグ木.html",
+    "content": "区間最大遅延セグ木 segenttree seg(N) サイズNのセグ木を宣言 **初期値-INFなのでちゃんとしといてください** **初期化まじでちゃんとしてください** range_add(l,r,x) lからrまでにxを加算 range_set(l,r,x) lからrまでをxに変更 query(l,r) lからrまでの最大値を出力 計算量 全て logN"
+  },
+  {
+    "title": "区間最小遅延セグ木",
+    "url": "all/構造体/区間最小遅延セグ木.html",
+    "content": "区間最小遅延セグ木 segenttree seg(N) サイズNのセグ木を宣言 **初期値INFなのでちゃんとしといてください** **初期化まじでちゃんとしてください** range_add(l,r,x) lからrまでにxを加算 range_set(l,r,x) lからrまでをxに変更 query(l,r) lからrまでの最小値を出力 計算量 全て logN"
+  },
+  {
+    "title": "区間和のセグ木",
+    "url": "all/構造体/RSQ.html",
+    "content": "区間和のセグ木 segmenttree 名前(サイズ) で定義 名前.update( i , x ) で i 番目の要素を x に変更 名前.query( l , r ) で l から r の範囲内の合計値を取得"
+  },
+  {
+    "title": "座標圧縮",
+    "url": "all/数学/座標圧縮.html",
+    "content": "座標圧縮 結果を入れるmap、逆の復元用のvector、圧縮したいvector を入れる mapに圧縮前の座礁を入れると圧縮後の座標が帰ってくる vectorに圧縮後の座標を入れると圧縮前の座標が帰ってくる"
+  },
+  {
+    "title": "強連結成分分解",
+    "url": "all/グラフ/強連結成分分解.html",
+    "content": "強連結成分分解 強連結成分それぞれをvectorにまとめたvviでreturnが来る scc( 頂点数 、 vviの形のグラフ ） でできる"
+  },
+  {
+    "title": "循環配列での長さwの区間の和の最大値",
+    "url": "all/その他典型/rmax.html",
+    "content": "循環配列での長さwの区間の和の最大値 循環させる前の配列と長さWを入れる"
+  },
+  {
+    "title": "循環配列での長さwの区間の和の最小値",
+    "url": "all/その他典型/rmin.html",
+    "content": "循環配列での長さwの区間の和の最小値 循環させる前の配列と長さWを入れる"
+  },
+  {
+    "title": "数字桁数",
+    "url": "all/数学/数字桁数.html",
+    "content": "数字桁数 ket(x)でxの桁数が返ってくる"
+  },
+  {
+    "title": "数学",
+    "url": "all/数学/index.html",
+    "content": "数学 {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains '数学/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "木の直径を求める",
+    "url": "all/グラフ/木直径.html",
+    "content": "木の直径を求める cho(vvi) vviのグラフを入れる 木の直径が返ってくる 直径になるペアが知りたい場合"
+  },
+  {
+    "title": "構造体",
+    "url": "all/構造体/index.html",
+    "content": "データ構造 {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains '構造体/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "無向グラフの最小全域木",
+    "url": "all/グラフ/最小全域木.html",
+    "content": "無向グラフの最小全域木 vector >> の状態のグラフを入れる 最小全域木のコストが返ってくる 非連結の場合は-1が返ってくる 最小全域木の内容が欲しい場合"
+  },
+  {
+    "title": "短調非増加の答えでの値Kの範囲",
+    "url": "all/二分探索/答えが短調非減少になる問題の二分探索.html",
+    "content": "短調非増加の答えでの値Kの範囲 int test(mid) の関数をあらかじめ作っておく必要がある bs(k) = 答えがkになる範囲の{L,R}をpairで返す"
+  },
+  {
+    "title": "答えが広義短調増加となる問題での特定の値の範囲を求める二分探索",
+    "url": "all/二分探索/答えが広義短調増加になる問題の二分探索.html",
+    "content": "答えが広義短調増加となる問題での特定の値の範囲を求める二分探索 int test(mid) でmid の時の値を返す関数を作っておく必要がある bs(k) = 答えがkとなる範囲を{L,R}のpairで返す"
+  },
+  {
+    "title": "答えでlower_bound",
+    "url": "all/二分探索/答えでlower_bound.html",
+    "content": "答えでlower_bound intを返すtest()を作っておく必要がある"
+  },
+  {
+    "title": "答えでupper_bound",
+    "url": "all/二分探索/答えでupper_bound.html",
+    "content": "答えでupper_bound intを返すtest()を作っておく必要がある"
+  },
+  {
+    "title": "答えで二分探索",
+    "url": "all/二分探索/答えで二分探索.html",
+    "content": "答えで二分探索 boolを返すtestという関数にmidを入れれば使える状態にしておく必要がある 答えの最小化 true true **true** false false このtrueとなる時の値を返す"
+  },
+  {
+    "title": "素因数分解　pair int,int",
+    "url": "all/数学/素因数分解pi.html",
+    "content": "素因数分解 pair int,int"
+  },
+  {
+    "title": "素因数分解 vector int",
+    "url": "all/数学/素因数分解vi.html",
+    "content": "素因数分解 vector int"
+  },
+  {
+    "title": "累積和",
+    "url": "all/累積和/index.html",
+    "content": "累積和 {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains '累積和/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
+  },
+  {
+    "title": "累積和をやるためのライブラリ",
+    "url": "all/累積和/累積和.html",
+    "content": "累積和をやるためのライブラリ rui R(v)でvを累積和にしたRを作れる queryで(l,r)の範囲の和を求められる"
+  },
+  {
+    "title": "転倒数",
+    "url": "all/その他典型/転倒数.html",
+    "content": "転倒数 ten(v)に入れたら勝手に座標圧縮されて転倒数が帰ってくる セグ木が一緒についてきてるのでセグ木を別で定義してる場合は気を付ける 逆転倒数"
+  }
 ]
