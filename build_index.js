@@ -81,24 +81,15 @@ for (const root of roots) {
 
     let url;
     if (fm.permalink) {
-      url = normalizeUrl(String(fm.permalink));
+      // Ensure the "/library" prefix is added even for permalinks
+      url = normalizeUrl('/library' + String(fm.permalink).trim());
     } else if (fm.url) {
-      url = normalizeUrl(String(fm.url));
+      url = normalizeUrl(String(fm.url).trim());
     } else {
       const rel = path.relative(ROOT, filePath).replace(/\\/g, '/');
       let urlPath = '/' + rel.replace(/\.md$/i, '');
-
-      // Ensure all URLs include "/library/library" if needed
-      if (!urlPath.startsWith('/library')) {
-        urlPath = '/library' + urlPath;
-      }
-      if (urlPath.startsWith('/library/library')) {
-        urlPath = urlPath.replace(/^\/library\/library/, '/library/library');
-      } else {
-        urlPath = '/library' + urlPath;
-      }
-
-      url = normalizeUrl(urlPath);
+      if (urlPath.endsWith('/index')) urlPath = urlPath.replace(/\/index$/, '/');
+      url = normalizeUrl('/library' + urlPath);
     }
 
     let content = removeMd(body || '');
