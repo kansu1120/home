@@ -6,11 +6,17 @@ on:
     paths:
       - '**.md'
       - 'build_index.js'
+      - 'test_build_index.js'
+      - 'package.json'
+      - '.github/workflows/build-index.yml'
   pull_request:
     branches: [main]
     paths:
       - '**.md'
       - 'build_index.js'
+      - 'test_build_index.js'
+      - 'package.json'
+      - '.github/workflows/build-index.yml'
   workflow_dispatch:
 
 jobs:
@@ -31,10 +37,13 @@ jobs:
           node-version: '20'
           
       - name: Install dependencies
-        run: npm install gray-matter remove-markdown
+        run: npm install
+        
+      - name: Run tests
+        run: npm test
         
       - name: Build search index
-        run: node build_index.js
+        run: npm run build
         
       - name: Check for changes
         id: check_changes

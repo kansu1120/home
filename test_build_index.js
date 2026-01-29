@@ -99,9 +99,9 @@ function testNoFrontmatter() {
 }
 
 // Run tests
+const originalDir = process.cwd();
+
 try {
-  const originalDir = process.cwd();
-  
   setup();
   process.chdir(testDir);
   testPermalink();
@@ -112,12 +112,21 @@ try {
   process.chdir(originalDir);
   testNoFrontmatter();
   
-  process.chdir(originalDir);
-  cleanup();
-  
   console.log('\n✅ All tests passed!');
 } catch (error) {
-  cleanup();
   console.error('\n❌', error.message);
   process.exit(1);
+} finally {
+  // Always restore directory and cleanup, even if tests fail
+  try {
+    process.chdir(originalDir);
+  } catch (e) {
+    // Already in original directory
+  }
+  
+  try {
+    cleanup();
+  } catch (e) {
+    console.warn('Warning: cleanup failed:', e.message);
+  }
 }
