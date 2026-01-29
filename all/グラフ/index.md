@@ -13,8 +13,8 @@ title: グラフアルゴリズム一覧
 
 {% for p in md_pages %}
   <li>
-    <!-- HTML ページとして開くリンク -->
-    <a href="{{ p.url }}">
+    <!-- library を含めた絶対パス -->
+    <a href="/library{{ p.url }}">
       {{ p.title | default: p.name | replace: ".md", "" }}
     </a>
   </li>
