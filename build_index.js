@@ -84,7 +84,8 @@ for (const root of roots) {
       // Ensure the "/library" prefix is added even for permalinks
       url = normalizeUrl('/library' + String(fm.permalink).trim());
     } else if (fm.url) {
-      url = normalizeUrl(String(fm.url).trim());
+      // Ensure the "/library" prefix is added even for urls
+      url = normalizeUrl('/library' + String(fm.url).trim());
     } else {
       const rel = path.relative(ROOT, filePath).replace(/\\/g, '/');
       let urlPath = '/' + rel.replace(/\.md$/i, '');
