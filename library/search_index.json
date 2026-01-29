@@ -1,10 +1,5 @@
 [
   {
-    "title": "一覧",
-    "url": "/一覧/",
-    "content": "ライブラリ一覧 {% assign genres = \"数学,累積和,グラフ,構造体,二分探索,その他典型\" | split: \",\" %} {% for genre in genres %} {{ genre }} {% for p in site.pages %} {% if p.path contains 'all/' and p.path contains genre and p.name != 'index.md' %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endif %} {% endfor %} {% endfor %}"
-  },
-  {
     "title": "ラングレス圧縮",
     "url": "/library/all/その他典型/RLE",
     "content": "ラングレス圧縮 string を入力 int char の pair の vector でリターン aaab -> { 3 , a } , { 1 , b } vector> r(string s){ vector> ans; for(int i = 0;i < s.size();i++){ if(ans.size()==0 || ans[ans.size()-1].second != s[i]){ ans.push_back({1,s[i]}); } else{ ans[ans.size()-1].first++; } } return ans; }"

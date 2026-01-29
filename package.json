@@ -4,6 +4,7 @@
   "description": "https://kansu1120.github.io/library/",
   "main": "build_index.js",
   "scripts": {
+    "build": "node build_index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
