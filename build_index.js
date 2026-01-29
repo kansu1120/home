@@ -23,7 +23,7 @@ function findMarkdownFiles(dir, fileList = []) {
 
 /**
  * マークダウンコンテンツからタイトルを抽出
- * フロントマターのタイトル、最初の見出し、ファイル名の順で検索
+ * フロントマターのタイトル、最初の見出し、ファイル名の順で取得を試行
  */
 function extractTitle(content, filename) {
   // フロントマターのタイトルをチェック
