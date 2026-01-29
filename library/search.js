@@ -1,4 +1,4 @@
-fetch("/library/search_index.json")
+fetch("/library/library/search_index.json")
   .then(res => res.json())
   .then(data => {
     const box = document.getElementById("searchBox");
