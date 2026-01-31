@@ -35,6 +35,11 @@
     "content": "ナップザック復元 string npz_rev(vector> v,long long m){ // ( {重さ、価値} 、重さ制限 ) // 必要 = A // どっちでも = B // いらない = C long long n = v.size(); vector> dp(n,vector(m+1,-INF)); dp0 = 0; if(v0].first sss = {false,false}; vector> ans(n,sss); vector> ok(n,vector(m+1,false)); for(long long i = 0;i > cnt(n); for(long long i = n-1;i > 0;i--){ for(long long j = 0;j <= m;j++){ if(!ok[i)continue; if(dpi-1==dpi){ ansi].first = true; ok[i-1 = true; } if(j - vi].first < 0)continue; if(dp[i-1.first] + vi].second == dp[i){ ansi].second = true; ok[i-1.first] = true; } } } if(ok0==true){ ans0].first = true; } if(v[0].first <= m && ok[0.first]){ ans[0].second = true; } string ret; rep(i,n){ if(ans[i].first && ans[i].second){ ret += 'B'; } else if(!ans[i].first && ans[i].second){ ret += 'A'; } else{ ret += 'C'; } } return ret; }"
   },
   {
+    "title": "ラングレス圧縮をstring以外の配列にも適用できるようになってるもの",
+    "url": "/library/all/その他典型/拡張ラングレス圧縮",
+    "content": "ラングレス圧縮をstring以外の配列にも適用できるようになってるもの 全て ran(圧縮したい配列) でできる vectorの圧縮 `cpp"
+  },
+  {
     "title": "転倒数",
     "url": "/library/all/その他典型/転倒数",
     "content": "転倒数 ten(v)に入れたら勝手に座標圧縮されて転倒数が帰ってくる セグ木が一緒についてきてるのでセグ木を別で定義してる場合は気を付ける class st{ public: long long siz = 1; vector v; st (long long n){ siz = 1; while(siz 1){ i /= 2; vi] = v[i2]+v[i2+1]; } } long long query(long long L, long long R){ // 添字、L , R long long ans = 0; function f = [&{ if(l >= L && r R)return; f(s*2,l,(l+r)/2); f(s*2+1,(l+r)/2+1,r); return; }; f(1,0,siz-1); return ans; } }; void ash(map& m,vector v){ long long n = v.size(); m.clear(); sort(v.begin(),v.end()); long long j = 0; for(long long i = 0;i v){ long long n = v.size(); map m; ash(m,v); st seg(m.size()); long long ans = 0; for(int i = 0;i v; st (long long n){ siz = 1; while(siz 1){ i /= 2; vi] = v[i2]+v[i2+1]; } } long long query(long long L, long long R){ // 添字、L , R long long ans = 0; function f = [&{ if(l >= L && r R)return; f(s*2,l,(l+r)/2); f(s*2+1,(l+r)/2+1,r); return; }; f(1,0,siz-1); return ans; } }; void ash(map& m,vector v){ long long n = v.size(); m.clear(); sort(v.begin(),v.end()); long long j = 0; for(long long i = 0;i v){ long long n = v.size(); map m; ash(m,v); st seg(m.size()); long long ans = 0; for(int i = 0;i < n;i++){ ans += seg.query(m[v[i]]+1,m.size()-1); seg.plus(m[v[i]]); } return ans; }"
