@@ -5,7 +5,7 @@
   left: 50%;
   width: 20px;
   height: 20px;
-  background-color: #ff9f68;
+  background-color: var(--bg, #fbfbfb);
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0.8s ease-in-out;
