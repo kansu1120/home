@@ -11,8 +11,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="{{ '/library/transition.css' | relative_url }}">
-
 <style>
 :root{
   --bg:#fbfbfb; --text:#1e1e1e; --sub:#666;
@@ -256,8 +254,6 @@ footer{
 
 <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
-<div class="transition-overlay"></div>
-
 <div class="main">
   {{ content }}
 </div>
@@ -274,7 +270,6 @@ footer{
 
 <script src="{{ '/library/copy.js' | relative_url }}"></script>
 <script src="{{ '/library/search.js' | relative_url }}"></script>
-<script src="{{ '/library/transition.js' | relative_url }}"></script>
 
 <script>
 const sidebar = document.getElementById("sidebar");
