@@ -16,6 +16,12 @@
   transition: opacity 0.3s ease-in-out;
 }
 
+/* Hidden state - ensures overlay is not displayed */
+.loading-overlay.hidden {
+  display: none !important;
+  opacity: 0;
+}
+
 /* Active state - shown when loading */
 .loading-overlay.active {
   display: flex;
