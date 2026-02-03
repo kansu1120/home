@@ -12,7 +12,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="{{ '/library/transition.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/library/loading.css' | relative_url }}">
 
 <style>
 :root{
@@ -259,11 +258,6 @@ footer{
 
 <div class="transition-overlay"></div>
 
-<!-- Loading Overlay - Full-screen loading indicator -->
-<div class="loading-overlay" id="loadingOverlay" role="status" aria-live="polite" aria-busy="true">
-  <div class="loading-text">Loading...</div>
-</div>
-
 <div class="main">
   {{ content }}
 </div>
@@ -281,7 +275,6 @@ footer{
 <script src="{{ '/library/copy.js' | relative_url }}"></script>
 <script src="{{ '/library/search.js' | relative_url }}"></script>
 <script src="{{ '/library/transition.js' | relative_url }}"></script>
-<script src="{{ '/library/loading.js' | relative_url }}"></script>
 
 <script>
 const sidebar = document.getElementById("sidebar");
