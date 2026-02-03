@@ -10,6 +10,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kansu1120/library.git"
+  },
   "dependencies": {
     "gray-matter": "^4.0.3",
     "remove-markdown": "^0.6.3"
