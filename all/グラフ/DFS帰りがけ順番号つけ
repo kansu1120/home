@@ -1,0 +1,22 @@
+# DFS帰りがけ順番号つけ
+
+vector<vector<int>> vでグラフを保存しておく
+
+str を変えることでスタート地点を変えられる
+
+```cpp
+    vector<int> x(n,-1);
+    int cnt = 0;
+    int str = 0;
+    x[str] = 0;
+    function<void(int)> f = [&](int pos){
+        for(int i : v[pos]){
+            if(x[i]==-1){
+                f(i);
+            }
+        }
+        cnt++;
+        x[pos] = cnt;
+    };
+
+```
