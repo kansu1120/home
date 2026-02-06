@@ -10,6 +10,11 @@
     "content": "その他典型 便利なやつ {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains 'その他典型/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
   },
   {
+    "title": "manacher",
+    "url": "/library/all/その他典型/manacher",
+    "content": "manacher ちょい不十分 vector mana(string s){ int n = s.size(); vector res(n,0); int y = -1; int x = -1; for(int i = 0;i = i){ int t = x*2 - i; r = min(y,i+res[t]-1); l -= r-i; } while(l >= 0 && r < n && s[l]==s[r]){ if(y < r){ y = r; x = i; } l--; r++; } res[i] = r - i; } return res; }"
+  },
+  {
     "title": "循環配列での長さwの区間の和の最大値",
     "url": "/library/all/その他典型/rmax",
     "content": "循環配列での長さwの区間の和の最大値 循環させる前の配列と長さWを入れる long long rmax(vector v,long long w){ int n = v.size(); rep(i,n)v.push_back(v[i]); n *= 2; if(w >= n/2){ long long ans = 0; rep(i,n/2)ans += v[i]; return ans; } long long sum = 0; rep(i,w)sum += v[i]; long long ans = sum; for(long long i = 0;i < n/2-1;i++){ sum -= v[i]; sum += v[i+w]; ans = max(ans,sum); } return ans; }"
