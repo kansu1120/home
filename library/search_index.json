@@ -5,6 +5,11 @@
     "content": "ラングレス圧縮 string を入力 int char の pair の vector でリターン aaab -> { 3 , a } , { 1 , b } vector> r(string s){ vector> ans; for(int i = 0;i < s.size();i++){ if(ans.size()==0 || ans[ans.size()-1].second != s[i]){ ans.push_back({1,s[i]}); } else{ ans[ans.size()-1].first++; } } return ans; }"
   },
   {
+    "title": "zアルゴリズム",
+    "url": "/library/all/その他典型/Z",
+    "content": "zアルゴリズム 文字列Sのそれぞれの位置についてそこから後ろの文字列とSとの最長共通接頭辞の長さをO(N)で計算できる Z(S)でvector のリターン vector z(string s){ int n = s.size(); vector ans(n); int l=0,r=0; ans[0] = n; for(int i = 1;i r){ int J = 0; int j = i; while(j < n && J < n && s[J] == s[j]){ J++; j++; } ans[i] = J; r = j-1; l = i; } else{ int j = min(i+ans[i-l],r); int J = j-i; while(j < n && J < n && s[J] == s[j]){ J++; j++; } ans[i] = J; if(r < j-1){ r = j-1; l = i; } } } return ans; }"
+  },
+  {
     "title": "その他典型",
     "url": "/library/all/その他典型/",
     "content": "その他典型 便利なやつ {% assign md_pages = site.pages | where_exp: \"p\", \"p.path contains 'その他典型/'\" | where_exp: \"p\", \"p.name != 'index.md'\" | sort: \"path\" %} {% for p in md_pages %} {{ p.title | default: p.name | replace: \".md\", \"\" }} {% endfor %}"
