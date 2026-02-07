@@ -37,13 +37,14 @@ a:hover{ text-decoration:underline; }
   position:fixed;
   top:0; left:0; right:0;
   height:56px;
-  background:var(--header-bg);
+  background: linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 100%);
   border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
   padding:0 16px;
   z-index:1200;
   backdrop-filter: blur(6px);
+  box-shadow: 0 2px 20px rgba(122, 15, 24, 0.08);
 }
 
 .hamburger{
@@ -187,6 +188,32 @@ a:hover{ text-decoration:underline; }
   padding:96px 48px 48px;
   max-width:900px;
   margin:auto;
+}
+
+/* カードベースのリストレイアウト */
+.main ul {
+  list-style: none;
+  padding: 0;
+}
+
+.main ul li {
+  background: #fff;
+  padding: 14px 18px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main ul li:hover {
+  transform: translateX(8px);
+  box-shadow: 0 4px 16px rgba(201, 162, 77, 0.15);
+}
+
+.main ul li a {
+  text-decoration: none;
+  display: block;
 }
 
 pre{
