@@ -29,6 +29,42 @@ body{
 a{ color:var(--accent); text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
+/* ================= Typography ================= */
+
+h1 {
+  position: relative;
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+  font-size: 32px;
+  letter-spacing: 0.02em;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  border-radius: 2px;
+}
+
+h2 {
+  margin-top: 48px;
+  margin-bottom: 24px;
+  color: var(--accent);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+h3 {
+  margin-top: 32px;
+  margin-bottom: 16px;
+  color: var(--text);
+  font-size: 20px;
+}
+
 /* ================= Header ================= */
 
 .header{
@@ -98,12 +134,23 @@ a:hover{ text-decoration:underline; }
 .header-search.open{ transform:translateY(0); }
 
 .header-search input{
-  width:100%;
-  padding:10px 12px;
-  font-size:16px;
-  border:1px solid var(--line);
-  border-radius:6px;
-  background:var(--header-bg);
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  background: var(--header-bg);
+  transition: all 0.3s ease;
+}
+
+.header-search input:focus {
+  border-color: var(--gold);
+  box-shadow: 
+    0 0 0 4px rgba(201, 162, 77, 0.1),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: scale(1.02);
+  outline: none;
+  background: var(--header-bg);
 }
 
 /* ===== Search Results Dropdown ===== */
@@ -215,12 +262,32 @@ a:hover{ text-decoration:underline; }
 }
 
 pre{
-  background:linear-gradient(180deg,#fff,#f6f6f6);
-  padding:16px;
-  overflow:auto;
-  font-family:"Fira Code", monospace;
-  font-size:13px;
-  box-shadow:0 0 20px rgba(201,162,77,0.08);
+  position: relative;
+  background: linear-gradient(180deg, #fff, #f6f6f6);
+  padding: 16px;
+  padding-top: 24px;
+  overflow: auto;
+  font-family: "Fira Code", monospace;
+  font-size: 13px;
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+  box-shadow: 
+    0 4px 20px rgba(201, 162, 77, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  margin: 20px 0;
+}
+
+pre::before {
+  content: 'C++';
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  font-family: sans-serif;
 }
 
 code{
@@ -247,6 +314,204 @@ footer{
 @media(max-width:800px){
   .main{ padding:88px 20px 40px; }
 }
+
+/* ================= Breadcrumb ================= */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: var(--sub);
+  flex-wrap: wrap;
+}
+
+.breadcrumb a {
+  color: var(--gold);
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.breadcrumb .separator {
+  color: var(--line);
+  user-select: none;
+}
+
+.breadcrumb .current {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ================= Animations ================= */
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main > * {
+  animation: slideInUp 0.6s ease-out backwards;
+}
+
+.main > *:nth-child(1) { animation-delay: 0s; }
+.main > *:nth-child(2) { animation-delay: 0.1s; }
+.main > *:nth-child(3) { animation-delay: 0.15s; }
+.main > *:nth-child(4) { animation-delay: 0.2s; }
+.main > *:nth-child(5) { animation-delay: 0.25s; }
+.main > *:nth-child(n+6) { animation-delay: 0.3s; }
+
+@keyframes highlight {
+  0%, 100% { background: transparent; }
+  50% { background: rgba(201, 162, 77, 0.15); }
+}
+
+/* ================= Table of Contents ================= */
+
+.toc {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 24px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.toc h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc li {
+  margin: 8px 0;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  transform: none;
+}
+
+.toc a {
+  color: var(--text);
+  font-size: 14px;
+  padding-left: 16px;
+  position: relative;
+  display: block;
+}
+
+.toc a::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+
+.toc a:hover {
+  color: var(--accent);
+}
+
+/* ================= Copy Button ================= */
+
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  background: var(--gold);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+pre:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background: var(--accent);
+  transform: scale(1.05);
+}
+
+.copy-button:active {
+  transform: scale(0.95);
+}
+
+.copy-button.copied {
+  background: #4caf50;
+}
+
+/* ================= Dark Mode ================= */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a1a;
+    --text: #e8e8e8;
+    --sub: #a0a0a0;
+    --line: #333;
+    --accent: #ff4158;
+    --gold: #e5c167;
+    --header-bg: #222;
+  }
+  
+  .sidebar, .header-search, #searchResults {
+    background: #242424;
+  }
+  
+  .main ul li {
+    background: #242424;
+  }
+  
+  pre {
+    background: linear-gradient(180deg, #2a2a2a, #252525);
+    box-shadow: 0 4px 20px rgba(229, 193, 103, 0.12);
+  }
+  
+  code {
+    background: #2a2a2a;
+  }
+  
+  .header-search input {
+    background: #2a2a2a;
+    color: var(--text);
+  }
+  
+  .header-search input:focus {
+    background: #333;
+  }
+  
+  .toc {
+    background: #242424;
+    border-color: #333;
+  }
+}
+
 </style>
 </head>
 
@@ -314,6 +579,18 @@ function closeSidebar(){
 function toggleHeaderSearch(){
   headerSearch.classList.toggle("open");
 }
+
+// スクロール時のヘッダー変化
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('.header');
+  const currentScroll = window.pageYOffset;
+  
+  if (currentScroll > 100) {
+    header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+  } else {
+    header.style.boxShadow = '0 2px 20px rgba(122, 15, 24, 0.08)';
+  }
+});
 </script>
 
 </body>

@@ -4,15 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const button = document.createElement("button");
     button.textContent = "Copy";
-    button.style.position = "absolute";
-    button.style.top = "6px";
-    button.style.right = "6px";
-    button.style.fontSize = "12px";
-    button.style.cursor = "pointer";
-    button.style.padding = "4px 6px";
-    button.style.borderRadius = "4px";
-    button.style.zIndex = "10";
-
+    button.className = "copy-button";
+    
+    // インラインスタイルをクラスベースに変更
     const prevPos = window.getComputedStyle(pre).position;
     if (prevPos === "static" || !prevPos) pre.style.position = "relative";
 
@@ -22,7 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         await navigator.clipboard.writeText(code.innerText);
         button.textContent = "Copied!";
-        setTimeout(() => (button.textContent = "Copy"), 1000);
+        button.classList.add("copied");
+        setTimeout(() => {
+          button.textContent = "Copy";
+          button.classList.remove("copied");
+        }, 1000);
       } catch (err) {
         console.error("copy failed:", err);
         button.textContent = "Failed";
