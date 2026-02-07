@@ -53,6 +53,9 @@ vector<int> mana(string s){
         }
         res[i] = r  - i;
     }
-    return res;
+    rep(i,n)res[i]--;
+    vector<int> ans;
+    for(int i = 1;i < res.size()-1;i++)ans.push_back(res[i]);
+    return ans;
 }
 ```
