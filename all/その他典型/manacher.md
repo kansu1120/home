@@ -1,4 +1,4 @@
-# manacher
+# manacher   直径と半径
 
 
 ## 最大直径
