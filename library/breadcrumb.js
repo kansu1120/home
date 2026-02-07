@@ -14,19 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // パスの各セグメントを処理
   let currentPath = '/library';
   segments.forEach((segment, index) => {
-    // セパレータ
-    const separator = document.createElement('span');
-    separator.className = 'separator';
-    separator.textContent = '›';
-    breadcrumb.appendChild(separator);
-    
     // セグメント名をデコード＆整形
     let name = decodeURIComponent(segment);
     name = name.replace(/\.html?$/i, '').replace(/^index$/i, '');
     
+    // 'all' セグメントはスキップ（内部的なディレクトリなので非表示）
+    if (segment === 'all' || name === 'all') {
+      currentPath += '/' + segment;
+      return;
+    }
+    
     // カテゴリ名のマッピング
     const categoryMap = {
-      'all': 'ライブラリ',
       '累積和': '累積和',
       '数学': '数学',
       'グラフ': 'グラフ',
@@ -39,9 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
       name = categoryMap[name];
     }
     
-    if (!name) return;
+    if (!name || name === 'index') {
+      currentPath += '/' + segment;
+      return;
+    }
     
     currentPath += '/' + segment;
+    
+    // セパレータ
+    const separator = document.createElement('span');
+    separator.className = 'separator';
+    separator.textContent = '›';
+    breadcrumb.appendChild(separator);
     
     // 最後のセグメント（現在のページ）
     if (index === segments.length - 1) {
@@ -59,6 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // ホームページまたはセグメントが少ない場合は非表示
   if (breadcrumb.children.length <= 1) {
-    breadcrumb.classList.add('hidden');
+    breadcrumb.style.display = 'none';
   }
 });
