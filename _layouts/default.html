@@ -277,8 +277,7 @@ pre{
   margin: 20px 0;
 }
 
-pre::before {
-  content: 'C++';
+.code-language-label {
   position: absolute;
   top: 8px;
   right: 12px;
@@ -288,6 +287,12 @@ pre::before {
   letter-spacing: 0.1em;
   opacity: 0.6;
   font-family: sans-serif;
+  z-index: 1;
+}
+
+/* コピーボタンがある場合は位置を調整 */
+pre:has(.copy-button) .code-language-label {
+  right: 80px;
 }
 
 code{
@@ -430,6 +435,14 @@ footer{
   color: var(--accent);
 }
 
+.toc-h3 {
+  padding-left: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
 /* ================= Copy Button ================= */
 
 .copy-button {
@@ -547,6 +560,8 @@ pre:hover .copy-button {
 <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
 <div class="main">
+  <nav class="breadcrumb" id="breadcrumb"></nav>
+  
   {{ content }}
 </div>
 
@@ -562,6 +577,9 @@ pre:hover .copy-button {
 
 <script src="{{ '/library/copy.js' | relative_url }}"></script>
 <script src="{{ '/library/search.js' | relative_url }}"></script>
+<script src="{{ '/library/breadcrumb.js' | relative_url }}"></script>
+<script src="{{ '/library/toc.js' | relative_url }}"></script>
+<script src="{{ '/library/code-labels.js' | relative_url }}"></script>
 
 <script>
 const sidebar = document.getElementById("sidebar");
@@ -589,6 +607,22 @@ window.addEventListener('scroll', () => {
     header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
   } else {
     header.style.boxShadow = '0 2px 20px rgba(122, 15, 24, 0.08)';
+  }
+});
+
+// スムーススクロール (event delegation)
+document.addEventListener('click', (e) => {
+  const anchor = e.target.closest('a[href^="#"]');
+  if (!anchor) return;
+  
+  const href = anchor.getAttribute('href');
+  if (href === '#') return;
+  
+  e.preventDefault();
+  const target = document.querySelector(href);
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.pushState(null, null, href);
   }
 });
 </script>
