@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name = categoryMap[name];
     }
     
-    if (!name || name === 'index') return;
+    if (!name) return;
     
     currentPath += '/' + segment;
     

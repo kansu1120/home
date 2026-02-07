@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'YML': 'YAML'
       };
       
-      const displayLang = langMap[lang] || lang;
+      const displayLang = langMap[lang] || lang.charAt(0) + lang.slice(1).toLowerCase();
       
       // ラベル要素を作成
       const label = document.createElement('span');

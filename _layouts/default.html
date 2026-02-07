@@ -610,19 +610,20 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// スムーススクロール
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-    if (href === '#') return;
-    
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      history.pushState(null, null, href);
-    }
-  });
+// スムーススクロール (event delegation)
+document.addEventListener('click', (e) => {
+  const anchor = e.target.closest('a[href^="#"]');
+  if (!anchor) return;
+  
+  const href = anchor.getAttribute('href');
+  if (href === '#') return;
+  
+  e.preventDefault();
+  const target = document.querySelector(href);
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.pushState(null, null, href);
+  }
 });
 </script>
 
