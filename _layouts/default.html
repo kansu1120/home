@@ -31,6 +31,31 @@ a:hover{ text-decoration:underline; }
 
 /* ================= Typography ================= */
 
+/* タイプライターエフェクト */
+.main h1 {
+  min-height: 1.2em; /* ちらつき防止 */
+}
+
+.typewriter-cursor {
+  color: var(--gold);
+  font-weight: normal;
+  animation: blink 0.7s step-end infinite;
+  margin-left: 2px;
+}
+
+.typewriter-cursor.blinking {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
 h1 {
   position: relative;
   padding-bottom: 16px;
@@ -396,31 +421,21 @@ footer{
 
 /* ================= Table of Contents ================= */
 
-/* 目次スタイル - 淡いゴールド背景 */
+/* 目次スタイル - シンプル・ミニマル */
 .toc {
-  background: linear-gradient(135deg, #fffaf0 0%, #fff8e7 100%);
-  border: 1px solid rgba(201, 162, 77, 0.2);
-  border-left: 4px solid var(--gold);
-  border-radius: 8px;
-  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 16px;
   margin: 24px 0;
-  box-shadow: 0 2px 12px rgba(201, 162, 77, 0.08);
 }
 
 .toc h3 {
-  margin-top: 0;
-  margin-bottom: 16px;
-  font-size: 16px;
-  color: var(--gold);
+  font-size: 13px;
+  color: var(--text);
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.toc h3::before {
-  content: '📑';
-  font-size: 18px;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .toc ul {
@@ -440,31 +455,16 @@ footer{
 }
 
 .toc a {
-  color: #666;
+  color: var(--sub);
   font-size: 14px;
-  padding: 8px 12px;
-  padding-left: 24px;
-  position: relative;
+  padding: 4px 0;
   display: block;
-  border-radius: 4px;
-  transition: all 0.2s ease;
   text-decoration: none;
-}
-
-.toc a::before {
-  content: '#';
-  position: absolute;
-  left: 8px;
-  color: var(--gold);
-  font-weight: 600;
-  opacity: 0.5;
+  transition: color 0.2s ease;
 }
 
 .toc a:hover {
-  background: rgba(201, 162, 77, 0.1);
   color: var(--accent);
-  transform: translateX(4px);
-  text-decoration: none;
 }
 
 .toc-h3 {
@@ -572,8 +572,7 @@ pre:hover .copy-button {
   
   /* 目次のダークモード */
   .toc {
-    background: linear-gradient(135deg, #2a2520 0%, #2d2621 100%);
-    border-color: rgba(201, 162, 77, 0.3);
+    border-color: #333;
   }
   
   .toc a {
@@ -581,7 +580,6 @@ pre:hover .copy-button {
   }
   
   .toc a:hover {
-    background: rgba(201, 162, 77, 0.15);
     color: var(--gold);
   }
   
@@ -685,6 +683,7 @@ pre:hover .copy-button {
 <script src="{{ '/library/toc.js' | relative_url }}"></script>
 <script src="{{ '/library/code-labels.js' | relative_url }}"></script>
 <script src="{{ '/library/page-transition.js' | relative_url }}"></script>
+<script src="{{ '/library/typewriter.js' | relative_url }}"></script>
 
 <script>
 const sidebar = document.getElementById("sidebar");
