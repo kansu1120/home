@@ -298,7 +298,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // プレースホルダーをOS判定で変更
-  const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  // Use userAgent as a fallback since navigator.platform is deprecated
+  const isMac = (navigator.userAgentData?.platform || navigator.platform).toUpperCase().indexOf('MAC') >= 0;
   const shortcutKey = isMac ? '⌘+K' : 'Ctrl+K';
   if (desktopSearchBox) {
     desktopSearchBox.setAttribute('placeholder', `検索... (${shortcutKey} または /)`);
