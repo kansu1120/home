@@ -419,6 +419,85 @@ footer{
   50% { background: rgba(201, 162, 77, 0.15); }
 }
 
+/* ================= Logo Animation ================= */
+
+/* ロゴアニメーション */
+.logo-main, .logo-sub {
+  display: inline-block;
+}
+
+/* 中央の区切り線 */
+.logo-divider {
+  display: inline-block;
+  color: var(--gold);
+  margin: 0 10px;
+  opacity: 0;
+  transform: scaleY(0);
+  font-weight: 300;
+}
+
+.logo-divider.logo-animate {
+  animation: dividerAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+}
+
+@keyframes dividerAppear {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(201, 162, 77, 0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* 左側（Kansu）のアニメーション */
+.logo-main.logo-animate {
+  animation: slideFromCenterLeft 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideFromCenterLeft {
+  0% {
+    transform: translateX(80px);
+    opacity: 0;
+  }
+  60% {
+    text-shadow: 
+      0 0 15px rgba(201, 162, 77, 0.8),
+      0 0 30px rgba(201, 162, 77, 0.5);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    text-shadow: 0 0 0 transparent;
+  }
+}
+
+/* 右側（C++ Library）のアニメーション */
+.logo-sub.logo-animate {
+  animation: slideFromCenterRight 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideFromCenterRight {
+  0% {
+    transform: translateX(-80px);
+    opacity: 0;
+  }
+  60% {
+    text-shadow: 
+      0 0 15px rgba(201, 162, 77, 0.8),
+      0 0 30px rgba(201, 162, 77, 0.5);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    text-shadow: 0 0 0 transparent;
+  }
+}
+
 /* ================= Table of Contents ================= */
 
 /* 目次スタイル - シンプル・ミニマル */
@@ -625,6 +704,45 @@ pre:hover .copy-button {
   .breadcrumb .current {
     color: var(--text);
   }
+  
+  /* ロゴアニメーション - ダークモード */
+  .logo-divider {
+    color: var(--gold);
+  }
+  
+  @keyframes slideFromCenterLeft {
+    0% {
+      transform: translateX(80px);
+      opacity: 0;
+    }
+    60% {
+      text-shadow: 
+        0 0 20px rgba(229, 193, 103, 0.9),
+        0 0 40px rgba(229, 193, 103, 0.6);
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+      text-shadow: 0 0 0 transparent;
+    }
+  }
+  
+  @keyframes slideFromCenterRight {
+    0% {
+      transform: translateX(-80px);
+      opacity: 0;
+    }
+    60% {
+      text-shadow: 
+        0 0 20px rgba(229, 193, 103, 0.9),
+        0 0 40px rgba(229, 193, 103, 0.6);
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+      text-shadow: 0 0 0 transparent;
+    }
+  }
 }
 
 </style>
@@ -684,6 +802,7 @@ pre:hover .copy-button {
 <script src="{{ '/library/code-labels.js' | relative_url }}"></script>
 <script src="{{ '/library/page-transition.js' | relative_url }}"></script>
 <script src="{{ '/library/typewriter.js' | relative_url }}"></script>
+<script src="{{ '/library/logo-animation.js' | relative_url }}"></script>
 
 <script>
 const sidebar = document.getElementById("sidebar");
