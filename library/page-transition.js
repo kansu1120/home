@@ -111,11 +111,6 @@ function cleanupTransition() {
 // ページ表示時に必ずクリーンアップ
 window.addEventListener('pageshow', (event) => {
   cleanupTransition();
-  
-  // bfcache（戻る/進むキャッシュ）から復帰した場合
-  if (event.persisted) {
-    cleanupTransition();
-  }
 });
 
 // ブラウザの戻る/進むボタン対応

@@ -26,12 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // カテゴリ名のマッピング
     const categoryMap = {
-      '累積和': '累積和',
-      '数学': '数学',
-      'グラフ': 'グラフ',
-      '構造体': 'データ構造',
-      '二分探索': '二分探索',
-      'その他典型': 'その他典型'
+      '構造体': 'データ構造'
     };
     
     if (categoryMap[name]) {
