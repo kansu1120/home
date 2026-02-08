@@ -111,6 +111,7 @@ h3 {
   display:flex;
   align-items:center;
   padding:0 16px;
+  gap:16px;
   z-index:1200;
   backdrop-filter: blur(6px);
   box-shadow: 0 2px 20px rgba(122, 15, 24, 0.08);
@@ -123,6 +124,13 @@ h3 {
 }
 
 .header-logo{
+  display:flex;
+  align-items:flex-end;
+  gap:6px;
+  text-decoration:none;
+}
+
+.header-logo a {
   display:flex;
   align-items:flex-end;
   gap:6px;
@@ -142,87 +150,139 @@ h3 {
   letter-spacing:0.15em;
 }
 
-.header-actions{ margin-left:auto; }
+/* ================= Responsive Search UI ================= */
 
-.search-button{
-  width:42px; height:42px;
-  display:flex; align-items:center; justify-content:center;
-  cursor:pointer; font-size:20px;
-}
-
-/* ================= Header Search ================= */
-
-.header-search{
-  position:fixed;
-  top:56px; left:0; right:0;
-  background:#fff;
-  border-bottom:1px solid var(--line);
-  padding:16px 24px 24px;
-  transform:translateY(-120%);
-  transition:0.4s cubic-bezier(.22,.61,.36,1);
-  z-index:1100;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-
-
-}
-
-.header-search.open{ transform:translateY(0); }
-
-.header-search input{
+/* デスクトップ用検索欄 */
+.desktop-search {
+  display: none;
+  position: relative;
+  max-width: 400px;
   width: 100%;
-  padding: 10px 12px;
-  font-size: 16px;
-  border: 2px solid transparent;
-  border-radius: 6px;
-  background: var(--header-bg);
-  transition: all 0.3s ease;
+  margin-left: auto;
 }
 
-.header-search input:focus {
-  border-color: var(--gold);
-  box-shadow: 
-    0 0 0 4px rgba(201, 162, 77, 0.1),
-    0 8px 24px rgba(0, 0, 0, 0.12);
-  transform: scale(1.02);
+@media (min-width: 800px) {
+  .desktop-search {
+    display: block;
+  }
+  .mobile-search-toggle {
+    display: none;
+  }
+  .mobile-search {
+    display: none !important;
+  }
+}
+
+/* モバイル用検索トグル */
+.mobile-search-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  margin-left: auto;
+}
+
+.mobile-search-toggle:hover {
+  background: rgba(201, 162, 77, 0.1);
+}
+
+@media (max-width: 799px) {
+  .mobile-search-toggle {
+    display: block;
+  }
+  .desktop-search {
+    display: none !important;
+  }
+}
+
+/* モバイル用検索欄 */
+.mobile-search {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 12px 16px;
+}
+
+.mobile-search.open {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.mobile-search-close {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  flex-shrink: 0;
+}
+
+/* 検索ボックス共通 */
+#searchBox,
+#mobileSearchBox {
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+#searchBox:focus,
+#mobileSearchBox:focus {
   outline: none;
-  background: var(--header-bg);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 162, 77, 0.1);
 }
 
-/* ===== Search Results Dropdown ===== */
-
-#searchResults{
-  position:absolute;
-  left:24px;
-  right:24px;
-  top:64px;
-  max-height:360px;
-  overflow-y:auto;
-
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:10px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.12);
-
-  padding:8px 0;
-  margin:0;
-  list-style:none;
-  z-index:1300;
+/* 検索結果 */
+.search-results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 100;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-#searchResults li{
-  list-style:none;
-}
-
-#searchResults a{
-  display:block;
-  padding:10px 18px;
-  font-size:14px;
-  color:#333;
-  text-decoration:none;
-}
-
-#searchResults a:hover{
-  background:#f3f3f3;
+@media (max-width: 799px) {
+  #mobileSearchResults {
+    position: fixed;
+    top: 60px;
+    left: 16px;
+    right: 16px;
+  }
 }
 
 /* ================= Sidebar ================= */
@@ -772,7 +832,7 @@ pre:hover .copy-button {
   }
 }
 
-/* ================= 検索機能強化 ================= */
+/* ================= 検索機能強化（レスポンシブ対応） ================= */
 
 /* ハイライト */
 .search-highlight {
@@ -892,29 +952,6 @@ pre:hover .copy-button {
   font-size: 14px;
 }
 
-/* 検索ボックスのアニメーション */
-.header-search.open {
-  animation: searchSlideDown 0.3s ease-out;
-}
-
-@keyframes searchSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 検索ボックスのフォーカス強化 */
-#searchBox:focus {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(201, 162, 77, 0.1);
-}
-
 /* ダークモード対応 */
 @media (prefers-color-scheme: dark) {
   .search-highlight {
@@ -940,6 +977,25 @@ pre:hover .copy-button {
     color: #000;
     border-color: var(--gold);
   }
+  
+  /* 検索結果のダークモード対応 */
+  .search-results {
+    background: #242424;
+    border-color: #333;
+  }
+  
+  #searchBox,
+  #mobileSearchBox {
+    background: #2a2a2a;
+    color: var(--text);
+    border-color: #333;
+  }
+  
+  #searchBox:focus,
+  #mobileSearchBox:focus {
+    background: #333;
+    border-color: var(--gold);
+  }
 }
 
 </style>
@@ -947,23 +1003,37 @@ pre:hover .copy-button {
 
 <body>
 
-<div class="header">
+<header class="header">
   <div class="hamburger" onclick="toggleSidebar()">☰</div>
 
-  <a href="{{ '/' | relative_url }}" class="header-logo">
-    <span class="logo-main">Kansu</span>
-    <span class="logo-sub">C++ Library</span>
-  </a>
-
-  <div class="header-actions">
-    <div class="search-button" onclick="toggleHeaderSearch()">🔍</div>
+  <div class="header-logo">
+    <a href="{{ '/' | relative_url }}">
+      <span class="logo-main">Kansu</span>
+      <span class="logo-sub">C++ Library</span>
+    </a>
   </div>
-</div>
-
-<div class="header-search" id="headerSearch">
-  <input type="text" id="searchBox" placeholder="検索...">
-  <ul id="searchResults"></ul>
-</div>
+  
+  <!-- デスクトップ用：検索欄を常時表示 -->
+  <div class="header-search desktop-search">
+    <input type="text" id="searchBox" placeholder="検索...">
+    <ul id="searchResults" class="search-results"></ul>
+  </div>
+  
+  <!-- モバイル用：検索アイコン -->
+  <button class="mobile-search-toggle" id="mobileSearchToggle" aria-label="検索">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+  </button>
+  
+  <!-- モバイル用：展開する検索欄 -->
+  <div class="mobile-search" id="mobileSearch">
+    <input type="text" id="mobileSearchBox" placeholder="検索...">
+    <button class="mobile-search-close" id="mobileSearchClose" aria-label="閉じる">✕</button>
+    <ul id="mobileSearchResults" class="search-results"></ul>
+  </div>
+</header>
 
 <div class="sidebar" id="sidebar">
   <a href="{{ '/一覧' | relative_url }}">ライブラリ一覧</a>
@@ -993,7 +1063,7 @@ pre:hover .copy-button {
 <script>hljs.highlightAll();</script>
 
 <script src="{{ '/library/copy.js' | relative_url }}"></script>
-<script src="{{ '/library/search.js' | relative_url }}"></script>
+<script src="{{ '/library/search-enhanced.js' | relative_url }}"></script>
 <script src="{{ '/library/breadcrumb.js' | relative_url }}"></script>
 <script src="{{ '/library/toc.js' | relative_url }}"></script>
 <script src="{{ '/library/code-labels.js' | relative_url }}"></script>
@@ -1004,7 +1074,6 @@ pre:hover .copy-button {
 <script>
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
-const headerSearch = document.getElementById("headerSearch");
 
 function toggleSidebar(){
   sidebar.classList.toggle("open");
@@ -1013,9 +1082,6 @@ function toggleSidebar(){
 function closeSidebar(){
   sidebar.classList.remove("open");
   overlay.classList.remove("active");
-}
-function toggleHeaderSearch(){
-  headerSearch.classList.toggle("open");
 }
 
 // スクロール時のヘッダー変化
