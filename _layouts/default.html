@@ -396,21 +396,31 @@ footer{
 
 /* ================= Table of Contents ================= */
 
+/* 目次スタイル - 淡いゴールド背景 */
 .toc {
-  background: #fff;
-  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #fffaf0 0%, #fff8e7 100%);
+  border: 1px solid rgba(201, 162, 77, 0.2);
   border-left: 4px solid var(--gold);
   border-radius: 8px;
   padding: 20px;
   margin: 24px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 12px rgba(201, 162, 77, 0.08);
 }
 
 .toc h3 {
   margin-top: 0;
   margin-bottom: 16px;
+  font-size: 16px;
+  color: var(--gold);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toc h3::before {
+  content: '📑';
   font-size: 18px;
-  color: var(--accent);
 }
 
 .toc ul {
@@ -420,31 +430,41 @@ footer{
 }
 
 .toc li {
-  margin: 8px 0;
+  margin: 0;
   padding: 0;
   border: none;
   background: none;
   box-shadow: none;
   transform: none;
+  transition: none;
 }
 
 .toc a {
-  color: var(--text);
+  color: #666;
   font-size: 14px;
-  padding-left: 16px;
+  padding: 8px 12px;
+  padding-left: 24px;
   position: relative;
   display: block;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .toc a::before {
-  content: '›';
+  content: '#';
   position: absolute;
-  left: 0;
+  left: 8px;
   color: var(--gold);
+  font-weight: 600;
+  opacity: 0.5;
 }
 
 .toc a:hover {
+  background: rgba(201, 162, 77, 0.1);
   color: var(--accent);
+  transform: translateX(4px);
+  text-decoration: none;
 }
 
 .toc-h3 {
@@ -505,35 +525,107 @@ pre:hover .copy-button {
     --header-bg: #222;
   }
   
+  body {
+    background: var(--bg);
+    color: var(--text);
+  }
+  
+  /* コードブロック - 洗練されたダークスタイル */
+  /* !important は highlight.js のデフォルトスタイルを上書きするために必要 */
+  pre {
+    background: linear-gradient(180deg, #1e1e1e, #1a1a1a) !important;
+    border-left: 4px solid var(--gold);
+    box-shadow: 
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  pre code {
+    color: #e8e8e8 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* インラインコード */
+  code {
+    background: #2a2a2a !important;
+    color: #e5c167;
+    border: 1px solid #333;
+  }
+  
+  /* コピーボタン */
+  .copy-button {
+    background: #333;
+    color: #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .copy-button:hover {
+    background: var(--gold);
+    color: #1a1a1a;
+  }
+  
+  /* コード言語ラベル */
+  .code-language-label {
+    color: var(--gold);
+    opacity: 0.7;
+  }
+  
+  /* 目次のダークモード */
+  .toc {
+    background: linear-gradient(135deg, #2a2520 0%, #2d2621 100%);
+    border-color: rgba(201, 162, 77, 0.3);
+  }
+  
+  .toc a {
+    color: #b0b0b0;
+  }
+  
+  .toc a:hover {
+    background: rgba(201, 162, 77, 0.15);
+    color: var(--gold);
+  }
+  
+  /* サイドバー・検索 */
   .sidebar, .header-search, #searchResults {
     background: #242424;
+    border-color: #333;
   }
   
+  /* カードリスト */
   .main ul li {
     background: #242424;
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
   
-  pre {
-    background: linear-gradient(180deg, #2a2a2a, #252525);
-    box-shadow: 0 4px 20px rgba(229, 193, 103, 0.12);
-  }
-  
-  code {
+  .main ul li:hover {
     background: #2a2a2a;
+    box-shadow: 0 4px 16px rgba(201, 162, 77, 0.2);
   }
   
+  /* 検索フィールド */
   .header-search input {
     background: #2a2a2a;
     color: var(--text);
+    border-color: #333;
   }
   
   .header-search input:focus {
     background: #333;
+    border-color: var(--gold);
   }
   
-  .toc {
-    background: #242424;
-    border-color: #333;
+  /* パンくずリスト */
+  .breadcrumb {
+    background: rgba(42, 42, 42, 0.8);
+  }
+  
+  .breadcrumb a {
+    color: var(--gold);
+  }
+  
+  .breadcrumb .current {
+    color: var(--text);
   }
 }
 
@@ -592,6 +684,7 @@ pre:hover .copy-button {
 <script src="{{ '/library/breadcrumb.js' | relative_url }}"></script>
 <script src="{{ '/library/toc.js' | relative_url }}"></script>
 <script src="{{ '/library/code-labels.js' | relative_url }}"></script>
+<script src="{{ '/library/page-transition.js' | relative_url }}"></script>
 
 <script>
 const sidebar = document.getElementById("sidebar");
