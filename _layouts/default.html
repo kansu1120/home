@@ -431,7 +431,7 @@ footer{
 
 /* ================= Logo Animation ================= */
 
-/* ロゴアニメーション - オーバーシュート＋戻る動き */
+/* ロゴアニメーション - ゆっくり左右展開（回転なし） */
 .logo-main, .logo-sub {
   display: inline-block;
 }
@@ -441,75 +441,75 @@ footer{
   margin-left: 2px;
 }
 
-/* 左側（Kansu）のダイナミックアニメーション */
+/* 左側（Kansu）のアニメーション */
 .logo-main.logo-animate {
-  animation: slideFromCenterLeftDynamic 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: slideFromCenterLeftSmooth 2.0s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-@keyframes slideFromCenterLeftDynamic {
+@keyframes slideFromCenterLeftSmooth {
   0% {
-    transform: translateX(150px) scale(0.3) rotate(45deg);
+    transform: translateX(150px) scale(0.3);
     opacity: 0;
   }
-  40% {
+  35% {
     text-shadow: 
-      0 0 var(--logo-glow-sm) var(--logo-glow-color),
-      0 0 var(--logo-glow-md) var(--logo-glow-color-alpha-8),
-      0 0 var(--logo-glow-lg) var(--logo-glow-color-alpha-5);
+      0 0 25px rgba(201, 162, 77, 1),
+      0 0 50px rgba(201, 162, 77, 0.8),
+      0 0 75px rgba(201, 162, 77, 0.5);
   }
-  60% {
+  55% {
     /* オーバーシュート：左に行き過ぎる */
-    transform: translateX(-25px) scale(1.2) rotate(-8deg);
+    transform: translateX(-25px) scale(1.2);
     opacity: 1;
   }
-  75% {
+  70% {
     /* 反動で右に戻る */
-    transform: translateX(10px) scale(0.9) rotate(3deg);
+    transform: translateX(10px) scale(0.95);
   }
-  90% {
+  85% {
     /* 微調整 */
-    transform: translateX(-3px) scale(1.02) rotate(-1deg);
+    transform: translateX(-3px) scale(1.02);
   }
   100% {
     /* 完成 */
-    transform: translateX(0) scale(1) rotate(0deg);
+    transform: translateX(0) scale(1);
     opacity: 1;
     text-shadow: 0 0 0 transparent;
   }
 }
 
-/* 右側（C++ Library）のダイナミックアニメーション */
+/* 右側（C++ Library）のアニメーション */
 .logo-sub.logo-animate {
-  animation: slideFromCenterRightDynamic 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: slideFromCenterRightSmooth 2.0s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-@keyframes slideFromCenterRightDynamic {
+@keyframes slideFromCenterRightSmooth {
   0% {
-    transform: translateX(-150px) scale(0.3) rotate(-45deg);
+    transform: translateX(-150px) scale(0.3);
     opacity: 0;
   }
-  40% {
+  35% {
     text-shadow: 
-      0 0 var(--logo-glow-sm) var(--logo-glow-color),
-      0 0 var(--logo-glow-md) var(--logo-glow-color-alpha-8),
-      0 0 var(--logo-glow-lg) var(--logo-glow-color-alpha-5);
+      0 0 25px rgba(201, 162, 77, 1),
+      0 0 50px rgba(201, 162, 77, 0.8),
+      0 0 75px rgba(201, 162, 77, 0.5);
   }
-  60% {
+  55% {
     /* オーバーシュート：右に行き過ぎる */
-    transform: translateX(25px) scale(1.2) rotate(8deg);
+    transform: translateX(25px) scale(1.2);
     opacity: 1;
   }
-  75% {
+  70% {
     /* 反動で左に戻る */
-    transform: translateX(-10px) scale(0.9) rotate(-3deg);
+    transform: translateX(-10px) scale(0.95);
   }
-  90% {
+  85% {
     /* 微調整 */
-    transform: translateX(3px) scale(1.02) rotate(1deg);
+    transform: translateX(3px) scale(1.02);
   }
   100% {
     /* 完成 */
-    transform: translateX(0) scale(1) rotate(0deg);
+    transform: translateX(0) scale(1);
     opacity: 1;
     text-shadow: 0 0 0 transparent;
   }
@@ -517,7 +517,7 @@ footer{
 
 /* ヘッダー全体の軽微な揺れエフェクト */
 .header-logo:has(.logo-animate) {
-  animation: headerShake 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: headerShake 2.0s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes headerShake {
@@ -525,16 +525,16 @@ footer{
     transform: translateY(0);
   }
   30% {
-    transform: translateY(-3px);
-  }
-  60% {
-    transform: translateY(3px);
-  }
-  75% {
     transform: translateY(-2px);
   }
-  90% {
-    transform: translateY(1px);
+  55% {
+    transform: translateY(2px);
+  }
+  70% {
+    transform: translateY(-1px);
+  }
+  85% {
+    transform: translateY(0.5px);
   }
 }
 
@@ -756,57 +756,57 @@ pre:hover .copy-button {
   }
   
   /* ダークモード対応ロゴアニメーション */
-  @keyframes slideFromCenterLeftDynamic {
+  @keyframes slideFromCenterLeftSmooth {
     0% {
-      transform: translateX(150px) scale(0.3) rotate(45deg);
+      transform: translateX(150px) scale(0.3);
       opacity: 0;
     }
-    40% {
+    35% {
       text-shadow: 
         0 0 30px rgba(229, 193, 103, 1),
         0 0 60px rgba(229, 193, 103, 0.8),
         0 0 90px rgba(229, 193, 103, 0.5);
     }
-    60% {
-      transform: translateX(-25px) scale(1.2) rotate(-8deg);
+    55% {
+      transform: translateX(-25px) scale(1.2);
       opacity: 1;
     }
-    75% {
-      transform: translateX(10px) scale(0.9) rotate(3deg);
+    70% {
+      transform: translateX(10px) scale(0.95);
     }
-    90% {
-      transform: translateX(-3px) scale(1.02) rotate(-1deg);
+    85% {
+      transform: translateX(-3px) scale(1.02);
     }
     100% {
-      transform: translateX(0) scale(1) rotate(0deg);
+      transform: translateX(0) scale(1);
       opacity: 1;
       text-shadow: 0 0 0 transparent;
     }
   }
   
-  @keyframes slideFromCenterRightDynamic {
+  @keyframes slideFromCenterRightSmooth {
     0% {
-      transform: translateX(-150px) scale(0.3) rotate(-45deg);
+      transform: translateX(-150px) scale(0.3);
       opacity: 0;
     }
-    40% {
+    35% {
       text-shadow: 
         0 0 30px rgba(229, 193, 103, 1),
         0 0 60px rgba(229, 193, 103, 0.8),
         0 0 90px rgba(229, 193, 103, 0.5);
     }
-    60% {
-      transform: translateX(25px) scale(1.2) rotate(8deg);
+    55% {
+      transform: translateX(25px) scale(1.2);
       opacity: 1;
     }
-    75% {
-      transform: translateX(-10px) scale(0.9) rotate(-3deg);
+    70% {
+      transform: translateX(-10px) scale(0.95);
     }
-    90% {
-      transform: translateX(3px) scale(1.02) rotate(1deg);
+    85% {
+      transform: translateX(3px) scale(1.02);
     }
     100% {
-      transform: translateX(0) scale(1) rotate(0deg);
+      transform: translateX(0) scale(1);
       opacity: 1;
       text-shadow: 0 0 0 transparent;
     }
