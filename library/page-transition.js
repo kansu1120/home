@@ -1,11 +1,26 @@
+// アニメーション継続時間（ミリ秒）
+const TRANSITION_DURATION = 600;
+
 document.addEventListener('DOMContentLoaded', () => {
+  // リップルエフェクトの対象外リンクかどうかを判定
+  function shouldExcludeLink(link) {
+    // 外部リンク、新規タブは除外
+    if (link.target === '_blank' || link.hostname !== window.location.hostname) {
+      return true;
+    }
+    
+    // 純粋なアンカーリンク（#で始まるまたは#のみ）は除外
+    const href = link.getAttribute('href');
+    if (!href || href === '#' || (href.startsWith('#') && !href.includes('/'))) {
+      return true;
+    }
+    
+    return false;
+  }
+  
   // すべてのリンクにリップルエフェクトを適用
   document.querySelectorAll('a').forEach(link => {
-    // 外部リンク、新規タブ、アンカーリンクは除外
-    if (link.target === '_blank' || 
-        link.hostname !== window.location.hostname ||
-        link.hash ||
-        link.getAttribute('href') === '#') {
+    if (shouldExcludeLink(link)) {
       return;
     }
     
@@ -25,9 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // ホバー時にプリフェッチ（先読み）
   document.querySelectorAll('a').forEach(link => {
-    if (link.target === '_blank' || 
-        link.hostname !== window.location.hostname ||
-        link.hash) {
+    if (shouldExcludeLink(link)) {
       return;
     }
     
@@ -76,7 +89,7 @@ function createRippleTransition(x, y, url) {
       rgba(201, 162, 77, 0.98) 50%,
       rgba(122, 15, 24, 0.95) 100%);
     transform: translate(-50%, -50%);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all ${TRANSITION_DURATION / 1000}s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
       0 0 60px rgba(201, 162, 77, 0.4),
       inset 0 0 80px rgba(255, 255, 255, 0.1);
@@ -94,7 +107,7 @@ function createRippleTransition(x, y, url) {
   // アニメーション完了後にページ遷移
   setTimeout(() => {
     window.location.href = url;
-  }, 600);
+  }, TRANSITION_DURATION);
 }
 
 // ページ読み込み時のフェードイン
