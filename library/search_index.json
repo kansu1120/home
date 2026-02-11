@@ -65,6 +65,11 @@
     "content": ""
   },
   {
+    "title": "グリッド上の最短経路を求める",
+    "url": "/library/all/グラフ/グリッド上の最短経路",
+    "content": "グリッド上の最短経路を求める = 壁 . = 道 のグリッドでi,jからx,yまでの最短距離を計算する int way(vector>& v ,int I,int J,int x,int y){ queue> q; q.push({I,J}); vector> ans(v.size(),vector(v0].size(),-1)); while(q.size()!=0){ int i = q.front().first; int j = q.front().second; q.pop(); if(v[i-1=='.' && ansi-1==-1){ ansi-1 = ansi+1; q.push({i-1,j}); } if(vi+1=='.' && ansi+1==-1){ ansi+1 = ansi+1; q.push({i+1,j}); } if(vi=='.' && ansi==-1){ ansi = ansi+1; q.push({i,j-1}); } if(vi=='.' && ansi==-1){ ansi = ansi+1; q.push({i,j+1}); } } return {ansx}; }"
+  },
+  {
     "title": "ダイクストラ",
     "url": "/library/all/グラフ/ダイクストラ",
     "content": "ダイクストラ vector>>の形のグラフを投入 v[i]にあるvector>をpとしたときpにはiからの{行き先、距離}を記録する ds(グラフ,スタート地点) スタート視点からの距離が記録されたvectorが帰ってくる 負の重みを持つ辺を入れてはいけない vector ds(vector>>& v,long long str){ long long inf = 1e9; vector ans(v.size(),inf); ans[str] = 0; priority_queue,vector>,greater>> q; q.push({0,str}); while(q.size()!=0){ long long cos = q.top().first; long long pos = q.top().second; q.pop(); if(cos > ans[pos])continue; for(pair i : v[pos]){ if(ans[i.first] > cos + i.second){ ans[i.first] = cos + i.second; q.push({cos+i.second,i.first}); } } } return ans; }"
