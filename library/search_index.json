@@ -312,7 +312,7 @@
   {
     "title": "二次元累積和",
     "url": "/library/all/累積和/二次元累積和",
-    "content": "二次元累積和 rui2D R(v) でvの二次元累積和を作る R.query(a,b,c,d)で (a,b)( )( ) ( )( )( ) ( )( )(c,d) の区間の累積を取る class rui2D{ public : vector> v; rui2D(vector>& a){ v = a; int h = v.size(); int w = v0].size(); for(int i = 0;i < h;i++){ for(int j = 1;j < w;j++){ v[i += vi; } } for(int j = 0;j < w;j++){ for(int i = 1;i < h;i++){ vi += vi-1; } } } int query(int a,int b,int c,int d){ int ans = vc; if(a!=0)ans -= va-1; if(b!=0)ans -= vc; if(a!=0 && b != 0)ans += va-1; return ans; } };"
+    "content": "二次元累積和 rui2D R(v) でvの二次元累積和を作る R.query(a,b,c,d)で (a,b)( )( ) ( )( )( ) ( )( )(c,d) の区間の累積を取る class rui2D{ public : vector> v; rui2D(vector>& a){ v = a; long long h = v.size(); long long w = v0].size(); for(long long i = 0;i < h;i++){ for(long long j = 1;j < w;j++){ v[i += vi; } } for(long long j = 0;j < w;j++){ for(long long i = 1;i < h;i++){ vi += vi-1; } } } long long query(long long a,long long b,long long c,long long d){ long long ans = vc; if(a!=0)ans -= va-1; if(b!=0)ans -= vc; if(a!=0 && b != 0)ans += va-1; return ans; } };"
   },
   {
     "title": "累積和をやるためのライブラリ",
