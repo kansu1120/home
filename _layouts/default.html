@@ -27,6 +27,13 @@
 :root{
   --bg:#fbfbfb; --text:#1e1e1e; --sub:#666;
   --line:#e5e5e5; --accent:#7a0f18; --gold:#c9a24d;
+  --link-hover-bg: rgba(201, 162, 77, 0.10);
+  --link-hover-text: var(--accent);
+  --breadcrumb-link-hover-bg: rgba(201, 162, 77, 0.14);
+  --breadcrumb-link-hover-text: var(--accent);
+  --sidebar-bg-start: #ffffff;
+  --sidebar-bg-end: #f8f8f8;
+  --sidebar-open-shadow: 0 0 30px rgba(0,0,0,0.08);
   --header-grad-start:#e8e8e8;
   --header-grad-end:#f5f5f5;
   --glow-primary: rgba(201, 162, 77, 0.8);
@@ -309,7 +316,7 @@ h3 {
   position:fixed;
   top:56px; left:0; bottom:0;
   width:240px;
-  background:#fff;
+  background: linear-gradient(180deg, var(--sidebar-bg-start), var(--sidebar-bg-end));
   border-right:1px solid var(--line);
   padding:16px;
   transform:translateX(-100%);
@@ -318,7 +325,7 @@ h3 {
 }
 .sidebar.open{
   transform:translateX(0);
-  box-shadow:0 0 30px rgba(0,0,0,0.08);
+  box-shadow: var(--sidebar-open-shadow);
 }
 .sidebar a{
   display:block;
@@ -331,8 +338,8 @@ h3 {
 }
 
 .sidebar a:hover{
-  color: var(--accent);
-  background: rgba(201, 162, 77, 0.1);
+  color: var(--link-hover-text);
+  background: var(--link-hover-bg);
   text-decoration:none;
 }
 
@@ -553,8 +560,8 @@ footer{
 }
 
 .breadcrumb .breadcrumb-link:hover {
-  color: var(--accent);
-  background: rgba(201, 162, 77, 0.14);
+  color: var(--breadcrumb-link-hover-text);
+  background: var(--breadcrumb-link-hover-bg);
   text-decoration: none;
 }
 
@@ -781,6 +788,13 @@ pre:hover .copy-button {
     --line: #333;
     --accent: #ff4158;
     --gold: #e5c167;
+    --link-hover-bg: rgba(229, 193, 103, 0.20);
+    --link-hover-text: #f6df9e;
+    --breadcrumb-link-hover-bg: rgba(229, 193, 103, 0.28);
+    --breadcrumb-link-hover-text: #1a1a1a;
+    --sidebar-bg-start: #1f2125;
+    --sidebar-bg-end: #272a2f;
+    --sidebar-open-shadow: 0 10px 32px rgba(0,0,0,0.5);
     --header-grad-start: #222;
     --header-grad-end: #2a2a2a;
     --glow-primary: rgba(229, 193, 103, 0.9);
@@ -803,6 +817,13 @@ pre:hover .copy-button {
     --line: #333;
     --accent: #ff4158;
     --gold: #e5c167;
+    --link-hover-bg: rgba(229, 193, 103, 0.20);
+    --link-hover-text: #f6df9e;
+    --breadcrumb-link-hover-bg: rgba(229, 193, 103, 0.28);
+    --breadcrumb-link-hover-text: #1a1a1a;
+    --sidebar-bg-start: #1f2125;
+    --sidebar-bg-end: #272a2f;
+    --sidebar-open-shadow: 0 10px 32px rgba(0,0,0,0.5);
     --header-grad-start: #222;
     --header-grad-end: #2a2a2a;
     --glow-primary: rgba(229, 193, 103, 0.9);
@@ -898,10 +919,15 @@ pre:hover .copy-button {
 [data-theme="dark"] .toc a:hover {
     color: var(--gold);
   }
-  :root:not([data-theme="light"]) .sidebar, :root:not([data-theme="light"]) .header-search, :root:not([data-theme="light"]) #searchResults,
-[data-theme="dark"] .sidebar, [data-theme="dark"] .header-search, [data-theme="dark"] #searchResults {
+  :root:not([data-theme="light"]) .header-search, :root:not([data-theme="light"]) #searchResults,
+[data-theme="dark"] .header-search, [data-theme="dark"] #searchResults {
     background: #242424;
     border-color: #333;
+  }
+  :root:not([data-theme="light"]) .sidebar,
+[data-theme="dark"] .sidebar {
+    background: linear-gradient(180deg, var(--sidebar-bg-start), var(--sidebar-bg-end));
+    border-color: #3a3a3a;
   }
   :root:not([data-theme="light"]) .main ul li,
 [data-theme="dark"] .main ul li {
@@ -935,8 +961,8 @@ pre:hover .copy-button {
   }
   :root:not([data-theme="light"]) .breadcrumb .breadcrumb-link:hover,
 [data-theme="dark"] .breadcrumb .breadcrumb-link:hover {
-    color: #1a1a1a;
-    background: var(--gold);
+    color: var(--breadcrumb-link-hover-text);
+    background: var(--breadcrumb-link-hover-bg);
   }
   :root:not([data-theme="light"]) .breadcrumb .current,
 [data-theme="dark"] .breadcrumb .current {
@@ -1136,13 +1162,13 @@ pre:hover .copy-button {
 </header>
 
 <nav class="sidebar" id="sidebar" aria-label="サイトナビゲーション" role="navigation">
-  <a href="{{ '/' | relative_url }}">ホーム</a>
-  <a href="{{ '/一覧' | relative_url }}">ライブラリ一覧</a>
-  <a href="{{ '/all/累積和/index.html' | relative_url }}">累積和</a>
-  <a href="{{ '/all/数学/index.html' | relative_url }}">数学</a>
-  <a href="{{ '/all/グラフ/index.html' | relative_url }}">グラフ</a>
-  <a href="{{ '/all/構造体/index.html' | relative_url }}">データ構造</a>
-  <a href="{{ '/all/二分探索/index.html' | relative_url }}">二分探索</a>
+  <a href="{{ '/' | relative_url }}">🏠 ホーム</a>
+  <a href="{{ '/一覧' | relative_url }}">📋 ライブラリ一覧</a>
+  <a href="{{ '/all/累積和/index.html' | relative_url }}">📐 累積和</a>
+  <a href="{{ '/all/数学/index.html' | relative_url }}">🔢 数学</a>
+  <a href="{{ '/all/グラフ/index.html' | relative_url }}">🌐 グラフ</a>
+  <a href="{{ '/all/構造体/index.html' | relative_url }}">🏗️ データ構造</a>
+  <a href="{{ '/all/二分探索/index.html' | relative_url }}">🔍 二分探索</a>
 </nav>
 
 <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
@@ -1155,7 +1181,7 @@ pre:hover .copy-button {
 
 <footer>
   <div class="footer-brand">created by Kansu</div>
-  <p class="footer-description">ミスがあっても知りませんよ</p>
+  <p class="footer-description">競技プログラミングのためのC++ライブラリ - アルゴリズム・データ構造の実装集</p>
   <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}" target="_blank">
     Source on GitHub
   </a>
