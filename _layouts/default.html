@@ -4,6 +4,18 @@
 <meta charset="utf-8">
 <title>{{ page.title }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{{ page.description | default: '競技プログラミングのためのC++ライブラリ - アルゴリズム・データ構造の実装集' }}">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ page.title }}">
+<meta property="og:description" content="{{ page.description | default: '競技プログラミングのためのC++ライブラリ - アルゴリズム・データ構造の実装集' }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ page.title }}">
+<meta name="twitter:description" content="{{ page.description | default: '競技プログラミングのためのC++ライブラリ - アルゴリズム・データ構造の実装集' }}">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 
@@ -121,6 +133,11 @@ h3 {
   width:48px; height:48px;
   display:flex; align-items:center; justify-content:center;
   font-size:22px; cursor:pointer;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  border-radius: 4px;
+  padding: 0;
 }
 
 .header-logo{
@@ -307,6 +324,103 @@ h3 {
   margin:10px 0;
   font-size:14px;
   color:#444;
+}
+
+/* ================= Dark Mode Toggle ================= */
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 18px;
+  line-height: 1;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: rgba(201, 162, 77, 0.1);
+  border-color: var(--gold);
+}
+
+/* ================= Focus Visible ================= */
+
+.hamburger:focus-visible,
+.theme-toggle:focus-visible,
+.mobile-search-toggle:focus-visible,
+.sidebar a:focus-visible,
+.copy-button:focus-visible,
+.clear-history-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ================= Back to Top Button ================= */
+
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 500;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px);
+  background: var(--gold);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ================= Footer Improvements ================= */
+
+.footer-description {
+  margin: 8px 0 16px;
+  font-size: 13px;
+  color: var(--sub);
+}
+
+.footer-top-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 16px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--sub);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.footer-top-link:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  text-decoration: none;
 }
 
 /* ================= Overlay ================= */
@@ -661,7 +775,7 @@ pre:hover .copy-button {
 /* ================= Dark Mode ================= */
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #1a1a1a;
     --text: #e8e8e8;
     --sub: #a0a0a0;
@@ -680,108 +794,148 @@ pre:hover .copy-button {
     --logo-glow-color-alpha-8: rgba(229, 193, 103, 0.8);
     --logo-glow-color-alpha-5: rgba(229, 193, 103, 0.5);
   }
-  
-  body {
+}
+
+[data-theme="dark"] {
+    --bg: #1a1a1a;
+    --text: #e8e8e8;
+    --sub: #a0a0a0;
+    --line: #333;
+    --accent: #ff4158;
+    --gold: #e5c167;
+    --header-bg: #222;
+    --glow-primary: rgba(229, 193, 103, 0.9);
+    --glow-secondary: rgba(229, 193, 103, 0.6);
+    --glow-size-sm: 20px;
+    --glow-size-md: 40px;
+    --logo-glow-sm: 30px;
+    --logo-glow-md: 60px;
+    --logo-glow-lg: 90px;
+    --logo-glow-color: rgba(229, 193, 103, 1);
+    --logo-glow-color-alpha-8: rgba(229, 193, 103, 0.8);
+    --logo-glow-color-alpha-5: rgba(229, 193, 103, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body,
+  [data-theme="dark"] body {
     background: var(--bg);
     color: var(--text);
   }
-  
-  /* コードブロック - 洗練されたダークスタイル */
-  /* !important は highlight.js のデフォルトスタイルを上書きするために必要 */
-  pre {
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) pre,
+[data-theme="dark"] pre {
     background: linear-gradient(180deg, #1e1e1e, #1a1a1a) !important;
     border-left: 4px solid var(--gold);
     box-shadow: 
       0 4px 20px rgba(0, 0, 0, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
-  
-  pre code {
+}
+[data-theme="dark"] pre {
+    background: linear-gradient(180deg, #1e1e1e, #1a1a1a) !important;
+    border-left: 4px solid var(--gold);
+    box-shadow: 
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) pre code,
+[data-theme="dark"] pre code {
     color: #e8e8e8 !important;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   }
-  
-  /* インラインコード */
-  code {
+}
+[data-theme="dark"] pre code {
+  color: #e8e8e8 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) code,
+[data-theme="dark"] code {
     background: #2a2a2a !important;
     color: #e5c167;
     border: 1px solid #333;
   }
-  
-  /* コピーボタン */
-  .copy-button {
+}
+[data-theme="dark"] code {
+  background: #2a2a2a !important;
+  color: #e5c167;
+  border: 1px solid #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .copy-button,
+[data-theme="dark"] .copy-button {
     background: #333;
     color: #e8e8e8;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
-  
-  .copy-button:hover {
+  :root:not([data-theme="light"]) .copy-button:hover,
+[data-theme="dark"] .copy-button:hover {
     background: var(--gold);
     color: #1a1a1a;
   }
-  
-  /* コード言語ラベル */
-  .code-language-label {
+  :root:not([data-theme="light"]) .code-language-label,
+[data-theme="dark"] .code-language-label {
     color: var(--gold);
     opacity: 0.7;
   }
-  
-  /* 目次のダークモード */
-  .toc {
+  :root:not([data-theme="light"]) .toc,
+[data-theme="dark"] .toc {
     border-color: #333;
   }
-  
-  .toc a {
+  :root:not([data-theme="light"]) .toc a,
+[data-theme="dark"] .toc a {
     color: #b0b0b0;
   }
-  
-  .toc a:hover {
+  :root:not([data-theme="light"]) .toc a:hover,
+[data-theme="dark"] .toc a:hover {
     color: var(--gold);
   }
-  
-  /* サイドバー・検索 */
-  .sidebar, .header-search, #searchResults {
+  :root:not([data-theme="light"]) .sidebar, :root:not([data-theme="light"]) .header-search, :root:not([data-theme="light"]) #searchResults,
+[data-theme="dark"] .sidebar, [data-theme="dark"] .header-search, [data-theme="dark"] #searchResults {
     background: #242424;
     border-color: #333;
   }
-  
-  /* カードリスト */
-  .main ul li {
+  :root:not([data-theme="light"]) .main ul li,
+[data-theme="dark"] .main ul li {
     background: #242424;
     border-left: 4px solid var(--gold);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
-  
-  .main ul li:hover {
+  :root:not([data-theme="light"]) .main ul li:hover,
+[data-theme="dark"] .main ul li:hover {
     background: #2a2a2a;
     box-shadow: 0 4px 16px rgba(201, 162, 77, 0.2);
   }
-  
-  /* 検索フィールド */
-  .header-search input {
+  :root:not([data-theme="light"]) .header-search input,
+[data-theme="dark"] .header-search input {
     background: #2a2a2a;
     color: var(--text);
     border-color: #333;
   }
-  
-  .header-search input:focus {
+  :root:not([data-theme="light"]) .header-search input:focus,
+[data-theme="dark"] .header-search input:focus {
     background: #333;
     border-color: var(--gold);
   }
-  
-  /* パンくずリスト */
-  .breadcrumb {
+  :root:not([data-theme="light"]) .breadcrumb,
+[data-theme="dark"] .breadcrumb {
     background: rgba(42, 42, 42, 0.8);
   }
-  
-  .breadcrumb a {
+  :root:not([data-theme="light"]) .breadcrumb a,
+[data-theme="dark"] .breadcrumb a {
     color: var(--gold);
   }
-  
-  .breadcrumb .current {
+  :root:not([data-theme="light"]) .breadcrumb .current,
+[data-theme="dark"] .breadcrumb .current {
     color: var(--text);
   }
-  
   /* ダークモード対応ロゴアニメーション */
   @keyframes slideFromCenterLeft {
     0% {
@@ -954,7 +1108,8 @@ pre:hover .copy-button {
 
 /* ダークモード対応 */
 @media (prefers-color-scheme: dark) {
-  .search-highlight {
+  :root:not([data-theme="light"]) .search-highlight,
+[data-theme="dark"] .search-highlight {
     background: linear-gradient(90deg, 
       rgba(255, 235, 59, 0.5), 
       rgba(255, 193, 7, 0.5));
@@ -962,37 +1117,46 @@ pre:hover .copy-button {
     box-shadow: 0 1px 3px rgba(255, 193, 7, 0.4);
   }
   
-  .search-history-item:hover,
-  .search-result-item:hover {
+  :root:not([data-theme="light"]) .search-history-item:hover,
+  :root:not([data-theme="light"]) .search-result-item:hover,
+[data-theme="dark"] .search-history-item:hover,
+[data-theme="dark"] .search-result-item:hover {
     background: rgba(201, 162, 77, 0.25);
   }
   
-  .clear-history-btn {
+  :root:not([data-theme="light"]) .clear-history-btn,
+[data-theme="dark"] .clear-history-btn {
     border-color: #444;
     color: #aaa;
   }
   
-  .clear-history-btn:hover {
+  :root:not([data-theme="light"]) .clear-history-btn:hover,
+[data-theme="dark"] .clear-history-btn:hover {
     background: var(--gold);
     color: #000;
     border-color: var(--gold);
   }
   
   /* 検索結果のダークモード対応 */
-  .search-results {
+  :root:not([data-theme="light"]) .search-results,
+[data-theme="dark"] .search-results {
     background: #242424;
     border-color: #333;
   }
   
-  #searchBox,
-  #mobileSearchBox {
+  :root:not([data-theme="light"]) #searchBox,
+  :root:not([data-theme="light"]) #mobileSearchBox,
+[data-theme="dark"] #searchBox,
+[data-theme="dark"] #mobileSearchBox {
     background: #2a2a2a;
     color: var(--text);
     border-color: #333;
   }
   
-  #searchBox:focus,
-  #mobileSearchBox:focus {
+  :root:not([data-theme="light"]) #searchBox:focus,
+  :root:not([data-theme="light"]) #mobileSearchBox:focus,
+[data-theme="dark"] #searchBox:focus,
+[data-theme="dark"] #mobileSearchBox:focus {
     background: #333;
     border-color: var(--gold);
   }
@@ -1004,7 +1168,7 @@ pre:hover .copy-button {
 <body>
 
 <header class="header">
-  <div class="hamburger" onclick="toggleSidebar()">☰</div>
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="メニューを開く" aria-expanded="false" aria-controls="sidebar">☰</button>
 
   <div class="header-logo">
     <a href="{{ '/' | relative_url }}">
@@ -1026,6 +1190,9 @@ pre:hover .copy-button {
       <path d="m21 21-4.35-4.35"></path>
     </svg>
   </button>
+
+  <!-- ダークモードトグル -->
+  <button class="theme-toggle" id="themeToggle" aria-label="ダークモード切替">🌙</button>
   
   <!-- モバイル用：展開する検索欄 -->
   <div class="mobile-search" id="mobileSearch">
@@ -1035,14 +1202,16 @@ pre:hover .copy-button {
   </div>
 </header>
 
-<div class="sidebar" id="sidebar">
-  <a href="{{ '/一覧' | relative_url }}">ライブラリ一覧</a>
-  <a href="{{ '/all/累積和/index.html' | relative_url }}">累積和</a>
-  <a href="{{ '/all/数学/index.html' | relative_url }}">数学</a>
-  <a href="{{ '/all/グラフ/index.html' | relative_url }}">グラフ</a>
-  <a href="{{ '/all/構造体/index.html' | relative_url }}">データ構造</a>
-  <a href="{{ '/all/二分探索/index.html' | relative_url }}">二分探索</a>
-</div>
+<nav class="sidebar" id="sidebar" aria-label="サイトナビゲーション" role="navigation">
+  <a href="{{ '/' | relative_url }}">🏠 ホーム</a>
+  <a href="{{ '/一覧' | relative_url }}">📋 ライブラリ一覧</a>
+  <a href="{{ '/all/累積和/index.html' | relative_url }}">📐 累積和</a>
+  <a href="{{ '/all/数学/index.html' | relative_url }}">🔢 数学</a>
+  <a href="{{ '/all/グラフ/index.html' | relative_url }}">🌐 グラフ</a>
+  <a href="{{ '/all/構造体/index.html' | relative_url }}">🏗️ データ構造</a>
+  <a href="{{ '/all/二分探索/index.html' | relative_url }}">🔍 二分探索</a>
+  <a href="{{ '/scorer.html' | relative_url }}">🎯 採点システム</a>
+</nav>
 
 <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
@@ -1054,13 +1223,18 @@ pre:hover .copy-button {
 
 <footer>
   <div class="footer-brand">created by Kansu</div>
+  <p class="footer-description">競技プログラミングのためのC++ライブラリ - アルゴリズム・データ構造の実装集</p>
   <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}" target="_blank">
     Source on GitHub
   </a>
+  <br>
+  <a href="#" class="footer-top-link" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ トップへ</a>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script>hljs.highlightAll();</script>
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+<script defer>hljs.highlightAll();</script>
 
 <script src="{{ '/library/copy.js' | relative_url }}"></script>
 <script src="{{ '/library/search-enhanced.js' | relative_url }}"></script>
@@ -1074,17 +1248,34 @@ pre:hover .copy-button {
 <script>
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
+const hamburger = document.querySelector(".hamburger");
 
 function toggleSidebar(){
-  sidebar.classList.toggle("open");
-  overlay.classList.toggle("active");
+  const isOpen = sidebar.classList.toggle("open");
+  overlay.classList.toggle("active", isOpen);
+  hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  hamburger.setAttribute("aria-label", isOpen ? "メニューを閉じる" : "メニューを開く");
 }
 function closeSidebar(){
   sidebar.classList.remove("open");
   overlay.classList.remove("active");
+  hamburger.setAttribute("aria-expanded", "false");
+  hamburger.setAttribute("aria-label", "メニューを開く");
 }
 
-// スクロール時のヘッダー変化
+// Escキーでサイドバー・モバイル検索を閉じる
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeSidebar();
+    const mobileSearch = document.getElementById('mobileSearch');
+    if (mobileSearch && mobileSearch.classList.contains('open')) {
+      mobileSearch.classList.remove('open');
+    }
+  }
+});
+
+// スクロール時のヘッダー変化 + 「トップへ戻る」ボタン表示
+const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
   const header = document.querySelector('.header');
   const currentScroll = window.pageYOffset;
@@ -1094,7 +1285,17 @@ window.addEventListener('scroll', () => {
   } else {
     header.style.boxShadow = '0 2px 20px rgba(122, 15, 24, 0.08)';
   }
+
+  if (backToTop) {
+    backToTop.classList.toggle('visible', currentScroll > 300);
+  }
 });
+
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
 // スムーススクロール (event delegation)
 document.addEventListener('click', (e) => {
@@ -1111,6 +1312,46 @@ document.addEventListener('click', (e) => {
     history.pushState(null, null, href);
   }
 });
+
+// 画像の遅延読み込み
+document.querySelectorAll('.main img').forEach(img => {
+  if (!img.hasAttribute('loading')) {
+    img.setAttribute('loading', 'lazy');
+  }
+});
+
+// ダークモードトグル
+(function() {
+  const themeToggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+
+  function getSystemTheme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      html.setAttribute('data-theme', 'dark');
+      if (themeToggle) themeToggle.textContent = '☀️';
+    } else {
+      html.setAttribute('data-theme', 'light');
+      if (themeToggle) themeToggle.textContent = '🌙';
+    }
+  }
+
+  // 保存済み設定、なければシステム設定に従う
+  const saved = localStorage.getItem('theme');
+  applyTheme(saved || getSystemTheme());
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+  }
+})();
 </script>
 
 </body>
