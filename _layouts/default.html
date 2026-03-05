@@ -27,7 +27,8 @@
 :root{
   --bg:#fbfbfb; --text:#1e1e1e; --sub:#666;
   --line:#e5e5e5; --accent:#7a0f18; --gold:#c9a24d;
-  --header-bg:#e0e0e0;
+  --header-grad-start:#e8e8e8;
+  --header-grad-end:#f5f5f5;
   --glow-primary: rgba(201, 162, 77, 0.8);
   --glow-secondary: rgba(201, 162, 77, 0.5);
   --glow-size-sm: 15px;
@@ -118,7 +119,7 @@ h3 {
   position:fixed;
   top:0; left:0; right:0;
   height:56px;
-  background: linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 100%);
+  background: linear-gradient(135deg, var(--header-grad-start) 0%, var(--header-grad-end) 100%);
   border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
@@ -323,7 +324,16 @@ h3 {
   display:block;
   margin:10px 0;
   font-size:14px;
-  color:#444;
+  color:var(--text);
+  border-radius:6px;
+  padding:8px 10px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.sidebar a:hover{
+  color: var(--accent);
+  background: rgba(201, 162, 77, 0.1);
+  text-decoration:none;
 }
 
 /* ================= Dark Mode Toggle ================= */
@@ -352,8 +362,7 @@ h3 {
 .theme-toggle:focus-visible,
 .mobile-search-toggle:focus-visible,
 .sidebar a:focus-visible,
-.copy-button:focus-visible,
-.clear-history-btn:focus-visible {
+.copy-button:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
@@ -403,24 +412,6 @@ h3 {
   margin: 8px 0 16px;
   font-size: 13px;
   color: var(--sub);
-}
-
-.footer-top-link {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 6px 16px;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  font-size: 13px;
-  color: var(--sub);
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.footer-top-link:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  text-decoration: none;
 }
 
 /* ================= Overlay ================= */
@@ -553,15 +544,23 @@ footer{
   flex-wrap: wrap;
 }
 
-.breadcrumb a {
+.breadcrumb .breadcrumb-link {
   color: var(--gold);
-  transition: color 0.2s;
+  transition: color 0.2s, background-color 0.2s;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+.breadcrumb .breadcrumb-link:hover {
+  color: var(--accent);
+  background: rgba(201, 162, 77, 0.14);
   text-decoration: none;
 }
 
-.breadcrumb a:hover {
-  color: var(--accent);
-  text-decoration: none;
+.breadcrumb .breadcrumb-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 
 .breadcrumb .separator {
@@ -782,7 +781,8 @@ pre:hover .copy-button {
     --line: #333;
     --accent: #ff4158;
     --gold: #e5c167;
-    --header-bg: #222;
+    --header-grad-start: #222;
+    --header-grad-end: #2a2a2a;
     --glow-primary: rgba(229, 193, 103, 0.9);
     --glow-secondary: rgba(229, 193, 103, 0.6);
     --glow-size-sm: 20px;
@@ -803,7 +803,8 @@ pre:hover .copy-button {
     --line: #333;
     --accent: #ff4158;
     --gold: #e5c167;
-    --header-bg: #222;
+    --header-grad-start: #222;
+    --header-grad-end: #2a2a2a;
     --glow-primary: rgba(229, 193, 103, 0.9);
     --glow-secondary: rgba(229, 193, 103, 0.6);
     --glow-size-sm: 20px;
@@ -928,9 +929,14 @@ pre:hover .copy-button {
 [data-theme="dark"] .breadcrumb {
     background: rgba(42, 42, 42, 0.8);
   }
-  :root:not([data-theme="light"]) .breadcrumb a,
-[data-theme="dark"] .breadcrumb a {
+  :root:not([data-theme="light"]) .breadcrumb .breadcrumb-link,
+[data-theme="dark"] .breadcrumb .breadcrumb-link {
     color: var(--gold);
+  }
+  :root:not([data-theme="light"]) .breadcrumb .breadcrumb-link:hover,
+[data-theme="dark"] .breadcrumb .breadcrumb-link:hover {
+    color: #1a1a1a;
+    background: var(--gold);
   }
   :root:not([data-theme="light"]) .breadcrumb .current,
 [data-theme="dark"] .breadcrumb .current {
@@ -1000,64 +1006,6 @@ pre:hover .copy-button {
   box-shadow: 0 1px 3px rgba(255, 193, 7, 0.3);
 }
 
-/* 検索履歴ヘッダー */
-.search-history-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
-  color: var(--sub);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 8px 16px 4px;
-  font-weight: 600;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 4px;
-}
-
-/* 履歴クリアボタン */
-.clear-history-btn {
-  background: transparent;
-  border: 1px solid var(--line);
-  color: var(--sub);
-  font-size: 10px;
-  padding: 3px 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.clear-history-btn:hover {
-  background: var(--gold);
-  color: white;
-  border-color: var(--gold);
-}
-
-/* 検索履歴アイテム */
-.search-history-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  cursor: pointer;
-  transition: all 0.2s;
-  color: var(--sub);
-  font-size: 14px;
-}
-
-.search-history-item:hover {
-  background: rgba(201, 162, 77, 0.1);
-  color: var(--text);
-  transform: translateX(4px);
-}
-
-.history-icon {
-  font-size: 14px;
-  opacity: 0.6;
-}
-
 /* 検索結果数 */
 .search-result-count {
   font-size: 11px;
@@ -1117,26 +1065,11 @@ pre:hover .copy-button {
     box-shadow: 0 1px 3px rgba(255, 193, 7, 0.4);
   }
   
-  :root:not([data-theme="light"]) .search-history-item:hover,
   :root:not([data-theme="light"]) .search-result-item:hover,
-[data-theme="dark"] .search-history-item:hover,
 [data-theme="dark"] .search-result-item:hover {
     background: rgba(201, 162, 77, 0.25);
   }
-  
-  :root:not([data-theme="light"]) .clear-history-btn,
-[data-theme="dark"] .clear-history-btn {
-    border-color: #444;
-    color: #aaa;
-  }
-  
-  :root:not([data-theme="light"]) .clear-history-btn:hover,
-[data-theme="dark"] .clear-history-btn:hover {
-    background: var(--gold);
-    color: #000;
-    border-color: var(--gold);
-  }
-  
+
   /* 検索結果のダークモード対応 */
   :root:not([data-theme="light"]) .search-results,
 [data-theme="dark"] .search-results {
@@ -1210,7 +1143,6 @@ pre:hover .copy-button {
   <a href="{{ '/all/グラフ/index.html' | relative_url }}">🌐 グラフ</a>
   <a href="{{ '/all/構造体/index.html' | relative_url }}">🏗️ データ構造</a>
   <a href="{{ '/all/二分探索/index.html' | relative_url }}">🔍 二分探索</a>
-  <a href="{{ '/scorer.html' | relative_url }}">🎯 採点システム</a>
 </nav>
 
 <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
@@ -1227,8 +1159,6 @@ pre:hover .copy-button {
   <a href="https://github.com/kansu1120/library/blob/main/{{ page.path }}" target="_blank">
     Source on GitHub
   </a>
-  <br>
-  <a href="#" class="footer-top-link" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ トップへ</a>
 </footer>
 
 <button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
