@@ -1,3 +1,8 @@
+---
+layout: default
+title: kansu C++ Library - ホーム
+description: 競技プログラミングのためのC++ライブラリ。アルゴリズム・データ構造の実装集。
+---
 
 - [一覧](一覧.md)
 - [template](template.md)
@@ -8,9 +13,6 @@
 - [二分探索](all/二分探索/index.md)
 - [その他典型](all/その他典型/index.md)
 - [add file](add_file.md)
-  
-
-
 
 
 

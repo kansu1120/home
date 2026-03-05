@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>採点システム - kansu C++ Library</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="WebAssemblyベースのコンテスト採点システム - ブラウザ上で自動採点">
+
+<!-- Open Graph -->
+<meta property="og:title" content="採点システム - kansu C++ Library">
+<meta property="og:description" content="WebAssemblyベースのコンテスト採点システム - ブラウザ上で自動採点">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kansu1120.github.io/library/scorer.html">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="採点システム - kansu C++ Library">
+<meta name="twitter:description" content="WebAssemblyベースのコンテスト採点システム - ブラウザ上で自動採点">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #fbfbfb;
+  --text: #1e1e1e;
+  --sub: #666;
+  --line: #e5e5e5;
+  --accent: #7a0f18;
+  --gold: #c9a24d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1a1a1a;
+    --text: #e8e8e8;
+    --sub: #a0a0a0;
+    --line: #333;
+    --accent: #ff4158;
+    --gold: #e5c167;
+  }
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --text: #e8e8e8;
+  --sub: #a0a0a0;
+  --line: #333;
+  --accent: #ff4158;
+  --gold: #e5c167;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Noto Serif JP", serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ================= Header ================= */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 100%);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(122, 15, 24, 0.08);
+}
+
+[data-theme="dark"] .header,
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .header {
+    background: linear-gradient(135deg, #222 0%, #2a2a2a 100%);
+  }
+}
+
+.header-logo {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.header-logo span {
+  font-size: 13px;
+  color: var(--gold);
+  margin-left: 6px;
+  letter-spacing: 0.1em;
+}
+
+.nav-back {
+  margin-left: auto;
+  font-size: 14px;
+  color: var(--sub);
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 18px;
+  line-height: 1;
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(201, 162, 77, 0.1);
+  border-color: var(--gold);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ================= Main ================= */
+.main {
+  max-width: 800px;
+  margin: auto;
+  padding: 88px 32px 64px;
+}
+
+h1 {
+  position: relative;
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+  font-size: 28px;
+  font-family: "Cinzel", serif;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 60px; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  border-radius: 2px;
+}
+
+h2 {
+  font-size: 18px;
+  color: var(--accent);
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+/* ================= Form ================= */
+.form-section {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+[data-theme="dark"] .form-section {
+  background: #242424;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .form-section {
+    background: #242424;
+  }
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sub);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+select, input[type="number"] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+
+select:focus, input[type="number"]:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 162, 77, 0.15);
+}
+
+/* ================= Drop Zone ================= */
+.drop-zone {
+  border: 2px dashed var(--line);
+  border-radius: 8px;
+  padding: 32px;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-over {
+  border-color: var(--gold);
+  background: rgba(201, 162, 77, 0.05);
+}
+
+.drop-zone.drag-over {
+  transform: scale(1.01);
+}
+
+.drop-zone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.drop-zone-icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.drop-zone-label {
+  font-size: 14px;
+  color: var(--sub);
+}
+
+.drop-zone-filename {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ================= Buttons ================= */
+.score-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: all 0.2s;
+}
+
+.score-btn:hover:not(:disabled) {
+  background: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(201, 162, 77, 0.3);
+}
+
+.score-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.score-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ================= Results ================= */
+#resultArea {
+  margin-top: 24px;
+}
+
+.result-summary {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+[data-theme="dark"] .result-summary {
+  background: #242424;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .result-summary {
+    background: #242424;
+  }
+}
+
+.result-score {
+  font-size: 48px;
+  font-family: "Cinzel", serif;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.result-label {
+  font-size: 14px;
+  color: var(--sub);
+  margin-top: 4px;
+}
+
+.result-details {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+[data-theme="dark"] .result-details {
+  background: #242424;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .result-details {
+    background: #242424;
+  }
+}
+
+.result-details-header {
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sub);
+  border-bottom: 1px solid var(--line);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  gap: 16px;
+}
+
+.result-case {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.result-case:last-child {
+  border-bottom: none;
+}
+
+.result-case:hover {
+  background: rgba(201, 162, 77, 0.05);
+}
+
+.case-number {
+  width: 60px;
+  color: var(--sub);
+  font-size: 13px;
+}
+
+.case-badge {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.badge-ac {
+  background: rgba(76, 175, 80, 0.15);
+  color: #4caf50;
+}
+
+.badge-wa {
+  background: rgba(244, 67, 54, 0.15);
+  color: #f44336;
+}
+
+.badge-tle {
+  background: rgba(255, 152, 0, 0.15);
+  color: #ff9800;
+}
+
+.case-detail {
+  color: var(--sub);
+  font-size: 13px;
+  margin-left: auto;
+}
+
+/* ================= Footer ================= */
+footer {
+  text-align: center;
+  margin: 60px 0 30px;
+  color: var(--sub);
+  font-size: 14px;
+}
+
+.footer-brand {
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <a class="header-logo" href="/library/">Kansu <span>C++ Library</span></a>
+  <nav class="nav-back" aria-label="ナビゲーション">
+    <a href="/library/">← ホームへ戻る</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="ダークモード切替">🌙</button>
+</header>
+
+<main class="main">
+  <h1>🎯 採点システム</h1>
+  <p>WebAssemblyベースのコンテスト採点システムです。ブラウザ上でC++コードを自動採点します。</p>
+
+  <div class="form-section">
+    <h2>設定</h2>
+
+    <label for="problemSelect">問題を選択</label>
+    <select id="problemSelect" name="problemSelect">
+      <option value="">-- 問題を選択してください --</option>
+    </select>
+
+    <label for="timeLimitInput">時間制限 (秒)</label>
+    <input type="number" id="timeLimitInput" name="timeLimitInput" value="2" min="1" max="10" step="1" aria-describedby="timeLimitHint">
+    <small id="timeLimitHint" style="color:var(--sub);font-size:12px;display:block;margin-top:-12px;margin-bottom:16px;">1〜10秒の範囲で指定してください</small>
+  </div>
+
+  <div class="form-section">
+    <h2>ソースコードをアップロード</h2>
+
+    <div class="drop-zone" id="dropZone">
+      <input type="file" id="sourceFile" name="sourceFile" accept=".cpp,.cc,.c" aria-label="C++ソースファイルをドロップまたはクリックして選択">
+      <div class="drop-zone-icon">📂</div>
+      <div class="drop-zone-label">ファイルをドラッグ＆ドロップ、またはクリックして選択<br><small>(.cpp / .cc / .c)</small></div>
+      <div class="drop-zone-filename" id="dropZoneFilename"></div>
+    </div>
+
+    <button class="score-btn" id="scoreBtn" type="button" aria-busy="false">採点する</button>
+  </div>
+
+  <div id="resultArea" aria-live="polite" aria-atomic="true"></div>
+</main>
+
+<footer>
+  <div class="footer-brand">created by Kansu</div>
+  <p style="font-size:13px;color:var(--sub);margin:8px 0 16px;">競技プログラミングのためのC++ライブラリ - アルゴリズム・データ構造の実装集</p>
+  <a href="/library/">← ホームへ戻る</a>
+</footer>
+
+<script>
+// ダークモードトグル
+(function() {
+  const themeToggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+
+  function getSystemTheme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      html.setAttribute('data-theme', 'dark');
+      if (themeToggle) themeToggle.textContent = '☀️';
+    } else {
+      html.setAttribute('data-theme', 'light');
+      if (themeToggle) themeToggle.textContent = '🌙';
+    }
+  }
+
+  const saved = localStorage.getItem('theme');
+  applyTheme(saved || getSystemTheme());
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+  }
+})();
+
+// ドラッグ＆ドロップ
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('sourceFile');
+const fileNameDisplay = document.getElementById('dropZoneFilename');
+
+function updateFileName(file) {
+  fileNameDisplay.textContent = file ? '📄 ' + file.name : '';
+}
+
+fileInput.addEventListener('change', () => {
+  if (fileInput.files[0]) updateFileName(fileInput.files[0]);
+});
+
+dropZone.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  dropZone.classList.add('drag-over');
+});
+
+dropZone.addEventListener('dragleave', () => {
+  dropZone.classList.remove('drag-over');
+});
+
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) {
+    const dt = new DataTransfer();
+    dt.items.add(file);
+    fileInput.files = dt.files;
+    updateFileName(file);
+  }
+});
+
+// キーボードサポートは input[type="file"] がネイティブに処理するため不要
+
+// 採点ボタン
+const scoreBtn = document.getElementById('scoreBtn');
+const resultArea = document.getElementById('resultArea');
+
+scoreBtn.addEventListener('click', async () => {
+  const file = fileInput.files[0];
+  if (!file) {
+    alert('ソースファイルを選択してください。');
+    return;
+  }
+
+  scoreBtn.disabled = true;
+  scoreBtn.setAttribute('aria-busy', 'true');
+  scoreBtn.textContent = '採点中...';
+  resultArea.innerHTML = '';
+
+  try {
+    // WebAssembly採点処理（プレースホルダー）
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    // サンプル結果データ（実際にはWASM採点エンジンから取得）
+    const results = [
+      { case: 1, status: 'AC', time: '42ms' },
+      { case: 2, status: 'AC', time: '38ms' },
+      { case: 3, status: 'WA', time: '55ms' },
+      { case: 4, status: 'AC', time: '41ms' },
+      { case: 5, status: 'TLE', time: '2000ms+' },
+    ];
+
+    const acCount = results.filter(r => r.status === 'AC').length;
+    const total = results.length;
+    const score = Math.round((acCount / total) * 100);
+
+    const badgeClass = { AC: 'badge-ac', WA: 'badge-wa', TLE: 'badge-tle' };
+
+    resultArea.innerHTML = `
+      <div class="result-summary">
+        <div class="result-score">${score}<small style="font-size:24px">点</small></div>
+        <div class="result-label">${acCount} / ${total} テストケース正解</div>
+      </div>
+      <div class="result-details">
+        <div class="result-details-header">
+          <span style="width:60px">ケース</span>
+          <span>結果</span>
+          <span style="margin-left:auto">実行時間</span>
+        </div>
+        ${results.map(r => `
+          <div class="result-case">
+            <span class="case-number">#${r.case}</span>
+            <span class="case-badge ${badgeClass[r.status] || ''}">${r.status}</span>
+            <span class="case-detail">${r.time}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  } catch (err) {
+    const errMsg = document.createElement('p');
+    errMsg.style.color = 'var(--accent)';
+    errMsg.textContent = 'エラーが発生しました: ' + err.message;
+    resultArea.appendChild(errMsg);
+  } finally {
+    scoreBtn.disabled = false;
+    scoreBtn.setAttribute('aria-busy', 'false');
+    scoreBtn.textContent = '採点する';
+  }
+});
+</script>
+
+</body>
+</html>

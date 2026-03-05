@@ -1,3 +1,8 @@
+title: "kansu C++ Library"
+description: "競技プログラミングのためのC++ライブラリ - アルゴリズム・データ構造の実装集"
+url: "https://kansu1120.github.io"
+baseurl: "/library"
+
 collections:
   グラフ:
     output: true
